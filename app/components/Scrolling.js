@@ -24,7 +24,6 @@ export default function Scrolling(){
     return(
         <>
             <div className={'h-[350vh] w-full absolute'}>
-
                 <Image alt={'Tall redwood Tree'} src={'/tallTower.jpg'} fill={true}/>
             </div>
             <div className={'fixed top:0 flex justify-around w-full'}>
