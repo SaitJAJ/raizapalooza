@@ -17,3 +17,12 @@ export async function getCookiePolicy(){
         return false
     }
 }
+export async function addRoleCookie(role){
+    try{
+        cookies().set('role',role,{sameSite:'lax',maxAge:60*60*24*365})
+        return true
+    }catch(error){
+        console.error(error)
+        return false
+    }
+}
