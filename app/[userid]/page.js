@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 import QRCode from "react-qr-code";
 import * as htmlToImage from "html-to-image";
