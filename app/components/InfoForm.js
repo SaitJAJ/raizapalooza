@@ -21,11 +21,11 @@ export default function InfoForm(){
     }
 
     return(
-        <form action={handleSubmit} ref={formRef} className={'flex flex-wrap justify-around mx-80'} name={"infoForm"} id={"infoForm"}>
+        <form action={handleSubmit} ref={formRef} className={'flex flex-wrap justify-around '} name={"infoForm"} id={"infoForm"}>
             <HiddenInput type={'text'} id={'tier'} value={'earlyBird'} hidden={true} className={'hidden'}/>
-            <TextInput type={"text"} id={'name'} placeholder={'Name'}/>
-            <TextInput type={"text"} id={"email"} placeholder={'Email'}/>
-            <TextInput type={"text"} id={'phoneNumber'}  placeholder={'Phone Number'}/>
+            <TextInput label={'Name'} type={"text"} id={'name'} placeholder={'Name'}/>
+            <TextInput label={'Email'} type={"text"} id={"email"} placeholder={'Email'}/>
+            <TextInput label={'Phone Number'} type={"text"} id={'phoneNumber'}  placeholder={'Phone Number'}/>
             <Loading loading={loading}>
                 <Button type={'submit'} value={"Submit"}/>
             </Loading>
