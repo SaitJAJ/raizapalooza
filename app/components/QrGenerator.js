@@ -24,13 +24,16 @@ export default function QrGenerator({ticketId}){
 
     return (
         <>
-            <QRCode
-                ref={qrcodeRef}
-                size={256}
-                bgColor="#FFFFFF"
-                fgColor="#000000"
-                value={"http://localhost:3000/" + ticketId}
-            />
+            <div className={'flex justify-around my-8'}>
+                <QRCode
+                    ref={qrcodeRef}
+                    size={256}
+                    bgColor="#4041d1"
+                    fgColor="#fffdcf"
+                    value={process.env.QR_CODE_ENDPOINT+"/tickets/info/" + ticketId}
+                />
+            </div>
+
             <Hyperlink href={'/tickets/info/'+ticketId}>View Ticket Info</Hyperlink>
         </>
     );

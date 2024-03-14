@@ -8,7 +8,7 @@ export default function Hyperlink({href, children}, props){
 
     return(
         <Loading loading={navigating}>
-            <a href={href} onClick={onClick} className={'text-blue-500 text-ellipsis'}>
+            <a href={href} onClick={onClick} className={'text-ellipsis'}>
                 {children}
             </a>
         </Loading>

@@ -4,7 +4,7 @@ import CookiesButtons from "@/components/CookiesButtons";
 export default async function CookieConsent({cookies}){
     if(!cookies){
         return(
-            <div className={'flex flex-col justify-between w-[450px] h-fit bg-white border-gray-600 border-2 bottom-0 fixed text-center px-6'}>
+            <div className={'flex flex-col justify-between w-[450px] h-fit border-2 bottom-0 fixed text-center px-6 '}>
                 <h3 className={'text-2xl'}>Our Cookies Usage</h3>
                 <p>
                     This website only uses essential cookies, and does not collect, track or sell your usage data.
