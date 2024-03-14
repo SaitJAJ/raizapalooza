@@ -4,9 +4,7 @@ import Test from "@/models/Test";
 
 export default async function Page({ params }) {
   try {
-    await mongoose.connect(
-      "mongodb+srv://Adam:CtcAFsoROaxuGu3n@testdb.txgpqaz.mongodb.net/?retryWrites=true&w=majority&appName=TestDB"
-    );
+    await mongoose.connect(process.env.MONGODB_URI);
   } catch (e) {
     console.log(e);
   }
