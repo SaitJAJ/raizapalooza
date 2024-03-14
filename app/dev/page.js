@@ -1,13 +1,12 @@
-import CookieDev from "@/components/CookieDev";
-import InfoForm from "@/components/InfoForm";
-import CurrentTickets from "@/components/CurrentTickets";
+import SquarePayment from "@/components/SquarePayment";
 
 export default function Page(){
     return(
         <div className={''}>
-            <CookieDev/>
-            <InfoForm/>
-            <CurrentTickets/>
+            {/*<CookieDev/>*/}
+            {/*<InfoForm/>*/}
+            {/*<CurrentTickets/>*/}
+            <SquarePayment/>
         </div>
     )
 }
