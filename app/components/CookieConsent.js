@@ -1,4 +1,3 @@
-'use client'
 import Link from "next/link";
 import CookiesButtons from "@/components/CookiesButtons";
 export default async function CookieConsent({cookies}){

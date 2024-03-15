@@ -23,9 +23,9 @@ export default async function RootLayout({children}){
 }
 export const metadata={
     title: {
-        template:"%s | WRAP  ",
-        default:'WRAP | Waste Receiver Assessment Program'
+        template:"%s | Raizapalooza  ",
+        default:'Raizapalooza'
     },
-    description:"The Waste Receiver Facility Assessment Program, Managed by Wotherspoon Environmental Inc."
+    description:"Get your tickets now for the next Raizapalooza, relive the memories and celebrate Raiza! "
 
 }
