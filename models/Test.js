@@ -3,7 +3,7 @@ const { Schema, model } = mongoose;
 
 try {
   await mongoose.connect(
-    "mongodb+srv://Adam:CtcAFsoROaxuGu3n@testdb.txgpqaz.mongodb.net/?retryWrites=true&w=majority&appName=TestDB"
+    process.env.MONGODB_URI
   );
 } catch (e) {
   console.log(e);
