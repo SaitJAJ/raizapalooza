@@ -31,7 +31,7 @@ export default function QrGenerator({ ticketId }) {
           size={256}
           bgColor="#4041d1"
           fgColor="#fffdcf"
-          value={process.env.QR_CODE_ENDPOINT + "/tickets/info/" + ticketId}
+          value={process.env.QR_CODE_ENDPOINT + ticketId}
         />
       </div>
 
