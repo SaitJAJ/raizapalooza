@@ -7,8 +7,7 @@ export default function Button(props){
         id="",
         onClick=()=>{},
         disabled=false,
-        hoverColor=disabled?"hover:bg-yellow-100 ":"hover:bg-green-100 ",
-        className='border-2 bg-white py-2 px-8 rounded-md hover:cursor-pointer h-full '+hoverColor,
+        className='py-2 px-8 rounded-md hover:cursor-pointer h-full hover:outline hover: ',
     } = props;
     return(
         <label className={''}>

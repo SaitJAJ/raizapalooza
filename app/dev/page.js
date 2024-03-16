@@ -1,15 +1,15 @@
-import CookieDev from "@/components/CookieDev";
-import InfoForm from "@/components/InfoForm";
+import SquarePayment from "@/components/SquarePayment";
+import FormSequence from "@/components/layout/FormSequence";
 import CurrentTickets from "@/components/CurrentTickets";
-import PdfView from "../components/PdfView";
 
 export default function Page() {
   return (
     <div className={""}>
-      <CookieDev />
-      <InfoForm />
+      {/*<CookieDev/>*/}
+      {/*<InfoForm/>*/}
       <CurrentTickets />
-      <PdfView />
+      {/*<SquarePayment/>*/}
+      <FormSequence />
     </div>
   );
 }
