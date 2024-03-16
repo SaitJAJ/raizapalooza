@@ -12,16 +12,12 @@ export default async function RootLayout({children}){
     return(
         <html>
             <body>
-
-
-            <div className={'min-h-[100vh] pb-2.5 overflow-x-hidden w-full absolute'} >
-                <ParallaxBackground>
-                    <div className={'fixed w-full'}>
-                        {children}
-                    </div>
-                </ParallaxBackground>
+            {/*<div className={'pb-2.5 overflow-x-hidden w-full'} >*/}
+                <div className={'w-full min-h-[100vh]'}>
+                    {children}
+                </div>
                 <Footer/>
-            </div>
+            {/*</div>*/}
             <Suspense fallback={<Loading loading={true}/>}>
                 <CookieConsent cookies={policy}/>
             </Suspense>
