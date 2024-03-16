@@ -14,37 +14,38 @@ export async function GET(request, { params }) {
     }
 
     //test cookie for bartender
-
     if (cookie.value === "bartender") {
+      console.log("Bartender here");
       //if the paramvalue corrolates with a user, increment raffle
       //filter collections by ticketID
       const filter = { ticketId: value };
       //increment raffle by 1
       const modify = { $inc: { raffle: 1 } };
       //pass filter and modify with {new:true}
-      let doc = await Ticket.findOneAndUpdate(filter, modify, { new: true });
+      //let doc = await Ticket.findOneAndUpdate(filter, modify, { new: true });
       //doc will hold the updated row
-      console.log(doc);
+      //console.log(doc);
 
       //test cookie for bouncer
     } else if (cookie.value === "bouncer") {
+      console.log("Bouncer here");
       //if paramValue corrolates with a user, update admission to true
       //filter collections by ticketID
       const filter = { ticketId: value };
       //increment raffle by 1
       const modify = { admission: false };
       //pass filter and modify with {new:true}
-      let doc = await Ticket.findOneAndUpdate(filter, modify);
+      //let doc = await Ticket.findOneAndUpdate(filter, modify);
       //doc will hold the old row
       //if doc.admission is false
-      if (doc.admission === false) {
+      //if (doc.admission === false) {
         //this qr code has been scanned for admission already
-        redirect("/error", "push");
-      } else {
-        console.log("old\n", doc);
-      }
-    } else {
-      redirect("/tickets", "push");
+      //  redirect("/error", "push");
+      //} else {
+      //  console.log("old\n", doc);
+      //}
+    //} else {
+    //  redirect("/tickets", "push");
     }
 
     return Response.json(
