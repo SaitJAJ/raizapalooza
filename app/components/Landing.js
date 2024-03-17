@@ -16,10 +16,10 @@ import YellowDuotone3 from "../../public/YellowDuotone3.png";
 
 export default function Landing() {
   return (
-    <>
+    <div className="flex flex-col w-full">
       <div
         id={"top box"}
-        className="relative flex border-solid border-white border-2 w-screen h-screen justify-center items-center overflow-hidden"
+        className="relative flex w-full h-screen justify-center items-center overflow-x-clip"
       >
         <Image
           className="absolute mt-10 ml-14 -z-10"
@@ -83,7 +83,7 @@ export default function Landing() {
           height={300}
         />
         <Image
-          className="absolute mt-[48rem] ml-[30rem] rotate-45"
+          className="absolute mt-[48rem] ml-[41rem] rotate-[45deg]"
           src={YellowSwirl}
           width={500}
           height={500}
@@ -95,6 +95,9 @@ export default function Landing() {
           height={500}
         />
       </div>
-    </>
+      <div className="w-full h-screen bg-[url('../public/LandingBackground.png')] bg-contain"></div>
+      <div className="w-full h-screen bg-[url('../public/LandingBackground.png')] bg-contain"></div>
+      <div className="w-full h-screen bg-[url('../public/LandingBackground.png')] bg-contain"></div>
+    </div>
   );
 }
