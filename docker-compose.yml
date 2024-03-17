@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  raizapalooza:
+    image: node:20-alpine
+    build: .
+    volumes:
+      - .:/app
+      - /app/.next
+      - /app/node_modules
+    ports:
+      - '3000:3000'
