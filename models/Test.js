@@ -1,13 +1,13 @@
 // import mongoose from "mongoose";
 // const { Schema, model } = mongoose;
 
-// try {
-//   await mongoose.connect(
-//     "mongodb+srv://Adam:CtcAFsoROaxuGu3n@testdb.txgpqaz.mongodb.net/?retryWrites=true&w=majority&appName=TestDB"
-//   );
-// } catch (e) {
-//   console.log(e);
-// }
+try {
+  await mongoose.connect(
+    process.env.MONGODB_URI
+  );
+} catch (e) {
+  console.log(e);
+}
 
 // const testSchema = new Schema({
 //   ticketId: String,

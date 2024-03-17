@@ -28,15 +28,15 @@ export default function FormSequence(){
     }
 
     return(
-        <>
-            <TicketBox selected={selected} setSelected={setSelected}/>
-            <InfoForm ref={formRef} loading={loading}/>
-            <ErrorBoundary fallback={<div className={'w-1/2 my-80 mx-auto text-center border-2 rounded-sm px-20 py-5'}>You are missing the required ENV Variables for square payments.</div>}>
-                <Suspense fallback={<Loading loading={true}/>}>
-                    <SquarePayment/>
-                </Suspense>
-            </ErrorBoundary>
+        <main className={'w-full '}>
+                <TicketBox selected={selected} setSelected={setSelected}/>
+                <InfoForm ref={formRef} loading={loading}/>
+                <ErrorBoundary fallback={<div className={'w-1/2 my-80 mx-auto text-center border-2 rounded-sm px-20 py-5'}>You are missing the required ENV Variables for square payments.</div>}>
+                    <Suspense fallback={<Loading loading={true}/>}>
+                        {/*<SquarePayment/>*/}
+                    </Suspense>
+                </ErrorBoundary>
 
-        </>
+        </main>
     )
 }
