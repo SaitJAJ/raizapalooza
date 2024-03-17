@@ -20,9 +20,8 @@ export default function SquarePayment(){
     })
 
     return(
-        <div className={'w-1/2 my-80 mx-auto'}>
+        <div className={'min-h-[100vh] mx-auto'} id={'payment'}>
             <PaymentForm
-                formProps={{zip: false}}
                 applicationId={process.env.NEXT_PUBLIC_SQUARE_APPLICATION_ID}
                 cardTokenizeResponseReceived={handlePayment}
                 createPaymentRequest={paymentRequest}

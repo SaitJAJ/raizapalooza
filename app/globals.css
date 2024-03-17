@@ -26,6 +26,13 @@ input{
   outline-color: #fffdcf;
   border-radius: 50px;
 }
+select{
+  background-color: #121212;
+  font-size: 18px;
+  border: solid 1px #fffdcf;
+  outline-color: #fffdcf;
+  border-radius:  2px;
+}
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
