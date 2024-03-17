@@ -6,7 +6,7 @@ export default async function CurrentTickets(){
     let tickets = await getAllTickets()
     // console.log(tickets)
     return(
-        <table className={'w-full'}>
+        <table className={'w-full '}>
             <tbody>
             {tickets.map(ticket=>{
                 return (<TicketListItem key={ticket.ticketId} ticket={ticket}/>)

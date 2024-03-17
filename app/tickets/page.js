@@ -1,10 +1,9 @@
 import TicketBox from "@/components/TicketBox";
+import FormSequence from "@/components/layout/FormSequence";
 
 export default function Page(){
 
     return(
-        <main className={'flex justify-around w-full'}>
-            <TicketBox/>
-        </main>
-    )
+        <FormSequence/>
+     )
 }
