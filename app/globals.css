@@ -15,11 +15,16 @@
 /*  }*/
 /*}*/
 
+@font-face {
+  font-family: "Tan-Headline";
+  src: url("../public/fonts/TAN - HEADLINE.ttf");
+}
+
 body {
   color: #fffdcf;
   background: #121212;
 }
-input{
+input {
   background-color: #121212;
   font-size: 18px;
   border: solid 1px #fffdcf;
@@ -40,28 +45,29 @@ input:-webkit-autofill:focus {
 input[data-autocompleted] {
   background-color: transparent !important;
 }
-h1{
+h1 {
 }
-h2{
+h2 {
   font-family: "Antonio", sans-serif;
   font-optical-sizing: auto;
   font-size: 50px;
   font-weight: normal;
   font-style: normal;
 }
-h3,p,span,div{
+h3,
+p,
+span,
+div {
   font-family: "Josefin Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: normal;
   font-style: normal;
 }
-a{
+a {
   color: #4041d1;
   /*font-size: 18px;*/
   cursor: pointer;
-
 }
-
 
 .lds-ellipsis {
   margin: auto;
@@ -128,10 +134,12 @@ a{
   -webkit-perspective: 300px;
   perspective: 300px;
   width: 100%;
-  -ms-overflow-style: none;  /* IE and Edge */
+  -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none;
 }
-.parallax::-webkit-scrollbar{display: none}
+.parallax::-webkit-scrollbar {
+  display: none;
+}
 
 .parallax__group {
   position: relative;
@@ -152,12 +160,11 @@ a{
 .parallax__group {
   -webkit-transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
-
 }
 
 .parallax__layer--fore {
-  -webkit-transform: translateZ(-90px) scale(.7);
-  transform: translateZ(-90px) scale(.7);
+  -webkit-transform: translateZ(-90px) scale(0.7);
+  transform: translateZ(-90px) scale(0.7);
   z-index: -1;
 }
 
