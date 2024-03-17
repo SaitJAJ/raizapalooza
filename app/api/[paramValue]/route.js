@@ -4,11 +4,10 @@ import { cookies } from "next/headers";
 import mongoose from "mongoose";
 import Ticket from "@/models/Ticket";
 
-export async function GET(request, { params }) {
+export async function GET(request) {
   try {
     mongoose.connect(process.env.MONGODB_URI);
     const cookie = cookies().get("role");
-    const value = params.paramValue;
     //if user doesnt have cookie, redirect to tickets
     if (!cookie) {
       //where regular scans should be redirected to
@@ -23,6 +22,7 @@ export async function GET(request, { params }) {
       foundTicket.raffle = foundTicket.raffle += 1;
       await foundTicket.save();
       console.log(foundTicket);
+      return Response.json(foundTicket.raffle, {status: 200});
 
       //test cookie for bouncer
     } else if (cookie.value === "bouncer") {
@@ -30,29 +30,25 @@ export async function GET(request, { params }) {
 
       const foundTicket = await Ticket.findOne({ticketId: request.headers.get("ticketId")});
       
-      if (foundTicket.admission === false) {
+      // if not admitted yet, change admission to TRUE to signify they have entered
+      if (foundTicket && foundTicket.admission === false) {
         foundTicket.admission = true;
       } else {
-        console.log("ALREADY ADMITTED");
+        return Response.json({status: 201});
       }
-      
+
       await foundTicket.save();
-      console.log(foundTicket);
+      return Response.json(foundTicket, {status: 200});
       
     } else {
       redirect("/tickets", "push");
     }
-
-    return Response.json(
-      { value: value, cookie: cookie.value },
-      { status: 200 }
-    );
   } catch (error) {
     if (isRedirectError(error)) {
       throw error;
     }
     console.log(error);
 
-    return Response.json("Something went wrong", { status: 200 });
+    return Response.json(400);
   }
 }
