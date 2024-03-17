@@ -13,6 +13,7 @@ import BlueDuotone from "../../public/BlueDuotone.png";
 import BlueDuotone2 from "../../public/BlueDuotone2.png";
 import YellowDuotone2 from "../../public/YellowDuotone2.png";
 import YellowDuotone3 from "../../public/YellowDuotone3.png";
+import TicketBox from "../components/TicketBox";
 
 export default function Landing() {
   return (
@@ -95,7 +96,9 @@ export default function Landing() {
           height={500}
         />
       </div>
-      <div className="w-full h-screen bg-[url('../public/LandingBackground.png')] bg-contain"></div>
+      <div className="w-full h-screen bg-[url('../public/LandingBackground.png')] bg-contain">
+        <TicketBox />
+      </div>
       <div className="w-full h-screen bg-[url('../public/LandingBackground.png')] bg-contain"></div>
       <div className="w-full h-screen bg-[url('../public/LandingBackground.png')] bg-contain"></div>
     </div>
