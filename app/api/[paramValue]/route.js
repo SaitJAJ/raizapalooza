@@ -18,15 +18,7 @@ export async function GET(request, { params }) {
     //test cookie for bartender
     if (cookie.value === "bartender") {
       console.log("Bartender here");
-      //if the paramvalue corrolates with a user, increment raffle
-      //filter collections by ticketID
-      const filter = { ticketId: value };
-      //increment raffle by 1
-      const modify = { $inc: { raffle: 1 } };
-      //pass filter and modify with {new:true}
-      //let doc = await Ticket.findOneAndUpdate(filter, modify, { new: true });
-      //doc will hold the updated row
-      //console.log(doc);
+
       const foundTicket = await Ticket.findOne({ticketId: request.headers.get("ticketId")});
       foundTicket.raffle = foundTicket.raffle += 1;
       await foundTicket.save();
@@ -35,23 +27,20 @@ export async function GET(request, { params }) {
       //test cookie for bouncer
     } else if (cookie.value === "bouncer") {
       console.log("Bouncer here");
-      //if paramValue corrolates with a user, update admission to true
-      //filter collections by ticketID
-      const filter = { ticketId: value };
-      //increment raffle by 1
-      const modify = { admission: false };
-      //pass filter and modify with {new:true}
-      //let doc = await Ticket.findOneAndUpdate(filter, modify);
-      //doc will hold the old row
-      //if doc.admission is false
-      //if (doc.admission === false) {
-        //this qr code has been scanned for admission already
-      //  redirect("/error", "push");
-      //} else {
-      //  console.log("old\n", doc);
-      //}
-    //} else {
-    //  redirect("/tickets", "push");
+
+      const foundTicket = await Ticket.findOne({ticketId: request.headers.get("ticketId")});
+      
+      if (foundTicket.admission === false) {
+        foundTicket.admission = true;
+      } else {
+        console.log("ALREADY ADMITTED");
+      }
+      
+      await foundTicket.save();
+      console.log(foundTicket);
+      
+    } else {
+      redirect("/tickets", "push");
     }
 
     return Response.json(
