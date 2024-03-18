@@ -29,7 +29,7 @@ module.exports = {
     colors: {
       background: "#121212",
       text: "#121212",
-      highlight: "#121212",
+      highlight: "#fffdcf",
       "element-1": "#4041d1",
       "element-2": "#00ff85",
     },
