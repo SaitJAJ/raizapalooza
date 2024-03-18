@@ -11,7 +11,8 @@ export async function GET(request) {
     const ticketId = useHeader.get("ticketId");
     const auth = useHeader.get("auth");
     if (auth === "bartender") {
-      // is it redundant to find ticket up here and also below?
+      // finds ticket from DB and if it does not exist, send status: 500
+      // if ticket already entered, send status: 201
       const foundTicket = await Ticket.findOne({ticketId: ticketId});
       if (!foundTicket) {
         console.log("Ticket does not exist in the database");
@@ -24,6 +25,7 @@ export async function GET(request) {
         //pass filter and modify with {new:true}
         const updatedTicket = await Ticket.findOneAndUpdate(filter, modify, { new: true });
         console.log(updatedTicket);
+        // ticket has been updated in DB and returns number of raffle tickets and status: 200
         return Response.json({ 
           raffle: updatedTicket.raffle,
           status: 200 

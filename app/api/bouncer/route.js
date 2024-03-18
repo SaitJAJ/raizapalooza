@@ -7,13 +7,19 @@ mongoose.connect(process.env.MONGODB_URI);
 
 export async function GET(request) {
   try {
+    // gets ticketID and auth (bouncer/bartender) from request header
     const useHeader = headers(request);
     const ticketId = useHeader.get("ticketId");
     const auth = useHeader.get("auth");
     
-    if (auth === "bouncer") {      
+    if (auth === "bouncer") {
+      // finds ticket from DB and if it does not exist, send status: 500
+      // if ticket already entered, send status: 201
       const foundTicket = await Ticket.findOne({ticketId: ticketId});
-      if (!foundTicket || foundTicket.admission === false) {
+      if (!foundTicket)  {
+        console.log("Ticket not found");
+        return Response.json({ status: 500 });
+      } else if (foundTicket.admission === false) {
         console.log("Ticket has already entered event");
         return Response.json({ status: 201 });
       } else {
@@ -23,14 +29,14 @@ export async function GET(request) {
         //pass filter and modify with {new:true}
         const updatedTicket = await Ticket.findOneAndUpdate(filter, modify);
         console.log(updatedTicket);
-        //this ticket has now been scanned
+        // this ticket has now been updated to entered in the DB
+        // sends status: 200 
         return Response.json({ 
-          raffle: updatedTicket.raffle, 
           status: 200
         });
       }
     } else {
-      //wrong auth in header
+      // wrong auth in header
       redirect("/tickets", "push");
     }
   } catch (error) {
@@ -39,6 +45,6 @@ export async function GET(request) {
     }
     console.log(error);
 
-    return Response.json("Something went wrong", { status: 200 });
+    return Response.json("Something went wrong", { status: 500 });
   }
 }
