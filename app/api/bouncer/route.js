@@ -1,29 +1,33 @@
 import { isRedirectError } from "next/dist/client/components/redirect";
 import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
+import { headers } from "next/headers";
 import Ticket from "@/models/Ticket";
+import mongoose from 'mongoose';
+mongoose.connect(process.env.MONGODB_URI);
 
 export async function GET(request) {
   try {
     const useHeader = headers(request);
     const ticketId = useHeader.get("ticketId");
     const auth = useHeader.get("auth");
-    if (auth === "bouncer") {
-      //filter collections by ticketID
-      const filter = { ticketId: ticketId };
-      //increment raffle by 1
-      const modify = { admission: false };
-      //pass filter and modify with {new:true}
-      let doc = await Ticket.findOneAndUpdate(filter, modify);
-      //doc will hold the old row
-      //if doc.admission is false
-      if (doc.admission === false) {
-        //this ticket has already been scanned
-        return Response.json("Do not allow");
+    
+    if (auth === "bouncer") {      
+      const foundTicket = await Ticket.findOne({ticketId: ticketId});
+      if (!foundTicket || foundTicket.admission === false) {
+        console.log("Ticket has already entered event");
+        return Response.json({ status: 201 });
       } else {
-        console.log("old\n", doc);
+        //filter collections by ticketID
+        const filter = { ticketId: ticketId };
+        const modify = { admission: false };
+        //pass filter and modify with {new:true}
+        const updatedTicket = await Ticket.findOneAndUpdate(filter, modify);
+        console.log(updatedTicket);
         //this ticket has now been scanned
-        return Response.json("allow");
+        return Response.json({ 
+          raffle: updatedTicket.raffle, 
+          status: 200
+        });
       }
     } else {
       //wrong auth in header
