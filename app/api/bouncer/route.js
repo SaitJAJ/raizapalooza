@@ -7,6 +7,7 @@ mongoose.connect(process.env.MONGODB_URI);
 
 export async function GET(request) {
   try {
+
     // gets ticketID and auth (bouncer/bartender) from request header
     const useHeader = headers(request);
     const ticketId = useHeader.get("ticketId");
@@ -26,9 +27,11 @@ export async function GET(request) {
         //filter collections by ticketID
         const filter = { ticketId: ticketId };
         const modify = { admission: false };
+
         //pass filter and modify with {new:true}
         const updatedTicket = await Ticket.findOneAndUpdate(filter, modify);
         console.log(updatedTicket);
+
         // this ticket has now been updated to entered in the DB
         // sends status: 200 
         return Response.json({ 

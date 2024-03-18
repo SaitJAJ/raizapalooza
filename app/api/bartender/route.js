@@ -7,6 +7,7 @@ mongoose.connect(process.env.MONGODB_URI);
 
 export async function GET(request) {
   try {
+    // gets ticketID and auth (bouncer/bartender) from request header
     const useHeader = headers(request);
     const ticketId = useHeader.get("ticketId");
     const auth = useHeader.get("auth");
@@ -20,11 +21,14 @@ export async function GET(request) {
       } else {
         //filter collections by ticketID
         const filter = { ticketId: ticketId };
+
         //increment raffle by 1
         const modify = { $inc: { raffle: 1 } };
+
         //pass filter and modify with {new:true}
         const updatedTicket = await Ticket.findOneAndUpdate(filter, modify, { new: true });
         console.log(updatedTicket);
+
         // ticket has been updated in DB and returns number of raffle tickets and status: 200
         return Response.json({ 
           raffle: updatedTicket.raffle,
@@ -32,7 +36,7 @@ export async function GET(request) {
         });
       }
     } else {
-      //wrong auth in header
+      // wrong auth in header
       redirect("/tickets", "push");
     }
   } catch (error) {
