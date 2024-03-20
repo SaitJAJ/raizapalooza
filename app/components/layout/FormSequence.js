@@ -22,18 +22,29 @@ export default function FormSequence(){
     const handleSubmit=(e)=>{
         setLoading(true)
         e.preventDefault()
+        console.log(e)
         setTimeout(()=>{
+        setFormData(new FormData(e.target))
            setLoading(false)
-        },1500)
+            const payment = document.getElementById('payment')
+            payment.scrollIntoView({behavior:"smooth"})
+        },200)
     }
+    const passScroll=(e)=>{
 
+    }
+    const clearForm=()=>{
+        formRef.current.reset()
+        const ticketbox = document.getElementById('ticketbox')
+        ticketbox.scrollIntoView({behavior:"smooth"})
+    }
     return(
-        <main className={'w-full '}>
-                <TicketBox selected={selected} setSelected={setSelected}/>
+        <main className={'w-full h-[100vh] px-20 overflow-y-hidden snap-y snap-mandatory'} onWheel={passScroll}>
+                <TicketBox selected={selected} setSelected={setSelected} form={formRef.current}/>
                 <InfoForm ref={formRef} loading={loading}/>
                 <ErrorBoundary fallback={<div className={'w-1/2 my-80 mx-auto text-center border-2 rounded-sm px-20 py-5'}>You are missing the required ENV Variables for square payments.</div>}>
                     <Suspense fallback={<Loading loading={true}/>}>
-                        {/*<SquarePayment/>*/}
+                        <SquarePayment form={formData}/>
                     </Suspense>
                 </ErrorBoundary>
 

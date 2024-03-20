@@ -3,7 +3,7 @@ import {useEffect, useRef, useState} from "react";
 
 const allMonths= ["January","February","March","April","May","June","July",
             "August","September","October","November","December"];
-export default function BirthdayPicker({label,id,minDate}){
+export default function BirthdayPicker({label,id,minDate,required = false}){
     const suggRef = useRef()
     const [year,setYear] =useState(null)
     const [month,setMonth] =useState(null)
@@ -52,10 +52,10 @@ export default function BirthdayPicker({label,id,minDate}){
     }, [month]);
     const numDays = (y, m) => new Date(y, m, 0).getDate();
     return(
-        <label className={'flex flex-wrap justify-between select-none my-2 px-[20%] text-left'}>
+        <label className={'grid sm:flex justify-between select-none my-2 text-left'}>
             <p className={'my-auto text-xl min-w-[250px]'}>{label}</p>
-            <div className={"flex justify-around h-[2lh] rounded-sm text-center grow min-w-[200px] py-2 "}>
-                <select defaultValue={0} id={'year'} className={'w-full'} onChange={(e)=>setYear(parseInt(e.target.value))}>
+            <div className={"flex justify-around h-[2lh] rounded-sm text-center grow py-2 "}>
+                <select defaultValue={0} id={'year'} className={'w-full'} required={required} onChange={(e)=>setYear(parseInt(e.target.value))}>
                     <option id={0} className={'text-center'} value={''} disabled={year!==null}>Year</option>
                     {years.map(year=>{
                         return (
@@ -63,7 +63,7 @@ export default function BirthdayPicker({label,id,minDate}){
                         )
                     })}
                 </select>
-                <select defaultValue={0} id={'month'} disabled={year===null} className={'w-full mx-2'} onChange={(e)=>setMonth(e.target.value)}>
+                <select defaultValue={0} id={'month'} disabled={year===null} required={required} className={'w-full mx-2'} onChange={(e)=>setMonth(e.target.value)}>
                     <option id={0} className={'text-center'} disabled={month!==null} value={''}>Month</option>
                     {months.map(month=>{
                         return (
@@ -71,7 +71,7 @@ export default function BirthdayPicker({label,id,minDate}){
                         )
                     })}
                 </select>
-                <select defaultValue={0}  id={'day'} disabled={month===null} className={'w-full'} onChange={(e)=>setDay(parseInt(e.target.value))}>
+                <select defaultValue={0}  id={'day'} disabled={month===null} required={required} className={'w-full'} onChange={(e)=>setDay(parseInt(e.target.value))}>
                     <option id={0} className={'text-center'} disabled={month!==null} value={''}>Day</option>
                     {days.map(day=>{
                         return (
