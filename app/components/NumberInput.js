@@ -6,6 +6,19 @@ export default function NumberInput(props){
     let{label="Number",min=0,initial=min,max=min-1,onChange=()=>{},id="number"}=props
     const [tokens,setTokens]=useState(initial)
     const numRef = useRef()
+
+    useEffect(() => {
+        const form = document.getElementById('form')
+        const resetCount=() =>{
+            setTokens(initial)
+            onChange(initial)
+        }
+        form.addEventListener('reset',resetCount)
+        return()=>{
+            form.removeEventListener('reset',resetCount)
+        }
+    }, [initial, onChange]);
+
     useEffect(()=>{
         setTokens(initial)
     },[initial])
