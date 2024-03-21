@@ -29,7 +29,7 @@ input {
   font-size: 18px;
   border: solid 1px #fffdcf;
   outline-color: #fffdcf;
-  border-radius: 50px;
+  border-radius: 4px;
 }
 select{
   background-color: #121212;
