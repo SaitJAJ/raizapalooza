@@ -12,13 +12,13 @@ export default function FormSequence(){
     const [loading,setLoading] = useState(false)
     const [selected,setSelected]=useState('earlybird')
 
-    // useEffect(() => {
-    //     const form = formRef.current;
-    //     form.addEventListener('submit',handleSubmit)
-    //     return()=>{
-    //         form.removeEventListener('submit',handleSubmit)
-    //     }
-    // }, []);
+    useEffect(() => {
+        const form = formRef.current;
+        form.addEventListener('submit',handleSubmit)
+        return()=>{
+            form.removeEventListener('submit',handleSubmit)
+        }
+    }, []);
     const handleSubmit=(e)=>{
         setLoading(true)
         e.preventDefault()
@@ -34,9 +34,6 @@ export default function FormSequence(){
             // console.log(formData.get('name'))
         }
     }, [formData]);
-    const passScroll=(e)=>{
-
-    }
     const clearAll=()=>{
         let form = formRef.current
         form.reset()
