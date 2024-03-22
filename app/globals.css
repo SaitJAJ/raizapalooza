@@ -50,10 +50,12 @@ select{
   border-radius:  2px;
 }
 input:-webkit-autofill,
-input:-webkit-autofill:focus {
+input:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
 }
-input[data-autocompleted] {
+input[data-autocompleted],select[data-autocompleted] {
   background-color: transparent !important;
 }
 h1 {
