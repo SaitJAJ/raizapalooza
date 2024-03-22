@@ -43,8 +43,8 @@ export default function NumberInput(props){
         }
     }
     return(
-        <label htmlFor={'number'} className={'grid sm:flex flex-wrap justify-between select-none  text-left'}>
-            <p className={'my-auto text-xl'}>{label}</p>
+        <label htmlFor={'number'} className={'flex flex-wrap justify-between select-none  text-left'}>
+            <p className={'my-auto text-xl mt-0'}>{label}</p>
             <div className={'grid'}>
                 <div className={'flex'}>
                     <input className={'h-full px-4 '} type={"button"} id={"dec"} value={"-"} onClick={updateTokens}/>
