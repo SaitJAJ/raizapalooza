@@ -1,13 +1,13 @@
 'use client'
-import {CreditCard, GooglePay, PaymentForm} from 'react-square-web-payments-sdk'
+import {ApplePay, CreditCard, GooglePay, PaymentForm} from 'react-square-web-payments-sdk'
 import {submitPayment} from "@/app/lib/squareServices";
 import Button from "@/components/Button";
 import TextInput from "@/components/TextInput";
-import {useReducer} from "react";
+import {useEffect, useReducer} from "react";
 import SelectInput from "@/components/SelectInput";
 const countries=[
     {value:"Canada",id:"CA"},
-    {value:"United States of America",id:"USA"}
+    {value:"United States of America",id:"US"}
 ]
 const states= [
     {
@@ -295,14 +295,37 @@ const provinces= [
 ]
 
 const billingReducer =(state,action)=>{
-    console.log(action)
     switch(action.type){
-
         case('change'):
-            return({
+            return(
+                {
                     ...state,
                     [action.tag]:action.value,
+                }
+            )
+        case('select'):
+            console.log(action)
+            let val=""
+            console.log(action.value ==='Canada',action.value ==="Canada")
+            if(action.value === 'Canada' || action.value === 'CA'){
+                val = 'CA'
+            }else if(action.value.length > 2){
+                val = 'US'
+            }else{
+                val =action.value
             }
+            return(
+                {
+                    ...state,
+                    [action.tag]:val,
+                }
+            )
+        case('address'):
+            return(
+                {
+                    ...state,
+                    // [action.tag]:action.value,
+                }
             )
     }
 }
@@ -324,7 +347,7 @@ export default function SquarePayment({form,scrollBack,clearAll}){
     const [billingDetails, billingDispatch] = useReducer(billingReducer,form,billingInitializer)
     const handlePayment = async(token,verifiedBuyer)=>{
         // console.log(verifiedBuyer)
-        let payment = await submitPayment(token.token,verifiedBuyer.token,form.get('cost')*100)
+        let payment = await submitPayment(token.token,verifiedBuyer.token,form.get('cost')*100,"CAD",form)
         console.log('token:', token);
         console.log('verifiedBuyer:', verifiedBuyer);
     }
@@ -350,12 +373,13 @@ export default function SquarePayment({form,scrollBack,clearAll}){
             label: "Total",
         },
         // billingContact: billingDetails,
-        billing:billingDetails,
+        // billing:billingDetails,
     })
-    console.log(form.get('cost'))
-    // console.log(form.getAll())
+    useEffect(()=>{
+        console.log(billingDetails)
+    },[billingDetails])
         return(
-        <div className={'h-[100vh] pb-[20vh] overflow-y-scroll no-scrollbar grid '} id={'payment'}>
+        <div className={'h-[100vh] pb-[10vh] overflow-y-scroll no-scrollbar grid snap-center'} id={'payment'}>
             <div className={'h-fit w-full flex justify-between py-8'}>
                 <Button value={'My Info'} onClick={scrollBack}/>
                 <Button value={'Cancel'} onClick={clearAll}/>
@@ -368,14 +392,15 @@ export default function SquarePayment({form,scrollBack,clearAll}){
                 <TextInput label={"Phone"} id={'phone'} value={billingDetails.phone} onChange={e=>{billingDispatch({type:"change",tag:e.target.id,value:e.target.value})}}/>
                 <TextInput label={"Address line 1"} id={'address-1'} value={billingDetails.addressLines[0]} onChange={e=>{billingDispatch({type:"address",tag:e.target.id,value:e.target.value})}}/>
                 <TextInput label={"Address line 2"} id={'address-2'} value={billingDetails.addressLines[1]} onChange={e=>{billingDispatch({type:"address",tag:e.target.id,value:e.target.value})}}/>
-                <TextInput label={"City"} id={"country"} value={billingDetails.city} onChange={e=>{billingDispatch({type:"change",tag:e.target.id,value:e.target.value})}}/>
+                <TextInput label={"City"} id={"city"} value={billingDetails.city} onChange={e=>{billingDispatch({type:"change",tag:e.target.id,value:e.target.value})}}/>
                 <div className={'flex flex-nowrap'}>
-                    <SelectInput label={"Country"} id={"country"} value={billingDetails.country} options={countries} onChange={e=>{billingDispatch({type:"change",tag:e.target.id,value:e.target.value})}}/>
+                    {billingDetails.country}
+                    <SelectInput label={"Country"} id={"country"} defaultValue={'Country'} value={billingDetails.country} options={countries} onChange={e=>{billingDispatch({type:"select",tag:e.target.id,value:e.target.value})}}/>
                     {
-                        billingDetails.country==='CA'||billingDetails.country==='Canada'?
-                            <SelectInput label={"Province"} id={"region"} options={provinces}  value={billingDetails.region} onChange={e=>{billingDispatch({type:"change",tag:e.target.id,value:e.target.value})}}/>
+                        billingDetails.country!=='US'?
+                            <SelectInput label={"Province"} id={"region"} options={provinces} defaultValue={'Province'} value={billingDetails.region} onChange={e=>{billingDispatch({type:"select",tag:e.target.id,value:e.target.value})}}/>
                             :
-                            <SelectInput label={"State"} id={"region"} options={states}  value={billingDetails.region} onChange={e=>{billingDispatch({type:"change",tag:e.target.id,value:e.target.value})}}/>
+                            <SelectInput label={"State"} id={"region"} options={states} defaultValue={'State'} value={billingDetails.region} onChange={e=>{billingDispatch({type:"select",tag:e.target.id,value:e.target.value})}}/>
                     }
                 </div>
 
@@ -389,9 +414,10 @@ export default function SquarePayment({form,scrollBack,clearAll}){
                 >
                     {/*<ApplePay />*/}
                     <GooglePay />
-                    <CreditCard/>
+                    <CreditCard>
+                        Pay ${form.get('cost')} for {form.get('quant')} {form.get('tier')==='earlyBird'?"Early Bird":"General Admission"} {form.get('quant')>1?"Tickets":"Ticket"}
+                    </CreditCard>
                 </PaymentForm>
-            {/*</div>*/}
         </div>
     )
 }

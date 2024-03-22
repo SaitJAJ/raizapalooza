@@ -45,7 +45,7 @@ export async function addTicket(formData){
             ticketId:crypto.randomUUID(),
             name:formData.get('name'),
             email:formData.get('email'),
-            phoneNumber:formData.get('phoneNumber'),
+            phone:formData.get('phone'),
             birthday:formData.get('birthday'),
             tier:formData.get('tier'),
             raffle:formData.get('tier')==='earlyBird'?1:0,

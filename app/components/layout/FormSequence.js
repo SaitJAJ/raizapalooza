@@ -6,6 +6,20 @@ import {Suspense, useEffect, useRef, useState} from "react";
 import Loading from "@/components/Loading";
 import TicketBox from "@/components/TicketBox";
 
+const allMonths= [
+    {value:"January",id:'Jan'},
+    {value:"February",id:'Feb'},
+    {value:"March",id:'Mar'},
+    {value:"April",id:'Apr'},
+    {value:"May",id:'May'},
+    {value:"June",id:'Jun'},
+    {value: "July",id:'Jul'},
+    {value:"August",id:'Aug'},
+    {value:"September",id:'Sep'},
+    {value:"October",id:'Oct'},
+    {value:"November",id:'Nov'},
+    {value:"December",id:'Dec'}
+];
 export default function FormSequence(){
     const [formData, setFormData] = useState()
     const formRef=useRef()
@@ -22,7 +36,9 @@ export default function FormSequence(){
     const handleSubmit=(e)=>{
         setLoading(true)
         e.preventDefault()
-        setFormData(new FormData(formRef.current))
+        let formData = new FormData(formRef.current)
+        formData.append("birthday",new Date(formRef.current.year.value, allMonths.findIndex(({value})=>value === formRef.current.month.value), formRef.current.day.value))
+        setFormData(formData)
         setTimeout(()=>{
            setLoading(false)
             const payment = document.getElementById('payment')
@@ -52,7 +68,7 @@ export default function FormSequence(){
 
     }
     return(
-        <main className={' h-[100vh] px-8 md:px-20 overflow-y-hidden '} >
+        <main className={' h-[100vh] px-8 md:px-20 overflow-y-hidden snap-y snap-mandatory'} >
                 <TicketBox selected={selected} setSelected={setSelected} form={formRef.current}/>
                 <InfoForm ref={formRef} loading={loading} clearAll={clearAll}/>
                 <ErrorBoundary fallback={<div className={'w-1/2 my-80 mx-auto text-center border-2 rounded-sm px-20 py-5'}>You are missing the required ENV Variables for square payments.</div>}>

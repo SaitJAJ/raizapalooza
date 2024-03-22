@@ -8,11 +8,8 @@ const {paymentsApi} = new Client(
     }
 )
 
-export async function submitPayment(sourceId,verificationToken,amount=100,currency="CAD"){
+export async function submitPayment(sourceId,verificationToken,amount=100,currency="CAD",formData=new FormData()){
     try{
-        let body = {
-
-        }
         console.log(amount)
         const data = await paymentsApi.createPayment({
             idempotencyKey: crypto.randomUUID(),
@@ -23,8 +20,6 @@ export async function submitPayment(sourceId,verificationToken,amount=100,curren
                 amount:amount
             }
         }).then(result=>{
-            // console.log("testResult")
-            // console.log(result)
             return(result)
         }).catch(error=>{
             if(error instanceof ApiError){
@@ -36,8 +31,12 @@ export async function submitPayment(sourceId,verificationToken,amount=100,curren
                 console.log("error")
             }
         })
+        console.log(formData)
+        // console.log(parseInt(formData.get('quant')))
+        for(let i = 0; i < parseInt(formData.get('quant')); i++){
 
-        console.log(data)
+        }
+
         return data
 
     }catch (error){
