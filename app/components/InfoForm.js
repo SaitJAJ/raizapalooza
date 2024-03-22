@@ -1,11 +1,9 @@
 'use client'
-import {forwardRef, useEffect, useReducer, useRef, useState} from "react";
+import {forwardRef, useReducer} from "react";
 import Loading from "@/components/Loading";
 import Button from "@/components/Button";
-import {addTicket} from "@/app/lib/ticketServices";
 import TextInput from "@/components/TextInput";
 import HiddenInput from "@/components/HiddenInput";
-import {useRouter} from "next/navigation";
 import BirthdayPicker from "@/components/BirthdayPicker";
 import NumberInput from "@/components/NumberInput";
 
@@ -29,7 +27,7 @@ const InfoForm = forwardRef(function InfoForm({loading},formRef){
     }
     return(
         <>
-            <div className={'w-full grid min-h-[100vh] snap-center'} id={"infoForm"}>
+            <div className={'w-full grid min-h-[100vh]'} id={"infoForm"}>
                 <div className={'h-fit w-full flex justify-between py-8 '}>
                     <Button value={'Tickets'} onClick={scrollBack}/>
                     <h2>
@@ -37,7 +35,7 @@ const InfoForm = forwardRef(function InfoForm({loading},formRef){
                     </h2>
                     <Button value={'Reset'} onClick={()=>formRef.current.reset()}/>
                 </div>
-                <form ref={formRef} name={"form"} id={'form'}>
+                <form ref={formRef} className={'md:px-[10vw]'} name={"form"} id={'form'}>
                     <h3 className={' md:text-2xl text-base '}>Mandatory Ticket Info</h3>
                     <NumberInput label={'Ticket Quantity'} onChange={quant=>costDispatch({type:'calc',tier:"earlyBird",quant:quant})} min={1} max={8}>
                         <HiddenInput id={'cost'} value={cost} hidden={false} label={`$${cost} CAD`}/>
