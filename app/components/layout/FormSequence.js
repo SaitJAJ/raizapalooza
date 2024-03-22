@@ -12,13 +12,13 @@ export default function FormSequence(){
     const [loading,setLoading] = useState(false)
     const [selected,setSelected]=useState('earlybird')
 
-    useEffect(() => {
-        const form = formRef.current;
-        form.addEventListener('submit',handleSubmit)
-        return()=>{
-            form.removeEventListener('submit',handleSubmit)
-        }
-    }, []);
+    // useEffect(() => {
+    //     const form = formRef.current;
+    //     form.addEventListener('submit',handleSubmit)
+    //     return()=>{
+    //         form.removeEventListener('submit',handleSubmit)
+    //     }
+    // }, []);
     const handleSubmit=(e)=>{
         setLoading(true)
         e.preventDefault()
@@ -34,7 +34,9 @@ export default function FormSequence(){
             // console.log(formData.get('name'))
         }
     }, [formData]);
+    const passScroll=(e)=>{
 
+    }
     const clearAll=()=>{
         let form = formRef.current
         form.reset()
@@ -53,7 +55,7 @@ export default function FormSequence(){
 
     }
     return(
-        <main className={' h-[100vh] px-8 md:px-20 overflow-y-hidden '} onWheel={passScroll}>
+        <main className={' h-[100vh] px-8 md:px-20 overflow-y-hidden '} >
                 <TicketBox selected={selected} setSelected={setSelected} form={formRef.current}/>
                 <InfoForm ref={formRef} loading={loading} clearAll={clearAll}/>
                 <ErrorBoundary fallback={<div className={'w-1/2 my-80 mx-auto text-center border-2 rounded-sm px-20 py-5'}>You are missing the required ENV Variables for square payments.</div>}>
