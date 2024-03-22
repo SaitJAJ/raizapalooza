@@ -12,7 +12,6 @@ import BlueDuotone from "../../public/BlueDuotone.png";
 import BlueDuotone2 from "../../public/BlueDuotone2.png";
 import YellowDuotone2 from "../../public/YellowDuotone2.png";
 import YellowDuotone3 from "../../public/YellowDuotone3.png";
-import FancyHeader from "@/components/layout/FancyHeader";
 import FancyTitle from "@/components/layout/FancyTitle";
 
 export default function Landing() {
@@ -22,7 +21,6 @@ export default function Landing() {
         id={"top box"}
         className="relative flex w-full h-screen justify-center items-center overflow-x-clip"
       >
-        <FancyHeader/>
           <FancyTitle/>
         {/*<Image*/}
         {/*  className="hover:animate-wiggle absolute mb-[36rem] mr-[36rem] -rotate-3"*/}

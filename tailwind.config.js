@@ -21,6 +21,13 @@ module.exports = {
           "0%, 100%": { transform: "rotate(-3deg)" },
           "50%": { transform: "rotate(3deg)" },
         },
+        offset: {
+          '0%' :{   transform: 'translateX(0rem)'},
+          '100%': { transform: 'translateX(2rem)' },
+        }
+      },
+      animation: {
+        offset: "wiggle 1s ease-in-out infinite",
       },
       colors: {
         background: "#121212",
