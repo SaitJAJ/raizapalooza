@@ -1,9 +1,25 @@
 'use client'
+import '../../styles/tickets.css';
 export default function Header() {
 
   return (
-    <header id='header-tickets' className={'flex h-20 items-center z-20'} >
-      <button id='header-ticket-button' className={'flex bg-element-1 ms-10 align-middle px-5 py-2'}>tickets</button>
+    <header id='header-tickets'>
+      <div id='header-div1'>
+        <div id='header-div2'>
+          <button id='header-ticket-button'>TICKETS</button>
+        </div>
+      </div>
+      <input type="checkbox" id="hamburger-checkbox"/>
+      <label htmlFor="hamburger-checkbox" id="hamburger-checkbox-label"><span></span></label>
+      <nav>
+        <span className="menu"><span className="hamburger"></span></span>
+        <ul>
+          <li> <a href="/about">ABOUT</a> </li>
+          <li> <a href="/itenerary">ITENERARY</a> </li>
+          <li> <a href="/whoozapalooza">WHOZAPALOOZA</a> </li>
+          <li> <a href="/gallery">GALLERY</a> </li>          
+        </ul>
+      </nav>
     </header>
   );
 }
