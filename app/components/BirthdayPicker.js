@@ -16,7 +16,7 @@ const allMonths= [
     {value:"November",id:'Nov'},
     {value:"December",id:'Dec'}
 ];
-export default function BirthdayPicker({label,id,minDate,required = false}){
+export default function BirthdayPicker({label,minDate,required = false}){
     const suggRef = useRef()
     const [year,setYear] =useState(null)
     const [month,setMonth] =useState(null)
@@ -51,7 +51,6 @@ export default function BirthdayPicker({label,id,minDate,required = false}){
         }else{
             setMonths(allMonths)
         }
-        document.getElementById("month").focus()
     }, [minDate, year]);
     useEffect(() => {
         const days = new Date(year, allMonths.findIndex(({value})=>value === month)+1, 0).getDate()
@@ -60,7 +59,6 @@ export default function BirthdayPicker({label,id,minDate,required = false}){
         }else{
             setDays(genDays(days))
         }
-        document.getElementById("day").focus()
 
     }, [minDate, month, year]);
 

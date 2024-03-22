@@ -1,9 +1,9 @@
 'use client'
-import {CreditCard,ApplePay, GooglePay, PaymentForm} from 'react-square-web-payments-sdk'
+import {CreditCard, GooglePay, PaymentForm} from 'react-square-web-payments-sdk'
 import {submitPayment} from "@/app/lib/squareServices";
 import Button from "@/components/Button";
 import TextInput from "@/components/TextInput";
-import {useReducer, useState} from "react";
+import {useReducer} from "react";
 import SelectInput from "@/components/SelectInput";
 const countries=[
     {value:"Canada",id:"CA"},
@@ -355,12 +355,12 @@ export default function SquarePayment({form,scrollBack,clearAll}){
     console.log(form.get('cost'))
     // console.log(form.getAll())
         return(
-        <div className={'h-[100vh] pb-[20vh] overflow-y-scroll no-scrollbar grid snap-center'} id={'payment'}>
+        <div className={'h-[100vh] pb-[20vh] overflow-y-scroll no-scrollbar grid '} id={'payment'}>
             <div className={'h-fit w-full flex justify-between py-8'}>
                 <Button value={'My Info'} onClick={scrollBack}/>
                 <Button value={'Cancel'} onClick={clearAll}/>
             </div>
-            <form id={'billing'} name={'billing'} >
+            <form id={'billing'} className={'md:px-[10vw]'} name={'billing'} >
                 <h3>Billing Details</h3>
                 <TextInput label={"First name"} id={'givenName'} value={billingDetails.givenName} onChange={e=>{billingDispatch({type:"change",tag:e.target.id,value:e.target.value})}}/>
                 <TextInput label={"Last name"} id={"familyName"} value={billingDetails.familyName} onChange={e=>{billingDispatch({type:"change",tag:e.target.id,value:e.target.value})}}/>
