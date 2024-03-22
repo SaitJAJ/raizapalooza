@@ -12,6 +12,26 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      animation: {
+        "spin-slow": "spin 3s linear infinite",
+        wiggle: "wiggle 1s ease-in-out infinite",
+      },
+      keyframes: {
+        wiggle: {
+          "0%, 100%": { transform: "rotate(-3deg)" },
+          "50%": { transform: "rotate(3deg)" },
+        },
+      },
+    },
+    fontFamily: {
+      "tan-headline": ["Tan-Headline"],
+    },
+    colors: {
+      background: "#121212",
+      text: "#121212",
+      highlight: "#121212",
+      "element-1": "#4041d1",
+      "element-2": "#00ff85",
     },
   },
   plugins: [],

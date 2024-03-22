@@ -19,7 +19,7 @@ export default function CookiesButtons(){
                 <FancyButton onClick={handleCookies}>
                     <p id={'all'}>Accept All Cookies </p>
                 </FancyButton>
-                <FancyButton onClick={handleCookies} hoverColor={'hover:bg-yellow-200'}>
+                <FancyButton onClick={handleCookies} hoverColor={'hover:bg-element-1'}>
                     <p  id={'essential'}>Only Essential Cookies</p>
                 </FancyButton>
             </div>
