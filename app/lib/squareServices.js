@@ -8,23 +8,29 @@ const {paymentsApi} = new Client(
     }
 )
 
-export async function submitPayment(sourceId,amount=100,currency="CAD"){
+export async function submitPayment(sourceId,verificationToken,amount=100,currency="CAD"){
     try{
+        let body = {
+
+        }
+        console.log(amount)
         const data = await paymentsApi.createPayment({
             idempotencyKey: crypto.randomUUID(),
             sourceId,
+            verificationToken,
             amountMoney:{
                 currency:currency,
                 amount:amount
             }
         }).then(result=>{
-            console.log("testResult")
+            // console.log("testResult")
             // console.log(result)
+            return(result)
         }).catch(error=>{
             if(error instanceof ApiError){
-                console.log(error)
                 error.errors.map(error=>{
-                    console.log(error.code)
+                    console.log(error)
+                    console.error("Error! : ",error.code)
                 })
             }else{
                 console.log("error")

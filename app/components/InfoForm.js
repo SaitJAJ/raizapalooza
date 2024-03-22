@@ -1,26 +1,59 @@
 'use client'
-import {forwardRef, useRef, useState} from "react";
+import {forwardRef, useReducer} from "react";
 import Loading from "@/components/Loading";
 import Button from "@/components/Button";
-import {addTicket} from "@/app/lib/ticketServices";
 import TextInput from "@/components/TextInput";
 import HiddenInput from "@/components/HiddenInput";
-import {useRouter} from "next/navigation";
 import BirthdayPicker from "@/components/BirthdayPicker";
+import NumberInput from "@/components/NumberInput";
 
+const costReducer = (state,action)=>{
+    switch (action.type){
+        case('calc'):
+            if(action.tier==='earlyBird'){
+                return(15*action.quant)
+            }else{
+                return(20*action.quant)
+            }
+    }
+}
 const InfoForm = forwardRef(function InfoForm({loading},formRef){
+    const [cost,costDispatch] = useReducer(costReducer,15,undefined)
 
+
+    const scrollBack=()=>{
+        const ticketBox = document.getElementById('ticketbox')
+        ticketBox.scrollIntoView({behavior:"smooth"})
+    }
     return(
-        <form className={'w-full min-h-[100vh] py-8'} ref={formRef} name={"infoForm"} id={"infoForm"}>
-            <HiddenInput type={'text'} id={'tier'} value={'earlyBird'} hidden={true} className={'hidden'}/>
-            <TextInput label={'Name'} type={"text"} id={'name'} placeholder={'Name'}/>
-            <TextInput label={'Email'} type={"text"} id={"email"} placeholder={'Email'}/>
-            <TextInput label={'Phone Number'} type={"text"} id={'phoneNumber'}  placeholder={'Phone Number'}/>
-            <BirthdayPicker label={'Birthday'} id={'birthday'} minDate={new Date('April 13, 2006')} />
-            <Loading loading={loading}>
-                <Button type={'submit'} value={"Submit"}/>
-            </Loading>
-        </form>
+        <>
+            <div className={'w-full grid min-h-[100vh]'} id={"infoForm"}>
+                <div className={'h-fit w-full flex justify-between py-8 '}>
+                    <Button value={'Tickets'} onClick={scrollBack}/>
+                    <h2>
+
+                    </h2>
+                    <Button value={'Reset'} onClick={()=>formRef.current.reset()}/>
+                </div>
+                <form ref={formRef} className={'md:px-[10vw]'} name={"form"} id={'form'}>
+                    <h3 className={' md:text-2xl text-base '}>Mandatory Ticket Info</h3>
+                    <NumberInput label={'Ticket Quantity'} onChange={quant=>costDispatch({type:'calc',tier:"earlyBird",quant:quant})} min={1} max={8}>
+                        <HiddenInput id={'cost'} value={cost} hidden={false} label={`$${cost} CAD`}/>
+                    </NumberInput>
+                    <TextInput label={'Name'} type={"text"} id={'name'} placeholder={'Name'} />
+                    <TextInput label={'Email'} type={"text"} id={"email"} placeholder={'Email'} />
+                    <BirthdayPicker label={'Birthday'} id={'birthday'} minDate={new Date('April 13, 2006')}  />
+                    <HiddenInput type={'text'} id={'tier'} value={'earlyBird'} hidden={true}/>
+                    <h3 className={'md:text-2xl text-base'}>Additional Fields (not required)</h3>
+                    <TextInput label={'Phone Number'} type={"text"} id={'phone'}  placeholder={'Phone Number'}/>
+                    <Loading loading={loading}>
+                        <Button type={'submit'} value={"Go to Payment"}/>
+                    </Loading>
+                </form>
+            </div>
+
+        </>
+
     )
 })
 export default InfoForm;

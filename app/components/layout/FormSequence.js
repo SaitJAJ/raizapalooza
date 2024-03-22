@@ -22,18 +22,42 @@ export default function FormSequence(){
     const handleSubmit=(e)=>{
         setLoading(true)
         e.preventDefault()
+        setFormData(new FormData(formRef.current))
         setTimeout(()=>{
            setLoading(false)
-        },1500)
+            const payment = document.getElementById('payment')
+            payment.scrollIntoView({behavior:"smooth"})
+        },200)
     }
+    useEffect(() => {
+        if(formData){
+            // console.log(formData.get('name'))
+        }
+    }, [formData]);
+    const clearAll=()=>{
+        let form = formRef.current
+        form.reset()
+        const ticketbox = document.getElementById('ticketbox')
+        ticketbox.scrollIntoView({behavior:"smooth"})
+        setTimeout(()=>{
+            setFormData(null)
+        },600)
+    }
+    const scrollBack=()=>{
+        const form = document.getElementById('infoForm')
+        form.scrollIntoView({behavior:"smooth"})
+        setTimeout(()=>{
+            setFormData(null)
+        },600)
 
+    }
     return(
-        <main className={'w-full '}>
-                <TicketBox selected={selected} setSelected={setSelected}/>
-                <InfoForm ref={formRef} loading={loading}/>
+        <main className={' h-[100vh] px-8 md:px-20 overflow-y-hidden '} >
+                <TicketBox selected={selected} setSelected={setSelected} form={formRef.current}/>
+                <InfoForm ref={formRef} loading={loading} clearAll={clearAll}/>
                 <ErrorBoundary fallback={<div className={'w-1/2 my-80 mx-auto text-center border-2 rounded-sm px-20 py-5'}>You are missing the required ENV Variables for square payments.</div>}>
                     <Suspense fallback={<Loading loading={true}/>}>
-                        {/*<SquarePayment/>*/}
+                        {formData?<SquarePayment form={formData} scrollBack={scrollBack} clearAll={clearAll}/>:null}
                     </Suspense>
                 </ErrorBoundary>
 

@@ -32,4 +32,7 @@ export const metadata = {
   },
   description:
     "Get your tickets now for the next Raizapalooza, relive the memories and celebrate Raiza! ",
+  icons:{
+    icon:"/favicon.ico"
+  }
 };

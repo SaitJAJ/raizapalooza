@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}w
 /*:root {*/
 /*  --foreground-rgb: 0, 0, 0;*/
 /*  --background-start-rgb: 214, 219, 220;*/
@@ -29,7 +40,7 @@ input {
   font-size: 18px;
   border: solid 1px #fffdcf;
   outline-color: #fffdcf;
-  border-radius: 50px;
+  border-radius: 4px;
 }
 select{
   background-color: #121212;
@@ -39,10 +50,12 @@ select{
   border-radius:  2px;
 }
 input:-webkit-autofill,
-input:-webkit-autofill:focus {
+input:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
 }
-input[data-autocompleted] {
+input[data-autocompleted],select[data-autocompleted] {
   background-color: transparent !important;
 }
 h1 {
