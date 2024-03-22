@@ -9,10 +9,11 @@
   }
   /* Hide scrollbar for IE, Edge and Firefox */
   .no-scrollbar {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
-}w
+}
+w
 /*:root {*/
 /*  --foreground-rgb: 0, 0, 0;*/
 /*  --background-start-rgb: 214, 219, 220;*/
@@ -42,12 +43,12 @@ input {
   outline-color: #fffdcf;
   border-radius: 4px;
 }
-select{
+select {
   background-color: #121212;
   font-size: 18px;
   border: solid 1px #fffdcf;
   outline-color: #fffdcf;
-  border-radius:  2px;
+  border-radius: 2px;
 }
 input:-webkit-autofill,
 input:-webkit-autofill:focus,
@@ -55,7 +56,8 @@ select:-webkit-autofill,
 select:-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
 }
-input[data-autocompleted],select[data-autocompleted] {
+input[data-autocompleted],
+select[data-autocompleted] {
   background-color: transparent !important;
 }
 h1 {

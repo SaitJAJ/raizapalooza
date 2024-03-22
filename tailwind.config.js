@@ -25,6 +25,8 @@ module.exports = {
     },
     fontFamily: {
       "tan-headline": ["Tan-Headline"],
+      "josefin-sans": ["var(--font-josefin-sans)"],
+      antonio: ["var(--font-antonio)"],
     },
     colors: {
       background: "#121212",

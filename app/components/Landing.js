@@ -14,6 +14,7 @@ import YellowDuotone2 from "../../public/YellowDuotone2.png";
 import YellowDuotone3 from "../../public/YellowDuotone3.png";
 import FancyHeader from "@/components/layout/FancyHeader";
 import FancyTitle from "@/components/layout/FancyTitle";
+import Link from "next/link";
 
 export default function Landing() {
   return (
@@ -22,6 +23,7 @@ export default function Landing() {
         id={"top box"}
         className="relative flex w-full h-screen justify-center items-center overflow-x-clip"
       >
+        <Link href={"/whozapalooza"}>WHOZAPALOOZA</Link>
         <FancyHeader />
         <FancyTitle />
         {/*<Image*/}
@@ -89,7 +91,7 @@ export default function Landing() {
         {/*/>*/}
       </div>
       <div className="w-full h-screen bg-[url('../public/LandingBackground.png')] bg-contain">
-        <TicketBox />
+        {/* <TicketBox /> */}
       </div>
       <div className="w-full h-screen bg-[url('../public/LandingBackground.png')] bg-contain"></div>
       <div className="w-full h-screen bg-[url('../public/LandingBackground.png')] bg-contain"></div>
