@@ -1,12 +1,15 @@
 'use server'
 import mongoose from "mongoose";
 import Ticket from "@/models/Ticket";
+import {isRedirectError} from "next/dist/client/components/redirect";
 
 function cleanTicket(ticket){
     console.log(ticket)
     let cleanTicket = {
         id:ticket._id.toHexString(),
         ticketId:ticket.ticketId,
+        orderId:ticket.orderId,
+        paymentDate:ticket.birthday,
         name:ticket.name,
         email:ticket.email,
         phoneNumber:ticket.phoneNumber,
@@ -14,7 +17,7 @@ function cleanTicket(ticket){
         tier:ticket.tier,
         raffle:ticket.raffle,
     }
-    console.log(cleanTicket)
+    // console.log(cleanTicket)
     return(cleanTicket)
 }
 export async function getAllTickets(){
@@ -53,10 +56,28 @@ export async function addTicket(formData){
             tier:formData.get('tier'),
             raffle:formData.get('tier')==='earlyBird'?1:0,
         }
-        // const newTicket = await Ticket.create(ticket)
-        console.log(ticket)
+        const newTicket = await Ticket.create(ticket)
+        console.log(newTicket)
 
     }catch(error){
         console.error(error)
+    }
+}
+export async function getOrderTickets (orderId) {
+    try {
+        await mongoose.connect(process.env.MONGODB_URI)
+        let tickets = await Ticket.find({orderId:orderId})
+        console.log(tickets)
+        let allTickets = tickets.map(ticket=>{
+            return cleanTicket(ticket);
+        })
+        console.log(allTickets)
+        return allTickets
+
+    } catch (error) {
+        if (isRedirectError(error)) {
+            throw error
+        }
+        console.log(error)
     }
 }

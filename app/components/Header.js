@@ -1,12 +1,15 @@
 'use client'
 import '../../styles/tickets.css';
+import {useRouter} from "next/navigation";
 export default function Header() {
-
+    const router = useRouter();
   return (
     <header id='header-tickets'>
       <div id='header-div1'>
         <div id='header-div2'>
-          <button id='header-ticket-button'>TICKETS</button>
+          <button id='header-ticket-button' type={'button'} onClick={()=>router.replace('/tickets/')}>
+              TICKETS
+          </button>
         </div>
       </div>
       <input type="checkbox" id="hamburger-checkbox"/>
