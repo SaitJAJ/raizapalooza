@@ -1,3 +1,37 @@
+/* 
+This selects all children of the root element and applies a red border to them.
+:root > * {
+  border: 2px solid red;
+}
+
+:root > * > * {
+  border: 2px solid red;
+}
+
+:root > * > * > * {
+  border: 2px solid red;
+}
+
+:root > * > * > * > * {
+  border: 2px solid red;
+}
+
+:root > * > * > * > * > * {
+  border: 2px solid red;
+}
+
+:root > * > * > * > * > * > * {
+  border: 2px solid red;
+}
+
+:root > * > * > * > * > * > * > * {
+  border: 2px solid red;
+}
+:root > * > * > * > * > * > * > * > * {
+  border: 2px solid red;
+} */
+
+/* Add more levels as needed */
 /*
 LEGEND:
 
@@ -56,7 +90,12 @@ Apply the classes to the appropriate elements to create the gallery layout you w
 }
 .wide-hor-square {
   gap: 2rem;
+  flex: 1 1 auto;
 }
+.wide-hor-bar {
+flex: 1 1 auto;
+}
+
 .thin-hor-bar {
   display: flex;
   gap: 2rem;
@@ -65,4 +104,13 @@ Apply the classes to the appropriate elements to create the gallery layout you w
 h1 {
   font-size: 5rem;
   text-align: center;
+}
+
+@media (max-width: 1886px) {
+  .gallery-photos {
+    grid-template-columns: 1fr 2fr;
+  }
+  .photo-rectangle-wide, .photo-rectangle-thin, .wide-hor-square, .wide-hor-bar, .wide-filled-l {
+    flex-direction: column;
+  }
 }
