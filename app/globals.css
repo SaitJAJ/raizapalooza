@@ -33,6 +33,7 @@ These variables contain the designer's color scheme. Use these instead of hardco
   --base: #121212;
   --light: #fffdcf;
   --accent: #4041d1;
+  --accent2: #00fd83;
 }
 
 @font-face {
