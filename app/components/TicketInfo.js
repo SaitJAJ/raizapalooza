@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/Button";
+
 import Hyperlink from "@/components/Hyperlink";
 
 export default function TicketInfo({ ticket }) {
@@ -8,10 +8,10 @@ export default function TicketInfo({ ticket }) {
     <div className={"flex flex-wrap w-full justify-around"}>
       <p className={"w-2/5 p-8"}>{ticket.name}</p>
       <p className={"w-2/5 p-8"}>{ticket.email}</p>
-      <p className={"w-2/5 p-8"}>{ticket.phoneNumber}</p>
+      <p className={"w-2/5 p-8"}>{ticket.phone}</p>
       <p className={"w-1/5 p-8"}>{ticket.tier}</p>
       <p className={"w-1/5 p-8"}>{ticket.raffle}</p>
-      <p className={"w-1/5 p-8"}>{ticket.birthday}</p>
+      <p className={"w-1/5 p-8"}>{ticket.birthday.toString()}</p>
 
       <div className={"w-full"}>
         <Hyperlink href={"/tickets/generate/" + ticket.ticketId}>

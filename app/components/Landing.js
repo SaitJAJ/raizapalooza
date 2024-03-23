@@ -22,7 +22,7 @@ export default function Landing() {
         id={"top box"}
         className="relative flex w-full h-screen justify-center items-center overflow-x-clip"
       >
-        <FancyTitle />
+        <FancyTitle title={"Raizapalooza"} />
         {/*<Image*/}
         {/*  className="hover:animate-wiggle absolute mb-[36rem] mr-[36rem] -rotate-3"*/}
         {/*  src={BlueDuotone}*/}

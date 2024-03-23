@@ -3,6 +3,9 @@ const { Schema, model } = mongoose;
 
 const ticketSchema = new Schema({
   ticketId: String,
+  paymentId:String,
+  orderId:String,
+  paymentDate:Date,
   name: String,
   email: String,
   phoneNumber: String,

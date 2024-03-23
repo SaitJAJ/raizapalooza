@@ -13,7 +13,6 @@
     scrollbar-width: none; /* Firefox */
   }
 }
-w
 /*:root {*/
 /*  --foreground-rgb: 0, 0, 0;*/
 /*  --background-start-rgb: 214, 219, 220;*/
@@ -27,27 +26,40 @@ w
 /*  }*/
 /*}*/
 
+/*
+These variables contain the designer's color scheme. Use these instead of hardcoding colors in the CSS.
+*/
+:root {
+  --base: #121212;
+  --light: #fffdcf;
+  --accent: #4041d1;
+  --accent2: #00fd83;
+}
+
 @font-face {
   font-family: "Tan-Headline";
   src: url("../public/fonts/TAN - HEADLINE.ttf");
 }
-
+::selection {
+  background-color: var(--light);
+  color: var(--base);
+}
 body {
-  color: #fffdcf;
-  background: #121212;
+  color: var(--light);
+  background: var(--base);
 }
 input {
-  background-color: #121212;
+  background-color: var(--base);
   font-size: 18px;
-  border: solid 1px #fffdcf;
-  outline-color: #fffdcf;
+  border: solid 1px var(--light);
+  outline-color: var(--light);
   border-radius: 4px;
 }
 select {
-  background-color: #121212;
+  background-color: var(--base);
   font-size: 18px;
-  border: solid 1px #fffdcf;
-  outline-color: #fffdcf;
+  border: solid 1px var(--light);
+  outline-color: var(--light);
   border-radius: 2px;
 }
 input:-webkit-autofill,
@@ -60,8 +72,7 @@ input[data-autocompleted],
 select[data-autocompleted] {
   background-color: transparent !important;
 }
-h1 {
-}
+
 h2 {
   font-family: "Antonio", sans-serif;
   font-optical-sizing: auto;
@@ -82,7 +93,7 @@ div {
   font-size: 18px;
 }
 a {
-  color: #4041d1;
+  color: var(--accent);
   /*font-size: 18px;*/
   cursor: pointer;
 }

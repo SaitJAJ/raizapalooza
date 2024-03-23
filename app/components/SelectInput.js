@@ -20,10 +20,10 @@ export default function SelectInput(props){
                 {label}
             </p>
             <select value={value} id={id} className={'w-full md:h-[1.5lh] grow'} required={required} onChange={onChange}>
-                <option id={defaultValue} className={'text-center'} value={defaultValue}>{defaultValue}</option>
+                <option id={''} className={'text-center'} value={''}>{defaultValue}</option>
                 {options.map(option=>{
                     return (
-                        <option className={'text-center'} key={option.id} value={option.value}>{option.value}</option>
+                        <option className={'text-center'} key={option.id} value={option.id}>{option.value}</option>
                     )
                 })}
             </select>

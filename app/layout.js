@@ -14,6 +14,7 @@ const tanHeadline = localFont({
   variable: "--font-tan-headline",
   display: "swap",
 });
+import { BrowserRouter } from "react-router-dom";
 
 export default async function RootLayout({ children }) {
   let policy = await getCookiePolicy();
@@ -43,6 +44,6 @@ export const metadata = {
   description:
     "Get your tickets now for the next Raizapalooza, relive the memories and celebrate Raiza! ",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/icons/icon256.png",
   },
 };

@@ -1,9 +1,10 @@
 import Scrolling from "@/components/Scrolling";
+import Header from "@/components/Header";
 
 export default function Page(){
     return(
         <>
-            <Scrolling/>
+            <Header />
         </>
     )
 }
