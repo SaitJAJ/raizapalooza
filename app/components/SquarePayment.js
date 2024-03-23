@@ -348,8 +348,9 @@ export default function SquarePayment({form,scrollBack,clearAll}){
     const handlePayment = async(token,verifiedBuyer)=>{
         // console.log(verifiedBuyer)
         let payment = await submitPayment(token.token,verifiedBuyer.token,form.get('cost')*100,"CAD",form)
-        console.log('token:', token);
-        console.log('verifiedBuyer:', verifiedBuyer);
+        console.log(payment)
+        // console.log('token:', token);
+        // console.log('verifiedBuyer:', verifiedBuyer);
     }
     const createVerificationDetails=()=>({
         amount: form.get('cost'),
@@ -394,7 +395,6 @@ export default function SquarePayment({form,scrollBack,clearAll}){
                 <TextInput label={"Address line 2"} id={'address-2'} value={billingDetails.addressLines[1]} onChange={e=>{billingDispatch({type:"address",tag:e.target.id,value:e.target.value})}}/>
                 <TextInput label={"City"} id={"city"} value={billingDetails.city} onChange={e=>{billingDispatch({type:"change",tag:e.target.id,value:e.target.value})}}/>
                 <div className={'flex flex-nowrap'}>
-                    {billingDetails.country}
                     <SelectInput label={"Country"} id={"country"} defaultValue={'Country'} value={billingDetails.country} options={countries} onChange={e=>{billingDispatch({type:"select",tag:e.target.id,value:e.target.value})}}/>
                     {
                         billingDetails.country!=='US'?
@@ -403,7 +403,6 @@ export default function SquarePayment({form,scrollBack,clearAll}){
                             <SelectInput label={"State"} id={"region"} options={states} defaultValue={'State'} value={billingDetails.region} onChange={e=>{billingDispatch({type:"select",tag:e.target.id,value:e.target.value})}}/>
                     }
                 </div>
-
             </form>
                 <PaymentForm
                     applicationId={process.env.NEXT_PUBLIC_SQUARE_APPLICATION_ID}

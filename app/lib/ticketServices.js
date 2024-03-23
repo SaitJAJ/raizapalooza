@@ -43,6 +43,9 @@ export async function addTicket(formData){
         await mongoose.connect(process.env.MONGODB_URI)
         let ticket = {
             ticketId:crypto.randomUUID(),
+            paymentId:formData.get('paymentId'),
+            orderId:formData.get('orderId'),
+            paymentDate:formData.get('paymentDate'),
             name:formData.get('name'),
             email:formData.get('email'),
             phone:formData.get('phone'),
@@ -50,8 +53,8 @@ export async function addTicket(formData){
             tier:formData.get('tier'),
             raffle:formData.get('tier')==='earlyBird'?1:0,
         }
-        const newTicket = await Ticket.create(ticket)
-        console.log(newTicket)
+        // const newTicket = await Ticket.create(ticket)
+        console.log(ticket)
 
     }catch(error){
         console.error(error)
