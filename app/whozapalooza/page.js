@@ -20,24 +20,26 @@ const josefin_sans = Josefin_Sans({
 
 export default function Page() {
   return (
-    <>
+    <div className="flex flex-col justify-center items-center">
       <Header />
+      <div className="border-2 border-white flex flex-col justify-center items-center top-6 md:top-52">
+        <h1 className="font-tan-headline text-4xl md:text-6xl pt-12 md:pt-2">
+          Whozapalooza?
+        </h1>
+        <p
+          className={`flex text-sm md:text-base text-left ${josefin_sans.className} pt-2 w-56 md:w-96`}
+        >
+          This page gives a run down of every one there. Filler Text
+        </p>
+      </div>
       <div
-        id="outer"
-        className="flex flex-col items-center md:pt-48 md:flex-row h-screen justify-around mt-16"
+        id="vendergrid"
+        className="flex flex-col items-center bg-background h-screen justify-around"
       >
-        <div className="absolute text-center top-6 md:top-[20%]">
-          <h1 className="font-tan-headline text-4xl md:text-6xl ">
-            Whozapalooza
-          </h1>
-          <p className={`flex text-center ${josefin_sans.className}`}>
-            This page gives a run down of every one there. Filler Text
-          </p>
-        </div>
-        <div className="flex flex-col gap-10 w-[90%] md:grid md:grid-cols-6 md:grid-rows-2 md:w-[80%] md:h-[35rem]">
-          <div className="md:col-start-1 md:col-span-2 md:row-start-1 md:self-start">
+        <div className="flex flex-col pt-4 gap-4 w-[90%] md:grid md:grid-cols-6 md:grid-rows-8 md:w-[80%] md:h-[36rem]">
+          <div className="sm:odd:w-2/3 sm:even:pl-52 md:odd:w-full md:even:pl-0 md:col-start-1 md:col-span-2 md:row-start-1 md:row-span-3 md:self-start">
             <WhoBox
-              name="VENDOR"
+              name="VENDOR 1"
               src={whitePlaceholder}
               alt="placeholder photo"
               text="Lorem ipsum dolor sit sed do asdasd ascojn temporse sadasd deiusmod temporsed do eiusmod temporsed do eiusmod tempor "
@@ -45,9 +47,9 @@ export default function Page() {
               instagram="instagram"
             />
           </div>
-          <div className="md:col-start-2 md:col-span-2 md:row-start-2 md:self-end">
+          <div className="sm:odd:w-2/3 sm:even:pl-52 md:odd:w-full md:even:pl-0 md:col-start-2 md:col-span-2 md:row-start-5 md:row-span-3 md:self-end">
             <WhoBox
-              name="VENDOR"
+              name="VENDOR 2"
               src={whitePlaceholder}
               alt="placeholder photo"
               text="Lorem ipsum dolor sit sed do asdasd ascojn temporse sadasd deiusmod temporsed do eiusmod temporsed do eiusmod tempor "
@@ -55,9 +57,9 @@ export default function Page() {
               instagram="instagram"
             />
           </div>
-          <div className="md:col-start-4 md:col-span-2 md:row-start-1 md:self-start md:pt-12">
+          <div className="sm:odd:w-2/3 sm:even:pl-52 md:odd:w-full md:even:pl-0 md:col-start-4 md:col-span-2 md:row-start-2 md:row-span-3 md:self-start">
             <WhoBox
-              name="VENDOR"
+              name="VENDOR 3"
               src={whitePlaceholder}
               alt="placeholder photo"
               text="Lorem ipsum dolor sit sed do asdasd ascojn temporse sadasd deiusmod temporsed do eiusmod temporsed do eiusmod tempor "
@@ -65,9 +67,9 @@ export default function Page() {
               instagram="instagram"
             />
           </div>
-          <div className="md:col-start-5 md:col-span-2 md:row-start-2 md:self-end ">
+          <div className="sm:odd:w-2/3 sm:even:pl-52 md:odd:w-full md:even:pl-0 md:col-start-5 md:col-span-2 md:row-start-6 md:row-span-3 md:self-end ">
             <WhoBox
-              name="VENDOR"
+              name="VENDOR 4"
               src={whitePlaceholder}
               alt="placeholder photo"
               text="Lorem ipsum dolor sit sed do asdasd ascojn temporse sadasd deiusmod temporsed do eiusmod temporsed do eiusmod tempor "
@@ -77,7 +79,7 @@ export default function Page() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -92,6 +94,7 @@ function WhoBox({ src, name, alt, text, website, instagram }) {
           <img
             className="object-fill"
             src="https://via.placeholder.com/160x120"
+            alt={alt}
           ></img>
         </div>
         <div

@@ -14,7 +14,6 @@ const tanHeadline = localFont({
   variable: "--font-tan-headline",
   display: "swap",
 });
-import { BrowserRouter } from "react-router-dom";
 
 export default async function RootLayout({ children }) {
   let policy = await getCookiePolicy();

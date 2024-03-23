@@ -33,10 +33,10 @@ export default function Header() {
             {" "}
             <a href="/itenerary">ITENERARY</a>{" "}
           </li>
-          <Link href="/whozapalooza">WHOZAPALOOZA</Link>
+
           <li>
             {" "}
-            <a href="/whoozapalooza"></a>{" "}
+            <a href="/whozapalooza">WHOZAPALOOZA</a>{" "}
           </li>
           <li>
             {" "}
