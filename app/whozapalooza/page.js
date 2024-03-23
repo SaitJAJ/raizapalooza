@@ -8,12 +8,12 @@ import FancyTitle from "../components/layout/FancyTitle";
 import Header from "../components/Header";
 
 const antonio = Antonio({
-  weight: "400",
+  weight: "600",
   subsets: ["latin"],
   variable: "--font-antonio",
 });
 const josefin_sans = Josefin_Sans({
-  weight: "400",
+  weight: "700",
   subsets: ["latin"],
   variable: "--font-josefin-sans",
 });
@@ -24,18 +24,18 @@ export default function Page() {
       <Header />
       <div
         id="outer"
-        className="flex flex-col items-center md:pt-16 md:flex-row h-screen justify-around mt-16"
+        className="flex flex-col items-center md:pt-48 md:flex-row h-screen justify-around mt-16"
       >
         <div className="absolute border-2 border-white text-center top-6 md:top-[20%]">
           <h1 className="font-tan-headline text-4xl md:text-6xl ">
-            Whoozapalooza
+            Whozapalooza
           </h1>
           <p className={`flex text-center ${josefin_sans.className}`}>
             This page gives a run down of every one there. Filler Text
           </p>
         </div>
-        <div className="flex flex-col justify-center items-center md:pt-24 md:pl-48 md:gap-16 md:grid md:grid-cols-2 md:grid-rows-2 mb-16 border-2 border-white">
-          <div className="md:col-start-1 md:row-start-1 md:pl-16">
+        <div className="border-4 border-element-1 flex flex-col gap-10 w-[90%] md:grid md:grid-cols-6 md:grid-rows-2 md:w-[80%] md:h-[35rem]">
+          <div className="border-2 order-white md:col-start-1 md:col-span-2 md:row-start-1 md:self-start">
             <WhoBox
               name="VENDOR"
               src={whitePlaceholder}
@@ -45,7 +45,7 @@ export default function Page() {
               instagram="instagram"
             />
           </div>
-          <div className="md:col-start-2 md:row-start-2">
+          <div className="border-2 border-white md:col-start-2 md:col-span-2 md:row-start-2 md:self-end">
             <WhoBox
               name="VENDOR"
               src={whitePlaceholder}
@@ -55,9 +55,7 @@ export default function Page() {
               instagram="instagram"
             />
           </div>
-        </div>
-        <div className="flex flex-col justify-center items-center md:pr-72 md:gap-16 md:grid md:grid-cols-2 md:grid-rows-2 mt-16 border-2 border-white">
-          <div className="md:col-start-1 md:row-start-1 md:pl-16">
+          <div className="border-2 border-white md:col-start-4 md:col-span-2 md:row-start-1 md:self-start md:pt-12">
             <WhoBox
               name="VENDOR"
               src={whitePlaceholder}
@@ -67,7 +65,7 @@ export default function Page() {
               instagram="instagram"
             />
           </div>
-          <div className="md:col-start-2 md:row-start-2">
+          <div className="border-2 border-white md:col-start-5 md:col-span-2 md:row-start-2 md:self-end ">
             <WhoBox
               name="VENDOR"
               src={whitePlaceholder}
@@ -86,16 +84,35 @@ export default function Page() {
 function WhoBox({ src, name, alt, text, website, instagram }) {
   return (
     <>
-      <div className="flex flex-row w-80 h-56">
-        <div className="flex flex-col justify-start items-start grow basis-1/2 overflow-hidden ">
-          <Image width={350} height={150} src={src} alt={alt} />
-          <h2 className={`flex ${antonio.className} `}>{name}</h2>
+      <div className="grid grid-cols-2 grid-rows-3 w-full h-60 justify-center items-centerborder-2 border-white">
+        <div
+          id="photo"
+          className="flex col-start-1 col-span-1 row-start-1 row-span-2 border-2 border-white"
+        >
+          <img
+            className="object-fill"
+            src="https://via.placeholder.com/160x120"
+          ></img>
         </div>
         <div
-          className={`flex flex-col gap-1 text-base grow basis-1/2 bg-white `}
+          id="vendor"
+          className="flex col-start-1 col-span-1 row-start-3 row-span-1 border-2 border-white"
         >
-          <p className={`${josefin_sans.className}`}>{text}</p>
-          <p>
+          <h2 className={`flex text-4xl items-center ${antonio.className}`}>
+            {name}
+          </h2>
+        </div>
+        <div
+          id="text"
+          className="flex col-start-2 col-span-1 row-start-1 row-span-2 border-2 border-white"
+        >
+          <p className={`${josefin_sans.className} text-base`}>{text}</p>
+        </div>
+        <div
+          id="links"
+          className="flex col-start-2 col-span-2 row-start-3 row-span-1 border-2 border-white"
+        >
+          <p className="flex flex-col justify-center gap-0 items-start">
             <a
               className={`${josefin_sans.className}`}
               href={`https://www.instagram.com/${instagram}/`}
@@ -103,7 +120,7 @@ function WhoBox({ src, name, alt, text, website, instagram }) {
               {" "}
               Instagram➜
             </a>
-            <br />
+
             <a className={`${josefin_sans.className}`} href={website}>
               Website➜
             </a>
