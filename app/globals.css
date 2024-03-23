@@ -30,7 +30,10 @@
   font-family: "Tan-Headline";
   src: url("../public/fonts/TAN - HEADLINE.ttf");
 }
-
+::selection {
+  background-color: #fffdcf;
+  color: #121212;
+}
 body {
   color: #fffdcf;
   background: #121212;
