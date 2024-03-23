@@ -29,16 +29,16 @@ module.exports = {
       animation: {
         offset: "wiggle 1s ease-in-out infinite",
       },
+      colors: {
+        background: "#121212",
+        text: "#121212",
+        highlight: "#121212",
+        "element-1": "#4041d1",
+        "element-2": "#00ff85",
+      },
     },
     fontFamily: {
       "tan-headline": ["Tan-Headline"],
-    },
-    colors: {
-      background: "#121212",
-      text: "#121212",
-      highlight: "#121212",
-      "element-1": "#4041d1",
-      "element-2": "#00ff85",
     },
   },
   plugins: [],
