@@ -1,23 +1,40 @@
-'use client'
-import '../../styles/tickets.css';
+"use client";
+import "../../styles/tickets.css";
+import Link from "next/link";
 export default function Header() {
-
   return (
-    <header id='header-tickets'>
-      <div id='header-div1'>
-        <div id='header-div2'>
-          <button id='header-ticket-button'>TICKETS</button>
+    <header id="header-tickets">
+      <div id="header-div1">
+        <div id="header-div2">
+          <button id="header-ticket-button">TICKETS</button>
         </div>
       </div>
-      <input type="checkbox" id="hamburger-checkbox"/>
-      <label htmlFor="hamburger-checkbox" id="hamburger-checkbox-label"><span></span></label>
+      <input type="checkbox" id="hamburger-checkbox" />
+      <label htmlFor="hamburger-checkbox" id="hamburger-checkbox-label">
+        <span></span>
+      </label>
       <nav>
-        <span className="menu"><span className="hamburger"></span></span>
+        <span className="menu">
+          <span className="hamburger"></span>
+        </span>
         <ul>
-          <li> <a href="/about">ABOUT</a> </li>
-          <li> <a href="/itenerary">ITENERARY</a> </li>
-          <li> <a href="/whoozapalooza">WHOZAPALOOZA</a> </li>
-          <li> <a href="/gallery">GALLERY</a> </li>          
+          <li>
+            {" "}
+            <a href="/about">ABOUT</a>{" "}
+          </li>
+          <li>
+            {" "}
+            <a href="/itenerary">ITENERARY</a>{" "}
+          </li>
+          <Link href="/whozapalooza">WHOZAPALOOZA</Link>
+          <li>
+            {" "}
+            <a href="/whoozapalooza"></a>{" "}
+          </li>
+          <li>
+            {" "}
+            <a href="/gallery">GALLERY</a>{" "}
+          </li>
         </ul>
       </nav>
     </header>
