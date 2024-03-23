@@ -1,0 +1,68 @@
+/*
+LEGEND:
+
+- gallery-photos: container for all photos, grid layout
+
+THIN CONTAINER:
+- photo-rectangle-thin: thin photo container
+- thin-empty-l: large empty space in the thin container
+- thin-filled-l: large filled space in the thin container
+- thin-hor-bar: horizontal bar in the thin container
+- thin-filled-vs: very small image space in the thin container
+- thin-filled-m: medium image space in the thin container
+
+WIDE CONTAINER:
+- photo-rectangle-wide: wide photo container
+- wide-hor-bar: horizontal bar in the wide container
+- wide-filled-vs: very small image space in the wide container
+- wide-empty-vs: very small empty space in the wide container
+- wide-filled-l: large image space in the wide container
+- wide-hor-square: horizontal square in the wide container
+- wide-filled-m: medium image space in the wide container
+
+Apply the classes to the appropriate elements to create the gallery layout you want.
+*/
+
+.gallery-photos {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 1fr 2fr;
+  grid-gap: 1rem;
+  margin-top: 10rem;
+}
+.photo-rectangle-wide, .photo-rectangle-thin, .wide-hor-square, .wide-hor-bar, .wide-filled-l {
+  display: flex;
+  gap: 2rem;
+}
+.photo-rectangle-thin {
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.photo-rectangle-wide {
+  flex-direction: column;
+}
+
+.thin-empty-l {
+  flex: 1 1 auto;
+}
+.thin-filled-l {
+  flex: 0 1 5rem;
+}
+.thin-filled-l img {
+  object-fit: cover;
+}
+
+.wide-empty-vs {
+  flex: 1 0 2rem;
+}
+.wide-hor-square {
+  gap: 2rem;
+}
+.thin-hor-bar {
+  display: flex;
+  gap: 2rem;
+}
+
+h1 {
+  font-size: 5rem;
+  text-align: center;
+}

@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import Loading from "@/components/Loading";
 import { getCookiePolicy } from "@/library/cookieServices";
 import ParallaxBackground from "@/components/layout/ParallaxBackground";
+import { BrowserRouter } from "react-router-dom";
 
 export default async function RootLayout({ children }) {
   let policy = await getCookiePolicy();
