@@ -1,6 +1,6 @@
 /* 
 The following line is minified css
-:root{--width:clamp(5rem, 4.78vw + 3.47rem, 10rem);--height:clamp(2rem, 1.912vw + 1.388rem, 4rem);--radius:clamp(0.5rem, 0.478vw + 0.347rem, 1rem);--top-spacing:calc(clamp(0.4rem, 0.287vw + 0.308rem, 0.7rem)*-1);--left-spacing:clamp(0.08rem, 0.067vw + 0.059rem, 0.15rem)}#header-tickets{height:5vh;display:flex;flex-direction:row;justify-content:space-between;align-items:center;padding:3vw}#header-div1,#header-div2,#header-ticket-button{border-radius:var(--radius)}#header-ticket-button{z-index:5;position:absolute;background-color:#4041d1;font-weight:bolder;font-size:calc(var(--height)/2.1);top:var(--top-spacing);left:var(--left-spacing);border:5px solid #fffec9;width:var(--width);height:var(--height)}#header-div2{position:absolute;background-color:#4041d1;border:2px solid #fffec9;top:var(--top-spacing);left:var(--left-spacing);width:calc(var(--width)/1.1);height:calc(var(--height)/1.1)}#header-div1{position:relative;background-color:#4041d1;border:2px solid #fffec9;margin-top:5vh;margin-left:2vw;width:calc(var(--width)/1.2);height:calc(var(--height)/1.2)}nav{display:flex;flex-direction:column;justify-content:center;align-items:center;position:absolute;top:0;right:0;height:calc(var(--height)*7);width:calc(var(--height)*7);background-color:#4041d1;z-index:1;transform:translateX(100%);transition:transform 0.3s ease-in-out}nav a{color:#fffec9;font-size:calc(var(--height)/1.5)}nav a:hover{text-decoration:underline}#hamburger-checkbox{display:none;align-self:flex-end;position:absolute;height:1rem;width:1rem;z-index:5;top:2rem;right:2rem}#hamburger-checkbox-label{position:absolute;height:2rem;width:2rem;cursor:pointer;z-index:5;top:2rem;right:2rem}#hamburger-checkbox-label span,#hamburger-checkbox-label:after,#hamburger-checkbox-label:before{content:'';display:block;height:0.5rem;width:3rem;background:#00fd83;transition:all 0.3s ease-in-out}#hamburger-checkbox-label:before{transform:translateY(-7px)}#hamburger-checkbox-label:after{transform:translateY(5px)}#hamburger-checkbox:checked ~ #hamburger-checkbox-label:before{transform:rotate(-45deg) translate(-5px, 6px)}#hamburger-checkbox:checked ~ #hamburger-checkbox-label:after{transform:rotate(45deg) translate(-5px, -6px)}#hamburger-checkbox:checked ~ #hamburger-checkbox-label span{opacity:0}#hamburger-checkbox:checked ~ nav{transform:translateX(0)}
+:root{--width:clamp(5rem, 4.78vw + 3.47rem, 10rem);--height:clamp(2rem, 1.912vw + 1.388rem, 4rem);--radius:clamp(0.5rem, 0.478vw + 0.347rem, 1rem);--top-spacing:calc(clamp(0.4rem, 0.287vw + 0.308rem, 0.7rem)*-1);--left-spacing:clamp(0.08rem, 0.067vw + 0.059rem, 0.15rem)}#header-tickets{height:5vh;display:flex;flex-direction:row;justify-content:space-between;align-items:center;padding:3vw}#header-div1,#header-div2,#header-ticket-button{border-radius:var(--radius)}#header-ticket-button{z-index:5;position:absolute;background-color:var(--accent);font-weight:bolder;font-size:calc(var(--height)/2.1);top:var(--top-spacing);left:var(--left-spacing);border:5px solid var(--light);width:var(--width);height:var(--height)}#header-div2{position:absolute;background-color:var(--accent);border:2px solid var(--light);top:var(--top-spacing);left:var(--left-spacing);width:calc(var(--width)/1.1);height:calc(var(--height)/1.1)}#header-div1{position:relative;background-color:var(--accent);border:2px solid var(--light);margin-top:5vh;margin-left:2vw;width:calc(var(--width)/1.2);height:calc(var(--height)/1.2)}nav{display:flex;flex-direction:column;justify-content:center;align-items:center;position:absolute;top:0;right:0;height:calc(var(--height)*7);width:calc(var(--height)*7);background-color:var(--accent);z-index:1;transform:translateX(100%);transition:transform 0.3s ease-in-out}nav a{color:var(--light);font-size:calc(var(--height)/1.5)}nav a:hover{text-decoration:underline}#hamburger-checkbox{display:none;align-self:flex-end;position:absolute;height:1rem;width:1rem;z-index:5;top:2rem;right:2rem}#hamburger-checkbox-label{position:absolute;height:2rem;width:2rem;cursor:pointer;z-index:5;top:2rem;right:2rem}#hamburger-checkbox-label span,#hamburger-checkbox-label:after,#hamburger-checkbox-label:before{content:'';display:block;height:0.5rem;width:3rem;background:var(--accent2);transition:all 0.3s ease-in-out}#hamburger-checkbox-label:before{transform:translateY(-7px)}#hamburger-checkbox-label:after{transform:translateY(5px)}#hamburger-checkbox:checked ~ #hamburger-checkbox-label:before{transform:rotate(-45deg) translate(-5px, 6px)}#hamburger-checkbox:checked ~ #hamburger-checkbox-label:after{transform:rotate(45deg) translate(-5px, -6px)}#hamburger-checkbox:checked ~ #hamburger-checkbox-label span{opacity:0}#hamburger-checkbox:checked ~ nav{transform:translateX(0)}
 */
 
 :root {
@@ -27,20 +27,20 @@ The following line is minified css
 #header-ticket-button {
   z-index: 5;
   position: absolute;
-  background-color: #4041d1;
+  background-color: var(--accent);
   font-weight: bolder;
   font-size: calc(var(--height)/2.1);
   top: var(--top-spacing);
   left: var(--left-spacing);
-  border: 5px solid #fffec9;
+  border: 5px solid var(--light);
   width: var(--width);
   height: var(--height);
 }
 
 #header-div2 {
   position: absolute;
-  background-color: #4041d1;
-  border: 2px solid #fffec9;
+  background-color: var(--accent);
+  border: 2px solid var(--light);
   top: var(--top-spacing);
   left: var(--left-spacing);
   width: calc(var(--width)/1.1);
@@ -49,8 +49,8 @@ The following line is minified css
 
 #header-div1 {
   position: relative;
-  background-color: #4041d1;
-  border: 2px solid #fffec9;
+  background-color: var(--accent);
+  border: 2px solid var(--light);
   margin-top: 5vh;
   margin-left: 2vw;
   width: calc(var(--width)/1.2);
@@ -67,13 +67,13 @@ nav {
   right: 0;
   height: calc(var(--height)*7);
   width: calc(var(--height)*7);
-  background-color: #4041d1;
+  background-color: var(--accent);
   z-index: 1;
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
 }
 nav a {
-  color: #fffec9;
+  color: var(--light);
   font-size: calc(var(--height)/1.5);
 }
 nav a:hover {
@@ -106,7 +106,7 @@ nav a:hover {
   display: block;
   height: 0.5rem;
   width: 3rem;
-  background: #00fd83;
+  background: var(--accent2);
   transition: all 0.3s ease-in-out;
 }
 #hamburger-checkbox-label:before {
