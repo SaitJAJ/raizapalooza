@@ -10,10 +10,10 @@ export default function TicketBox({selected,setSelected}){
     return(
         <div className={'h-[100vh] grid pt-[8vh] snap-start'} id={'ticketbox'}>
             <div className={'md:flex grid md:justify-around'} >
-                <Ticket selected={selected==='earlybird'} id={'earlybird'} select={()=>setSelected('earlybird')}>
+                <Ticket selected={selected==='earlybird'} id={'earlybird'} >
                     <Image alt={'earlybird'} src={'/earlybird.png'} fill/>
                 </Ticket>
-                <Ticket selected={selected==='door'} id={'door'} select={()=>setSelected('door')}>
+                <Ticket selected={selected==='door'} id={'door'}>
                     <Image alt={'general'} src={'/general.png'} fill/>
                 </Ticket>
             </div>
