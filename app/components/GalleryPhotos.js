@@ -1,5 +1,5 @@
 import '../../styles/gallery.css';
-
+import Image from 'next/image';
 /*
 LEGEND:
 
@@ -28,117 +28,117 @@ Apply the classes to the appropriate elements to create the gallery layout you w
 export default function GalleryPhotos() {
   return (
     <>
-      {/*<div className='gallery-photos'>*/}
-      {/*  */}
-      {/*  <div className='photo-rectangle-thin'>*/}
-      {/*    <div className='thin-empty-l'></div>*/}
-      {/*    <div className='thin-filled-l'>*/}
-      {/*      <img src='https://via.placeholder.com/230x500' alt='placeholder' />*/}
-      {/*    </div>*/}
-      {/*  </div>*/}
+      <div className='gallery-photos'>
+        
+        <div className='photo-rectangle-thin'>
+          <div className='thin-empty-l'></div>
+          <div className='thin-filled-l'>
+            <Image src='https://via.placeholder.com/230x500' width={230} height={500} alt='placeholder' />
+          </div>
+        </div>
 
-      {/*  <div className='photo-rectangle-wide'>*/}
+        <div className='photo-rectangle-wide'>
 
-      {/*    <div className='wide-hor-bar'>*/}
-      {/*      <div className='wide-filled-vs'>*/}
-      {/*        <img src='https://via.placeholder.com/150' alt='placeholder' />*/}
-      {/*      </div>*/}
-      {/*      <div className='wide-empty-vs'></div>*/}
-      {/*      <div className='wide-empty-vs'></div>*/}
-      {/*      <div className='wide-empty-vs'></div>*/}
-      {/*    </div>*/}
+          <div className='wide-hor-bar'>
+            <div className='wide-filled-vs'>
+              <Image src='https://via.placeholder.com/150' width={150} height={150} alt='placeholder' />
+            </div>
+            <div className='wide-empty-vs'></div>
+            <div className='wide-empty-vs'></div>
+            <div className='wide-empty-vs'></div>
+          </div>
 
-      {/*    <div className="wide-filled-l">*/}
-      {/*      <img src='https://via.placeholder.com/600x500' alt='placeholder' />*/}
-      {/*    </div>*/}
+          <div className="wide-filled-l">
+            <Image src='https://via.placeholder.com/600x500' width={600} height={500} alt='placeholder' />
+          </div>
 
-      {/*    <div className='wide-hor-bar'>*/}
-      {/*      <div className='wide-empty-vs'></div>*/}
-      {/*      <div className='wide-filled-vs'>*/}
-      {/*        <img src='https://via.placeholder.com/150' alt='placeholder' />*/}
-      {/*      </div>*/}
-      {/*      <div className='wide-filled-m'>*/}
-      {/*        <img src='https://via.placeholder.com/250' alt='placeholder' />*/}
-      {/*      </div>*/}
-      {/*      <div className='wide-filled-m'></div>*/}
-      {/*      <div className='wide-empty-vs'></div>*/}
-      {/*    </div>*/}
-      {/*  </div>*/}
+          <div className='wide-hor-bar'>
+            <div className='wide-empty-vs'></div>
+            <div className='wide-filled-vs'>
+              <Image src='https://via.placeholder.com/150' width={150} height={150} alt='placeholder' />
+            </div>
+            <div className='wide-filled-m'>
+              <Image src='https://via.placeholder.com/250' width={250} height={250} alt='placeholder' />
+            </div>
+            <div className='wide-filled-m'></div>
+            <div className='wide-empty-vs'></div>
+          </div>
+        </div>
 
-      {/*  <div className='photo-rectangle-wide'>*/}
+        <div className='photo-rectangle-wide'>
 
-      {/*    <div className='wide-hor-square'>*/}
-      {/*      <div className='wide-empty-vs'></div>*/}
-      {/*      <div className='wide-filled-l'>*/}
-      {/*        <img src='https://via.placeholder.com/500x900' alt='placeholder' />*/}
-      {/*      </div>*/}
-      {/*      <div className="wide-filled-l">*/}
-      {/*        <img src='https://via.placeholder.com/500x900' alt='placeholder' />*/}
-      {/*      </div>*/}
-      {/*    </div>*/}
+          <div className='wide-hor-square'>
+            <div className='wide-empty-vs'></div>
+            <div className='wide-filled-l'>
+              <Image src='https://via.placeholder.com/500x900' width={500} height={900} alt='placeholder' />
+            </div>
+            <div className="wide-filled-l">
+              <Image src='https://via.placeholder.com/500x900' width={500} height={900} alt='placeholder' />
+            </div>
+          </div>
 
-      {/*    <div className='wide-hor-square'>*/}
-      {/*      <div className='wide-filled-vs'>*/}
-      {/*        <img src='https://via.placeholder.com/150' alt='placeholder' />*/}
-      {/*      </div>*/}
-      {/*      <div className='wide-filled-vs'>*/}
-      {/*        <img src='https://via.placeholder.com/150' alt='placeholder' />*/}
-      {/*      </div>*/}
-      {/*    </div>*/}
+          <div className='wide-hor-square'>
+            <div className='wide-filled-vs'>
+              <Image src='https://via.placeholder.com/150' width={150} height={150} alt='placeholder' />
+            </div>
+            <div className='wide-filled-vs'>
+              <Image src='https://via.placeholder.com/150' width={150} height={150} alt='placeholder' />
+            </div>
+          </div>
 
-      {/*    <div className='wide-filled-l'>*/}
-      {/*      <img src='https://via.placeholder.com/600x500' alt='placeholder' />*/}
-      {/*    </div>*/}
-      {/*  </div>*/}
+          <div className='wide-filled-l'>
+            <Image src='https://via.placeholder.com/600x500' width={600} height={500} alt='placeholder' />
+          </div>
+        </div>
 
-      {/*  <div className='photo-rectangle-thin'>*/}
+        <div className='photo-rectangle-thin'>
 
-      {/*    <div className='thin-filled-l'>*/}
-      {/*      <img src='https://via.placeholder.com/400x600' alt='placeholder' />*/}
-      {/*    </div>*/}
+          <div className='thin-filled-l'>
+            <Image src='https://via.placeholder.com/400x600' width={400} height={600} alt='placeholder' />
+          </div>
 
-      {/*    <div className='thin-hor-bar'>*/}
-      {/*      <div className='thin-filled-vs'>*/}
-      {/*        <img src='https://via.placeholder.com/150' alt='placeholder' />*/}
-      {/*      </div>*/}
-      {/*      <div className='thin-filled-vs'>*/}
-      {/*        <img src='https://via.placeholder.com/150' alt='placeholder' />*/}
-      {/*      </div>*/}
-      {/*    </div>*/}
+          <div className='thin-hor-bar'>
+            <div className='thin-filled-vs'>
+              <Image src='https://via.placeholder.com/150' width={150} height={150} alt='placeholder' />
+            </div>
+            <div className='thin-filled-vs'>
+              <Image src='https://via.placeholder.com/150' width={150} height={150} alt='placeholder' />
+            </div>
+          </div>
 
-      {/*    <div className='thin-filled-m'>*/}
-      {/*      <img src='https://via.placeholder.com/400x400' alt='placeholder' />*/}
-      {/*    </div>*/}
-      {/*  </div>*/}
+          <div className='thin-filled-m'>
+            <Image src='https://via.placeholder.com/400' width={400} height={400} alt='placeholder' />
+          </div>
+        </div>
 
-      {/*  <div className='photo-rectangle-wide'>*/}
+        <div className='photo-rectangle-wide'>
 
-      {/*    <div className='wide-hor-square'>*/}
-      {/*      <div className='wide-filled-vs'>*/}
-      {/*        <img src='https://via.placeholder.com/150' alt='placeholder' />*/}
-      {/*      </div>*/}
-      {/*      <div className='wide-filled-vs'>*/}
-      {/*        <img src='https://via.placeholder.com/150' alt='placeholder' />*/}
-      {/*      </div>*/}
-      {/*      <div className='wide-filled-vs'>*/}
-      {/*        <img src='https://via.placeholder.com/150' alt='placeholder' />*/}
-      {/*      </div>*/}
-      {/*    </div>*/}
+          <div className='wide-hor-square'>
+            <div className='wide-filled-vs'>
+              <Image src='https://via.placeholder.com/150' width={150} height={150} alt='placeholder' />
+            </div>
+            <div className='wide-filled-vs'>
+              <Image src='https://via.placeholder.com/150' width={150} height={150} alt='placeholder' />
+            </div>
+            <div className='wide-filled-vs'>
+              <Image src='https://via.placeholder.com/150' width={150} height={150} alt='placeholder' />
+            </div>
+          </div>
 
-      {/*    <div className='wide-hor-square'>*/}
-      {/*      <div className='wide-empty-vs'></div>*/}
-      {/*      <div className='wide-empty-vs'></div>*/}
-      {/*      <div className="wide-filled-l">*/}
-      {/*        <img src='https://via.placeholder.com/500x900' alt='placeholder' />*/}
-      {/*      </div>*/}
-      {/*      <div className='wide-empty-vs'></div>*/}
-      {/*    </div>*/}
+          <div className='wide-hor-square'>
+            <div className='wide-empty-vs'></div>
+            <div className='wide-empty-vs'></div>
+            <div className="wide-filled-l">
+              <Image src='https://via.placeholder.com/500x900' width={500} height={900} alt='placeholder' />
+            </div>
+            <div className='wide-empty-vs'></div>
+          </div>
 
-      {/*    <div className='wide-filled-l'>*/}
-      {/*      <img src='https://via.placeholder.com/600x800' alt='placeholder' />*/}
-      {/*    </div>*/}
-      {/*  </div>*/}
-      {/*</div>*/}
+          <div className='wide-filled-l'>
+            <Image src='https://via.placeholder.com/600x800' width={600} height={800} alt='placeholder' />
+          </div>
+        </div>
+      </div>
     </>
   );
 }

@@ -38,6 +38,13 @@ The following line is minified css
   border: 5px solid var(--light);
   width: var(--width);
   height: var(--height);
+  color: var(--text);
+}
+header a {
+  color: var(--text);
+}
+header button:hover {
+  text-decoration: underline;
 }
 
 #header-div2 {
@@ -87,20 +94,20 @@ nav a:hover {
   display: none;
   align-self: flex-end;
   position: absolute;
-  height: 1rem;
-  width: 1rem;
+  height: 2rem;
+  width: 2rem;
   z-index: 5;
-  top: 2rem;
-  right: 2rem;
+  top: 3rem;
+  right: 3rem;
 }
 #hamburger-checkbox-label {
   position: absolute;
-  height: 2rem;
-  width: 2rem;
+  height: 3rem;
+  width: 3rem;
   cursor: pointer;
   z-index: 5;
-  top: 2rem;
-  right: 2rem;
+  top: 3rem;
+  right: 3rem;
 }
 #hamburger-checkbox-label:before,
 #hamburger-checkbox-label:after,

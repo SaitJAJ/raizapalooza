@@ -221,3 +221,13 @@ a {
   transform: translateZ(-5000px) scale(6);
   z-index: -4;
 }
+
+.background-images {
+  opacity: 0.5;
+  z-index: -5;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

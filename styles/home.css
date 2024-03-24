@@ -1,0 +1,70 @@
+.date-text {
+  color: var(--accent2);
+  font-size: clamp(2rem, 1.912vw + 1.388rem, 4rem);
+  font-weight: bolder;
+}
+
+.reg-text {
+  font-size: calc(clamp(2rem, 1.912vw + 1.388rem, 4rem)/1.5);
+}
+
+p, a {
+  text-align: center;
+  width: 100%;
+}
+
+.info-section {
+  padding: 1vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.landing-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 50px - 5vh);
+  width: 100vw;
+}
+
+@keyframes sparkle {
+  0% { color: var(--accent); }
+  25% { color: var(--text); }
+  50% { color: var(--accent2); }
+  75% { color: var(--accent2); }
+  100% { color: var(--accent); }
+}
+
+#date-text {
+  color: var(--accent2);
+  font-size: clamp(2rem, 1.912vw + 1.388rem, 4rem);
+  font-weight: bolder;
+  animation: sparkle 7s infinite;
+}
+
+#location-text a {
+  color: var(--accent2);
+  font-size: clamp(1rem, 0.956vw + 0.694rem, 2rem);
+  font-weight: bolder;
+  margin-bottom: 1vh;
+  text-decoration: underline;
+}
+#location-text a:hover {
+  text-decoration: none;
+}
+#eighteen-only {
+  font-weight: bolder;
+}
+
+.dark-overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  transform: translateX(-50%), translateY(50%);
+  z-index: -4;
+  background: radial-gradient(50% 50% at 50% 50%, #121212 30.22%, rgba(217, 217, 217, 0) 100%);  
+}
