@@ -18,6 +18,7 @@ The following line is minified css
   justify-content: space-between;
   align-items: center;
   padding: 3vw;
+  width: 100%;
 }
 
 #header-ticket-button,
