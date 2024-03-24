@@ -11,10 +11,10 @@ function parseCode(code){
         case("VIPPALOOZA2024PASS"):
             return "vip"
         default:
-            if(Date.now() > new Date("March 24, 2024")){
+            if(Date.now() > new Date("April 10, 2024 23:59:59")){
                 return "door"
             }else{
-                return "earlyBird"
+                return "earlybird"
             }
     }
 }
