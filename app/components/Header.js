@@ -14,6 +14,7 @@ export default function Header() {
       <nav>
         <span className="menu"><span className="hamburger"></span></span>
         <ul>
+          <li> <a href="/">HOME</a> </li>
           <li> <a href="/about">ABOUT</a> </li>
           <li> <a href="/itenerary">ITENERARY</a> </li>
           <li> <a href="/whoozapalooza">WHOZAPALOOZA</a> </li>
