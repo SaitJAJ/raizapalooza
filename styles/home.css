@@ -33,7 +33,7 @@ p, a {
   0% { color: var(--accent); }
   25% { color: var(--text); }
   50% { color: var(--accent2); }
-  75% { color: var(--accent2); }
+  75% { color: var(--accent); }
   100% { color: var(--accent); }
 }
 
