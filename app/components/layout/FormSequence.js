@@ -20,11 +20,11 @@ const allMonths= [
     {value:"November",id:'Nov'},
     {value:"December",id:'Dec'}
 ];
-export default function FormSequence(){
+export default function FormSequence({code = 'door'}){
     const [formData, setFormData] = useState()
     const formRef=useRef()
     const [loading,setLoading] = useState(false)
-    const [selected,setSelected]=useState('earlybird')
+    const [selected,setSelected]=useState(code)
 
     useEffect(() => {
         const form = formRef.current;
@@ -37,7 +37,12 @@ export default function FormSequence(){
         setLoading(true)
         e.preventDefault()
         let formData = new FormData(formRef.current)
-        formData.append("birthday",new Date(formRef.current.year.value, allMonths.findIndex(({value})=>value === formRef.current.month.value), formRef.current.day.value))
+
+        let date = new Date(formRef.current.year.value, allMonths.findIndex(({value})=>value === formRef.current.month.value), formRef.current.day.value);
+        console.log( allMonths.findIndex(({value})=>value === formRef.current.month.value))
+        console.log(formRef.current.month.value)
+        console.log(date)
+        formData.append("birthday",date)
         setFormData(formData)
         setTimeout(()=>{
            setLoading(false)
@@ -52,7 +57,6 @@ export default function FormSequence(){
     }, [formData]);
     const clearAll=()=>{
         let form = formRef.current
-        form.reset()
         const ticketbox = document.getElementById('ticketbox')
         ticketbox.scrollIntoView({behavior:"smooth"})
         setTimeout(()=>{

@@ -23,7 +23,7 @@ export default function SelectInput(props){
                 <option id={''} className={'text-center'} value={''}>{defaultValue}</option>
                 {options.map(option=>{
                     return (
-                        <option className={'text-center'} key={option.id} value={option.id}>{option.value}</option>
+                        <option className={'text-center'} key={option.id} value={option.value}>{option.value}</option>
                     )
                 })}
             </select>
