@@ -1,37 +1,3 @@
-/* 
-This selects all children of the root element and applies a red border to them.
-:root > * {
-  border: 2px solid red;
-}
-
-:root > * > * {
-  border: 2px solid red;
-}
-
-:root > * > * > * {
-  border: 2px solid red;
-}
-
-:root > * > * > * > * {
-  border: 2px solid red;
-}
-
-:root > * > * > * > * > * {
-  border: 2px solid red;
-}
-
-:root > * > * > * > * > * > * {
-  border: 2px solid red;
-}
-
-:root > * > * > * > * > * > * > * {
-  border: 2px solid red;
-}
-:root > * > * > * > * > * > * > * > * {
-  border: 2px solid red;
-} */
-
-/* Add more levels as needed */
 /*
 LEGEND:
 
@@ -106,7 +72,7 @@ h1 {
   text-align: center;
 }
 
-@media (max-width: 1886px) {
+@media (max-width: 1700px) {
   .gallery-photos {
     grid-template-columns: 1fr 2fr;
   }
@@ -114,3 +80,40 @@ h1 {
     flex-direction: column;
   }
 }
+
+
+
+/* 
+This selects all children of the root element and applies a red border to them.
+:root > * {
+  border: 2px solid red;
+}
+
+:root > * > * {
+  border: 2px solid red;
+}
+
+:root > * > * > * {
+  border: 2px solid red;
+}
+
+:root > * > * > * > * {
+  border: 2px solid red;
+}
+
+:root > * > * > * > * > * {
+  border: 2px solid red;
+}
+
+:root > * > * > * > * > * > * {
+  border: 2px solid red;
+}
+
+:root > * > * > * > * > * > * > * {
+  border: 2px solid red;
+}
+:root > * > * > * > * > * > * > * > * {
+  border: 2px solid red;
+} */
+
+/* Add more levels as needed */
