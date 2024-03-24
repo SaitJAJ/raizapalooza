@@ -25,17 +25,17 @@ export default function QrGenerator({ ticketId }) {
 
   return (
     <>
-      <div className={"flex justify-around my-8"}>
+      <div className={"flex justify-around my-8 w-full"}>
         <QRCode
           ref={qrcodeRef}
           size={256}
           bgColor="#4041d1"
           fgColor="#fffdcf"
-          value={process.env.QR_CODE_ENDPOINT + ticketId}
+          value={process.env.NEXT_PUBLIC_QR_CODE_ENDPOINT +"/api/tic/"+ticketId}
         />
       </div>
 
-      <Hyperlink href={"/tickets/info/" + ticketId}>View Ticket Info</Hyperlink>
+      {/*<Hyperlink href={"/tickets/info/" + ticketId}>View Ticket Info</Hyperlink>*/}
     </>
   );
 }
