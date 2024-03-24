@@ -22,23 +22,26 @@ module.exports = {
           "50%": { transform: "rotate(3deg)" },
         },
         offset: {
-          '0%' :{   transform: 'translateX(0rem)'},
-          '100%': { transform: 'translateX(2rem)' },
-        }
+          "0%": { transform: "translateX(0rem)" },
+          "100%": { transform: "translateX(2rem)" },
+        },
       },
       animation: {
         offset: "wiggle 1s ease-in-out infinite",
       },
-      colors: {
-        background: "#121212",
-        text: "#121212",
-        highlight: "#121212",
-        "element-1": "#4041d1",
-        "element-2": "#00ff85",
-      },
     },
     fontFamily: {
-      "tan-headline": ["Tan-Headline"],
+      //here is where im making the tailwind attribute
+      "tan-headline": ["var(--font-tan-headline)"],
+      "josefin-sans": ["var(--font-josefin-sans)"],
+      antonio: ["var(--font-antonio)"],
+    },
+    colors: {
+      background: "#121212",
+      text: "#121212",
+      highlight: "#fffdcf",
+      "element-1": "#4041d1",
+      "element-2": "#00ff85",
     },
   },
   plugins: [],

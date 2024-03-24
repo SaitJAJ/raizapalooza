@@ -7,7 +7,7 @@ The following line is minified css
   --width: clamp(5rem, 4.78vw + 3.47rem, 10rem);
   --height: clamp(2rem, 1.912vw + 1.388rem, 4rem);
   --radius: clamp(0.5rem, 0.478vw + 0.347rem, 1rem);
-  --top-spacing: calc(clamp(0.4rem, 0.287vw + 0.308rem, 0.7rem)*-1);
+  --top-spacing: calc(clamp(0.4rem, 0.287vw + 0.308rem, 0.7rem) * -1);
   --left-spacing: clamp(0.08rem, 0.067vw + 0.059rem, 0.15rem);
 }
 
@@ -18,9 +18,12 @@ The following line is minified css
   justify-content: space-between;
   align-items: center;
   padding: 3vw;
+  width: 100%;
 }
 
-#header-ticket-button, #header-div1, #header-div2 {
+#header-ticket-button,
+#header-div1,
+#header-div2 {
   border-radius: var(--radius);
 }
 
@@ -29,12 +32,19 @@ The following line is minified css
   position: absolute;
   background-color: var(--accent);
   font-weight: bolder;
-  font-size: calc(var(--height)/2.1);
+  font-size: calc(var(--height) / 2.1);
   top: var(--top-spacing);
   left: var(--left-spacing);
   border: 5px solid var(--light);
   width: var(--width);
   height: var(--height);
+  color: var(--text);
+}
+header a {
+  color: var(--text);
+}
+header button:hover {
+  text-decoration: underline;
 }
 
 #header-div2 {
@@ -43,8 +53,8 @@ The following line is minified css
   border: 2px solid var(--light);
   top: var(--top-spacing);
   left: var(--left-spacing);
-  width: calc(var(--width)/1.1);
-  height: calc(var(--height)/1.1);
+  width: calc(var(--width) / 1.1);
+  height: calc(var(--height) / 1.1);
 }
 
 #header-div1 {
@@ -53,8 +63,8 @@ The following line is minified css
   border: 2px solid var(--light);
   margin-top: 5vh;
   margin-left: 2vw;
-  width: calc(var(--width)/1.2);
-  height: calc(var(--height)/1.2);
+  width: calc(var(--width) / 1.2);
+  height: calc(var(--height) / 1.2);
 }
 
 nav {
@@ -65,8 +75,8 @@ nav {
   position: absolute;
   top: 0;
   right: 0;
-  height: calc(var(--height)*7);
-  width: calc(var(--height)*7);
+  height: calc(var(--height) * 8);
+  width: calc(var(--height) * 7);
   background-color: var(--accent);
   z-index: 1;
   transform: translateX(100%);
@@ -74,7 +84,7 @@ nav {
 }
 nav a {
   color: var(--light);
-  font-size: calc(var(--height)/1.5);
+  font-size: calc(var(--height) / 1.5);
 }
 nav a:hover {
   text-decoration: underline;
@@ -84,25 +94,25 @@ nav a:hover {
   display: none;
   align-self: flex-end;
   position: absolute;
-  height: 1rem;
-  width: 1rem;
+  height: 2rem;
+  width: 2rem;
   z-index: 5;
-  top: 2rem;
-  right: 2rem;
+  top: 3rem;
+  right: 3rem;
 }
 #hamburger-checkbox-label {
   position: absolute;
-  height: 2rem;
-  width: 2rem;
+  height: 3rem;
+  width: 3rem;
   cursor: pointer;
   z-index: 5;
-  top: 2rem;
-  right: 2rem;
+  top: 3rem;
+  right: 3rem;
 }
 #hamburger-checkbox-label:before,
 #hamburger-checkbox-label:after,
 #hamburger-checkbox-label span {
-  content: '';
+  content: "";
   display: block;
   height: 0.5rem;
   width: 3rem;

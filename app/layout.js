@@ -5,13 +5,22 @@ import { Suspense } from "react";
 import Loading from "@/components/Loading";
 import { getCookiePolicy } from "@/library/cookieServices";
 import ParallaxBackground from "@/components/layout/ParallaxBackground";
-import { BrowserRouter } from "react-router-dom";
+
+//These are how i am importing the local font
+import localFont from "next/font/local";
+
+const tanHeadline = localFont({
+  src: "../public/fonts/TAN - HEADLINE.ttf",
+  variable: "--font-tan-headline",
+  display: "swap",
+});
 
 export default async function RootLayout({ children }) {
   let policy = await getCookiePolicy();
 
   return (
-    <html>
+    //same with this
+    <html className={`${tanHeadline.variable}`}>
       <body>
         {/*<div className={'pb-2.5 overflow-x-hidden w-full'} >*/}
         <div className={"w-full min-h-[100vh]"}>{children}</div>
@@ -33,7 +42,7 @@ export const metadata = {
   },
   description:
     "Get your tickets now for the next Raizapalooza, relive the memories and celebrate Raiza! ",
-  icons:{
-    icon:"/icons/icon256.png"
-  }
+  icons: {
+    icon: "/icons/icon256.png",
+  },
 };

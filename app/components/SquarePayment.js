@@ -379,8 +379,8 @@ export default function SquarePayment({form,scrollBack,clearAll}){
         console.log(billingDetails)
     },[billingDetails])
         return(
-        <div className={'h-[100vh] pb-[10vh] overflow-y-scroll no-scrollbar grid snap-center'} id={'payment'}>
-            <div className={'h-fit w-full flex justify-between py-8'}>
+        <div className={'h-[100vh] overflow-y-scroll no-scrollbar grid snap-center'} id={'payment'}>
+            <div className={'h-fit w-full flex justify-around py-8'}>
                 <Button value={'My Info'} onClick={scrollBack}/>
                 <Button value={'Cancel'} onClick={clearAll}/>
             </div>
