@@ -19,7 +19,5 @@ export default function TicketBox({selected,setSelected}){
             </div>
             <input type={"button"} className={'m-auto w-2/3 p-8 hover:cursor-pointer hover:outline'} value={'Get Tickets'} onClick={goToForm}/>
         </div>
-      </Ticket>
-    </div>
-  );
+    );
 }

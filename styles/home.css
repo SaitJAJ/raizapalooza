@@ -30,11 +30,11 @@ p, a {
 }
 
 @keyframes sparkle {
-  0% { color: var(--accent); }
-  25% { color: var(--text); }
-  50% { color: var(--accent2); }
+  0% { color: var(--accent2); }
+  25% { color: var(--accent); }
+  50% { color: var(--text); }
   75% { color: var(--accent); }
-  100% { color: var(--accent); }
+  100% { color: var(--accent2); }
 }
 
 #date-text {
