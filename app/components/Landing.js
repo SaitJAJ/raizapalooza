@@ -27,7 +27,7 @@ export default function Landing() {
           <p id="date-text">APRIL 13, 2024</p>
         </div>
         <div className='info-section'>
-          <p id='location-text' ><a href='https://www.scubajaysbar.com/' target='_blank'>@ Scuba Jay's Bar</a></p>
+          <p id='location-text' ><a href='https://www.scubajaysbar.com/' target='_blank'>@ Scuba Jay&apos;s Bar</a></p>
           <p id='eighteen-only'>18+ only</p>
         </div>
 
