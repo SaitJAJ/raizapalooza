@@ -13,82 +13,26 @@ import BlueDuotone2 from "../../public/BlueDuotone2.png";
 import YellowDuotone2 from "../../public/YellowDuotone2.png";
 import YellowDuotone3 from "../../public/YellowDuotone3.png";
 import FancyTitle from "@/components/layout/FancyTitle";
+import Background from "./Background";
+import '../../styles/home.css';
 
 export default function Landing() {
   return (
-    <div className="flex flex-col w-full">
-      <div
-        id={"top box"}
-        className="relative flex w-full h-screen justify-center items-center overflow-x-clip"
-      >
-          <FancyTitle title={"Raizapalooza"}/>
-        {/*<Image*/}
-        {/*  className="hover:animate-wiggle absolute mb-[36rem] mr-[36rem] -rotate-3"*/}
-        {/*  src={BlueDuotone}*/}
-        {/*  width={300}*/}
-        {/*  height={300}*/}
-        {/*  alt={'Blue DuoTone'}*/}
-        
-        {/*/>*/}
-        {/*<Image*/}
-        {/*  className="hover:animate-wiggle absolute mt-[22rem] mr-[45rem] -rotate-3"*/}
-        {/*  src={GreenDuotone}*/}
-        {/*  width={150}*/}
-        {/*  height={150}*/}
-        {/*  alt={'Blue DuoTone'}*/}
-        
-        {/*/>*/}
-        {/*<Image*/}
-        {/*  className="hover:rotate-90 transition-all duration-700 absolute mt-[34rem] mr-[74rem] rotate-12"*/}
-        {/*  src={YellowDuotone2}*/}
-        {/*  width={100}*/}
-        {/*  height={100}*/}
-        {/*  alt={'Yellow DuoTone'}*/}
-        
-        {/*/>*/}
-        {/*<Image*/}
-        {/*  className="hover:rotate-90 transition-all duration-700 absolute mb-[32rem] ml-[24rem] rotate-12"*/}
-        {/*  src={GreenDuotone2}*/}
-        {/*  width={150}*/}
-        {/*  height={150}*/}
-        {/*  alt={'Green DuoTone'}*/}
-        
-        {/*/>*/}
-        {/*<Image*/}
-        {/*  className="hover:rotate-90 transition-all duration-700 absolute mt-[22rem] ml-[54rem] rotate-12"*/}
-        {/*  src={BlueDuotone2}*/}
-        {/*  width={100}*/}
-        {/*  height={100}*/}
-        {/*  alt={'Blue DuoTone'}*/}
-        {/*/>*/}
-        {/*<Image*/}
-        {/*  className="hover:animate-wiggle absolute mb-[20rem] ml-[72rem] -rotate-3"*/}
-        {/*  src={YellowDuotone3}*/}
-        {/*  width={300}*/}
-        {/*  height={300}*/}
-        {/*  alt={'Blue DuoTone'}*/}
-        
-        {/*/>*/}
-        {/*<Image*/}
-        {/*  className="absolute mt-[48rem] ml-[41rem] rotate-[45deg]"*/}
-        {/*  src={YellowSwirl}*/}
-        {/*  width={500}*/}
-        {/*  height={500}*/}
-        {/*  alt={'Yellow Swirl'}*/}
-        
-        {/*/>*/}
-        {/*<Image*/}
-        {/*  className="absolute mb-[24rem] mr-[80rem] rotate-90"*/}
-        {/*  src={GreenSwirl}*/}
-        {/*  width={500}*/}
-        {/*  height={500}*/}
-        {/*  alt={'Green Swirl'}*/}
-        
-        {/*/>*/}
+    <div className="landing-inner">
+      <FancyTitle title={"Raizapalooza"}/>
+      <Background/>
+      <div className="dark-overlay"></div>
+      <div className="info">
+        <div className='info-section'>
+          <p id="date-text">APRIL 13, 2024</p>
+        </div>
+        <div className='info-section'>
+          <p id='location-text' ><a href='https://www.scubajaysbar.com/' target='_blank'>@ Scuba Jay's Bar</a></p>
+          <p id='eighteen-only'>18+ only</p>
+        </div>
+
       </div>
-      <div className="w-full h-screen bg-[url('../public/LandingBackground.png')] bg-contain"></div>
-      <div className="w-full h-screen bg-[url('../public/LandingBackground.png')] bg-contain"></div>
-      <div className="w-full h-screen bg-[url('../public/LandingBackground.png')] bg-contain"></div>
+
     </div>
   );
 }
