@@ -57,8 +57,6 @@ export async function addTicket(formData){
             raffle:formData.get('tier')==='earlyBird'?1:0,
         }
         const newTicket = await Ticket.create(ticket)
-        console.log(newTicket)
-
     }catch(error){
         console.error(error)
     }

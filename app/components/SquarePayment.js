@@ -348,7 +348,6 @@ export default function SquarePayment({form,scrollBack,clearAll}){
     const handlePayment = async(token,verifiedBuyer)=>{
         // console.log(verifiedBuyer)
         let payment = await submitPayment(token.token,verifiedBuyer.token,form.get('cost')*100,"CAD",form)
-        console.log(payment)
         // console.log('token:', token);
         // console.log('verifiedBuyer:', verifiedBuyer);
     }
