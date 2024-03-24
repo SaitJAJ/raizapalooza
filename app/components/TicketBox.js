@@ -4,8 +4,7 @@ import Image from 'next/image'
 export default function TicketBox({selected,setSelected}){
     
     const goToForm=()=>{
-        let form = document.getElementById('infoForm' +
-            '')
+        let form = document.getElementById('infoForm')
         form.scrollIntoView({behavior:"smooth"})
     }
 
