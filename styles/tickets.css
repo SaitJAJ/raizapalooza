@@ -35,6 +35,10 @@ The following line is minified css
   border: 5px solid var(--light);
   width: var(--width);
   height: var(--height);
+  color: var(--text);
+}
+header a {
+  color: var(--text);
 }
 
 #header-div2 {

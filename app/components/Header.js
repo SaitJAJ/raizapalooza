@@ -6,7 +6,7 @@ export default function Header() {
     <header id='header-tickets'>
       <div id='header-div1'>
         <div id='header-div2'>
-          <button id='header-ticket-button'>TICKETS</button>
+          <a href="/tickets"><button id='header-ticket-button'>TICKETS</button></a>
         </div>
       </div>
       <input type="checkbox" id="hamburger-checkbox"/>
