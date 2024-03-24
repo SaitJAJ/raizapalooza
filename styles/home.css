@@ -27,6 +27,7 @@ p, a {
   align-items: center;
   height: calc(100vh - 50px - 5vh);
   width: 100vw;
+  margin-top: 5vh;
 }
 
 @keyframes sparkle {
