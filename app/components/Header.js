@@ -25,11 +25,26 @@ export default function Header() {
           <span className="hamburger"></span>
         </span>
         <ul>
-          <li> <a href="/">HOME</a> </li>
-          <li> <a href="/about">ABOUT</a> </li>
-          <li> <a href="/itenerary">ITENERARY</a> </li>
-          <li> <a href="/whoozapalooza">WHOZAPALOOZA</a> </li>
-          <li> <a href="/gallery">GALLERY</a> </li>          
+          <li>
+            {" "}
+            <a href="/">HOME</a>{" "}
+          </li>
+          <li>
+            {" "}
+            <a href="/about">ABOUT</a>{" "}
+          </li>
+          <li>
+            {" "}
+            <a href="/itenerary">ITENERARY</a>{" "}
+          </li>
+          <li>
+            {" "}
+            <a href="/whozapalooza">WHOZAPALOOZA</a>{" "}
+          </li>
+          <li>
+            {" "}
+            <a href="/gallery">GALLERY</a>{" "}
+          </li>
         </ul>
       </nav>
     </header>
