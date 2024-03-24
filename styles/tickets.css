@@ -75,7 +75,7 @@ nav {
   position: absolute;
   top: 0;
   right: 0;
-  height: calc(var(--height) * 7);
+  height: calc(var(--height) * 8);
   width: calc(var(--height) * 7);
   background-color: var(--accent);
   z-index: 1;

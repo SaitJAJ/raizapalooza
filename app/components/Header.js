@@ -26,6 +26,7 @@ export default function Header() {
         </span>
         <ul>
           <li> <a href="/">HOME</a> </li>
+          <li> <a href="/tickets">TICKETS</a> </li>
           <li> <a href="/about">ABOUT</a> </li>
           <li> <a href="/itenerary">ITENERARY</a> </li>
           <li> <a href="/whoozapalooza">WHOZAPALOOZA</a> </li>
