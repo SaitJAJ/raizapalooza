@@ -1,10 +1,13 @@
 import FormSequence from "@/components/layout/FormSequence";
+import Header from "../components/Header";
 
 export default function Page(){
 
     return(
-        // <div className={'h-[100vh]'}>
+        <>
+            <Header />
             <FormSequence/>
-        // </div>
+        </>
+
      )
 }
