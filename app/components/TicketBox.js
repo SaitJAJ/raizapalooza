@@ -1,9 +1,10 @@
-'use client'
+"use client";
 import Ticket from "@/components/Ticket";
 import Image from 'next/image'
 export default function TicketBox({selected,setSelected}){
+    
     const goToForm=()=>{
-        let form = document.getElementById('infoForm')
+        let form = document.getElementById('form')
         form.scrollIntoView({behavior:"smooth"})
     }
 
@@ -19,5 +20,5 @@ export default function TicketBox({selected,setSelected}){
             </div>
             <input type={"button"} className={'m-auto w-2/3 p-8 hover:cursor-pointer hover:outline'} value={'Get Tickets'} onClick={goToForm}/>
         </div>
-    )
+    );
 }

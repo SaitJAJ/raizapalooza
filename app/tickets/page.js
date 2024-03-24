@@ -1,15 +1,17 @@
 import FormSequence from "@/components/layout/FormSequence";
+import Header from "../components/Header";
 
 export default function Page(){
-    let tier=''
+    let tier = ''
     if(Date.now() > new Date("April 10, 2024 23:59:59")){
-        tier = 'door'
+        tier =  "door"
     }else{
-        tier = 'earlybird'
+        tier = "earlybird"
     }
     return(
-        // <div className={'h-[100vh]'}>
+        <>
             <FormSequence code={tier}/>
-        // </div>
+        </>
+
      )
 }
