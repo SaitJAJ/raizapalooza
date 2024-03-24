@@ -31,7 +31,7 @@ export default function QrGenerator({ ticketId }) {
           size={256}
           bgColor="#4041d1"
           fgColor="#fffdcf"
-          value={process.env.NEXT_PUBLIC_QR_CODE_ENDPOINT +"/api/tic/"+ticketId}
+          value={process.env.NEXT_PUBLIC_QR_CODE_ENDPOINT +ticketId}
         />
       </div>
 
