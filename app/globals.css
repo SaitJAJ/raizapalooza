@@ -222,16 +222,6 @@ a {
   z-index: -4;
 }
 
-.background-images {
-  opacity: 1;
-  z-index: -5;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
 .dark-overlay {
   position: absolute;
   width: 100vw;
@@ -239,6 +229,6 @@ a {
   left: 0;
   top: 0;
   transform: translateX(-50%), translateY(50%);
-  z-index: 1;
+  z-index: -5;
   background: radial-gradient(50% 50% at 50% 50%, #121212 30.22%, rgba(217, 217, 217, 0) 100%);  
 }

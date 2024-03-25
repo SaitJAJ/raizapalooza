@@ -24,6 +24,7 @@ export default function Page(){
                     </div>
                 </div>
                 <div className={"flex w-full h-full flex-col justify-center align-middle"}>
+                    <div className="dark-overlay"></div>
                     <div className="flex max-lg:flex-col flex-row justify-between max-lg:p-[2rem] p-[10rem] w-[100%] gap-40 max-lg:gap-8 max-lg:w-[90%]">
                         <ul className='flex grow-1 flex-col justify-between gap-5 text-lg'>
                             <li className="text-right font-bold font-josefin-sans max-lg:text-3xl max-md:text-2xl text-4xl text-[#00fd83]">ALCOHOLIC:</li>
