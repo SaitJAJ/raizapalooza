@@ -29,7 +29,7 @@ export default function Header() {
           <li> <a href="/tickets">TICKETS</a> </li>
           <li> <a href="/about">ABOUT</a> </li>
           <li> <a href="/itenerary">ITENERARY</a> </li>
-          <li> <a href="/whoozapalooza">WHOOZAPALOOZA</a> </li>
+          <li> <a href="/whozapalooza">WHOZAPALOOZA</a> </li>
           <li> <a href="/gallery">GALLERY</a> </li>          
         </ul>
       </nav>

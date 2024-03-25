@@ -6,13 +6,13 @@ import { useState } from "react";
 
 export default function Page(){
     return(
-        <>
+        <>                
+            <Header />
             <Background>
-                <Header />
                 <div className={"flex w-full h-full flex-col justify-center align-middle"}>
-                    <div className="flex max-lg:flex-col flex-row justify-between max-lg:p-[5rem] p-[10rem] w-[100%] max-lg:w-[90%] gap-40 max-lg:gap-8">
+                    <div className="flex max-lg:flex-col flex-row justify-center max-lg:p-[5rem] p-[10rem] w-[100%] max-lg:w-[90%] gap-40 max-lg:gap-8">
                         <h1 className={"text-6xl text-left font-tan-headline"}>THE PARTY:</h1>
-                        <ul className='flex grow-1 flex-col justify-between gap-5'>
+                        <ul className='flex relative grow-1 flex-col justify-between gap-5 bg-background p-5'>
                             <li className="text-left font-bold font-josefin-sans max-lg:text-3xl max-md:text-2xl text-4xl">DRINKS</li>
                             <li className="text-left font-bold font-josefin-sans max-lg:text-3xl max-md:text-2xl text-4xl">PHOTO BOOTH</li>
                             <li className="text-left font-bold font-josefin-sans max-lg:text-3xl max-md:text-2xl text-4xl">RAIZALAND</li>
@@ -24,9 +24,9 @@ export default function Page(){
                     </div>
                 </div>
                 <div className={"flex w-full h-full flex-col justify-center align-middle"}>
-                    <div className="dark-overlay"></div>
-                    <div className="flex max-lg:flex-col flex-row justify-between max-lg:p-[2rem] p-[10rem] w-[100%] gap-40 max-lg:gap-8 max-lg:w-[90%]">
-                        <ul className='flex grow-1 flex-col justify-between gap-5 text-lg'>
+                    <div className="dark-overlay -top-[10%] left-[20%]"></div>
+                    <div className="flex max-lg:flex-col flex-row justify-center max-lg:p-[2rem] p-[10rem] w-[100%] gap-40 max-lg:gap-8 max-lg:w-[90%]">
+                        <ul className='flex relative grow-1 flex-col justify-between gap-5 text-lg bg-background p-5'>
                             <li className="text-right font-bold font-josefin-sans max-lg:text-3xl max-md:text-2xl text-4xl text-[#00fd83]">ALCOHOLIC:</li>
                             <li className="text-right font-bold font-josefin-sans max-lg:text-3xl max-md:text-2xl text-4xl">$4 SHOTS</li>
                             <li className="text-right font-bold font-josefin-sans max-lg:text-3xl max-md:text-2xl text-4xl">$5 HIGH-BALLS</li>
