@@ -55,7 +55,7 @@ export async function addTicket(formData){
             phone:formData.get('phone'),
             birthday:formData.get('birthday'),
             tier:formData.get('tier'),
-            raffle:formData.get('tier')==='earlyBird'?1:0,
+            raffle:formData.get('tier')==='earlybird'?1:0,
         }
         const newTicket = await Ticket.create(ticket)
     }catch(error){

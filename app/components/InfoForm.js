@@ -1,5 +1,5 @@
 'use client'
-import {forwardRef, useReducer} from "react";
+import {forwardRef, useEffect, useReducer} from "react";
 import Loading from "@/components/Loading";
 import Button from "@/components/Button";
 import TextInput from "@/components/TextInput";
@@ -11,7 +11,7 @@ import TicketHeader from "@/components/layout/TicketHeader";
 const costReducer = (state,action)=>{
     switch (action.type){
         case('calc'):
-            if(action.tier==='earlyBird'){
+            if(action.tier==='earlybird'){
                 return(15*action.quant)
             }else{
                 return(20*action.quant)
@@ -19,11 +19,14 @@ const costReducer = (state,action)=>{
     }
 }
 const InfoForm = forwardRef(function InfoForm({loading,tier},formRef){
-    const [cost,costDispatch] = useReducer(costReducer,15,undefined)
+    const [cost,costDispatch] = useReducer(costReducer,tier==='earlybird'?15:20,undefined)
     const scrollBack=()=>{
         const ticketBox = document.getElementById('ticketbox')
         ticketBox.scrollIntoView({behavior:"smooth"})
     }
+    useEffect(()=>{
+        costDispatch({type: 'calc',tier:tier,quant:parseInt(formRef.current.quant.value)})
+    },[tier])
     return(
         <>
             <div className={'w-full grid min-h-[100vh] snap-start'} id={"infoForm"}>

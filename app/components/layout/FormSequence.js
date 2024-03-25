@@ -37,7 +37,7 @@ export default function FormSequence({code = 'door'}){
         setLoading(true)
         e.preventDefault()
         let formData = new FormData(formRef.current)
-        let date = new Date(formRef.current.year.value,formRef.current.month.value-1, formRef.current.day.value);
+        let date = new Date(formRef.current['bday-year'].value,formRef.current['bday-month'].value-1, formRef.current['bday-day'].value);
         formData.append("birthday",date)
         setFormData(formData)
         setTimeout(()=>{

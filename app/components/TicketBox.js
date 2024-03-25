@@ -24,15 +24,17 @@ export default function TicketBox({selected,setSelected}){
                 <Ticket selected={selected==='earlybird'} id={'earlybird'} select={()=>selectOne('earlybird')}>
                     <Image alt={'earlybird'} src={earlybird}
                            placeholder={'blur'}
+                           priority={true}
                            sizes={ "(max-width: 640px): 200px, (max-width: 768px): 300px,(max-width: 1024px): 375px"}
-                        fill
+                            fill
                     />
                 </Ticket>
                 <Ticket selected={selected==='door'} id={'door'} select={()=>selectOne('door')}>
                     <Image alt={'general'} src={door}
-                        placeholder={'blur'}
-                        sizes={ "(max-width: 640px): 200px, (max-width: 768px): 300px,(max-width: 1024px): 375px"}
-                        fill
+                           priority={true}
+                            placeholder={'blur'}
+                            sizes={ "(max-width: 640px): 200px, (max-width: 768px): 300px,(max-width: 1024px): 375px"}
+                            fill
                     />
                 </Ticket>
                 <input ref={buttonRef} type={"button"} className={'mx-auto w-2/3 p-8 hover:cursor-pointer hover:outline border-2'} value={'Get Tickets'} onClick={goToForm}/>

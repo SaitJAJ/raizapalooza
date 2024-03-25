@@ -31,7 +31,7 @@ export default function SpecialForm({tier}){
     const constructFormData=async ()=>{
         setLoading(true)
         let formData = new FormData(formRef.current)
-        let date = new Date(formRef.current.year.value,formRef.current.month.value-1, formRef.current.day.value);
+        let date = new Date(formRef.current['bday-year'].value,formRef.current['bday-month'].value-1, formRef.current['bday-day'].value);
         formData.append("birthday",date)
         await genSpecialTickets(formData)
         setLoading(false)
@@ -40,14 +40,10 @@ export default function SpecialForm({tier}){
     return(
         <>
             <div className={'w-full grid min-h-[100vh] snap-start'} id={"infoForm"}>
-                <div className={'h-fit w-full flex justify-around py-8 '}>
-                    <Button value={'Tickets'} onClick={scrollBack}/>
-                    <Button value={'Reset'} onClick={()=>formRef.current.reset()}/>
-                </div>
                 <TicketHeader title={tier}/>
                 <form ref={formRef} action={constructFormData} className={'md:px-[10vw]'} name={"form"} id={'form'}>
                     <h3 className={' md:text-2xl text-base '}>Mandatory Ticket Info</h3>
-                    <NumberInput label={'Ticket Quantity'} id={"quant"} onChange={quant=>costDispatch({type:'calc',tier:tier,quant:quant})} min={1} max={8}>
+                    <NumberInput label={'Ticket Quantity'} id={"quant"} onChange={quant=>costDispatch({type:'calc',tier:tier,quant:quant})} min={1} max={2}>
                         {/*<HiddenInput id={'cost'} value={cost} hidden={false} label={`$${cost} CAD`}/>*/}
                     </NumberInput>
                     <TextInput label={'Name'} type={"text"} id={'name'} placeholder={'Name'} />

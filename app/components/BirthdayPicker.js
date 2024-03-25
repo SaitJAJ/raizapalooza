@@ -83,9 +83,9 @@ export default function BirthdayPicker({label,minDate,required = false}){
         <div className={'grid md:flex select-none my-2 text-left'}>
             <p className={'my-auto md:text-xl text-base sm:min-w-[250px]'}>{label}</p>
             <div className={"flex justify-around rounded-sm text-center grow py-2"}>
-                <SelectInput defaultValue={'Year'} id={'year'} required={required} options={years} onChange={(e)=>setYear(parseInt(e.target.value))}/>
-                <SelectInput defaultValue={'Month'} id={'month'} required={required} options={months} onChange={(e)=>setMonth(e.target.value)}/>
-                <SelectInput defaultValue={'Day'} id={'day'} required={required} options={days} onChange={(e)=>setDay(parseInt(e.target.value))}/>
+                <SelectInput defaultValue={'Year'} id={'bday-year'} required={required} options={years} onChange={(e)=>setYear(parseInt(e.target.value))}/>
+                <SelectInput defaultValue={'Month'} id={'bday-month'} required={required} options={months} onChange={(e)=>setMonth(e.target.value)}/>
+                <SelectInput defaultValue={'Day'} id={'bday-day'} required={required} options={days} onChange={(e)=>setDay(parseInt(e.target.value))}/>
                 {/*<select defaultValue={''} id={'year'} className={'w-fit h-[1lh] md:h-[1.5lh] grow'}  >*/}
                 {/*    <option id={''} className={'text-center'} value={''} disabled={year!==null}>Year</option>*/}
                 {/*    {years.map(year=>{*/}
