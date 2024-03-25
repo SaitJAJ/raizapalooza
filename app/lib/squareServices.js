@@ -7,7 +7,7 @@ import {redirect} from "next/navigation";
 const {paymentsApi} = new Client(
     {
         accessToken:process.env.SQUARE_ACCESS_TOKEN,
-        environment:"sandbox"
+        environment:"production"
     }
 )
 
@@ -20,7 +20,7 @@ export async function submitPayment(sourceId,verificationToken,amount=100,curren
             verificationToken,
             amountMoney:{
                 currency:currency,
-                amount:amount
+                amount:500,
             }
         }).then(result=>{
             return(result)
@@ -51,7 +51,6 @@ export async function submitPayment(sourceId,verificationToken,amount=100,curren
             case(500):
                 return({error:true,status:500,message:"Something went wrong with Square Payments!"})
             default:
-                console.log(data)
                 return({error:true,status:501,message:"Improper data!",data:JSON.stringify(data)})
         }
 

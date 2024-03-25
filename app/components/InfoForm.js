@@ -40,8 +40,8 @@ const InfoForm = forwardRef(function InfoForm({loading,tier},formRef){
                     <NumberInput label={'Ticket Quantity'} id={"quant"} onChange={quant=>costDispatch({type:'calc',tier:tier,quant:quant})} min={1} max={8}>
                         <HiddenInput id={'cost'} value={cost} hidden={false} label={`$${cost} CAD`}/>
                     </NumberInput>
-                    <TextInput label={'Name'} type={"text"} id={'name'} placeholder={'Name'} />
-                    <TextInput label={'Email'} type={"text"} id={"email"} placeholder={'Email'} />
+                    <TextInput label={'Name'} type={"text"} id={'name'} placeholder={'Name'} required />
+                    <TextInput label={'Email'} type={"text"} id={"email"} placeholder={'Email'} required />
                     <BirthdayPicker label={'Birthday'} id={'birthday'} minDate={new Date('April 13, 2006')} required/>
                     <HiddenInput type={'text'} id={'tier'} value={tier} hidden={true}/>
                     <h3 className={'md:text-2xl text-base'}>Additional Fields (not required)</h3>
