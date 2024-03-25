@@ -81,7 +81,6 @@ export async function getOrderTickets (orderId) {
 }
 export async function genSpecialTickets (formData){
     try{
-        console.log(formData)
         const orderId=crypto.randomUUID()
         formData.append('orderId',orderId)
         formData.append('paymentDate',Date.now())
@@ -95,5 +94,24 @@ export async function genSpecialTickets (formData){
         if(isRedirectError(error)){
             throw error
         }
+        console.error(error)
+    }
+}
+export async function updateTicketInfo(formData){
+    try{
+        console.log(formData)
+        let ticket = await Ticket.findOneAndUpdate({ticketId:formData.get('ticketId')},
+            {
+                name:formData.get('name'),
+                email:formData.get('email'),
+            },
+            {returnDocument:'after'}
+        )
+        return cleanTicket(ticket);
+    }catch(error){
+        if(isRedirectError(error)){
+            throw error
+        }
+        console.error(error)
     }
 }

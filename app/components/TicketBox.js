@@ -1,4 +1,6 @@
 "use client";
+import earlybird from '@/tickets/earlybirdTicket.png'
+import door from '@/tickets/generalTicket.png'
 import Ticket from "@/components/Ticket";
 import Image from 'next/image'
 import Header from "@/components/Header";
@@ -20,14 +22,16 @@ export default function TicketBox({selected,setSelected}){
            <Header/>
             <div className={'flex flex-wrap justify-around'} >
                 <Ticket selected={selected==='earlybird'} id={'earlybird'} select={()=>selectOne('earlybird')}>
-                    <Image alt={'earlybird'} src={'/tickets/earlybirdTicket.png'}
-                           // width={600} height={900}
+                    <Image alt={'earlybird'} src={earlybird}
+                           placeholder={'blur'}
+                           sizes={ "(max-width: 640px): 200px, (max-width: 768px): 300px,(max-width: 1024px): 375px"}
                         fill
                     />
                 </Ticket>
                 <Ticket selected={selected==='door'} id={'door'} select={()=>selectOne('door')}>
-                    <Image alt={'general'} src={'/tickets/generalTicket.png'}
-                           // width={600} height={900}
+                    <Image alt={'general'} src={door}
+                        placeholder={'blur'}
+                        sizes={ "(max-width: 640px): 200px, (max-width: 768px): 300px,(max-width: 1024px): 375px"}
                         fill
                     />
                 </Ticket>

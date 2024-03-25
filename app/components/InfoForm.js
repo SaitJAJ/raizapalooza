@@ -27,7 +27,7 @@ const InfoForm = forwardRef(function InfoForm({loading,tier},formRef){
     return(
         <>
             <div className={'w-full grid min-h-[100vh] snap-start'} id={"infoForm"}>
-                <div className={'h-fit w-full flex justify-around py-8 '}>
+                <div className={'h-fit w-full flex justify-around py-2 '}>
                     <Button value={'Tickets'} onClick={scrollBack}/>
                     <Button value={'Reset'} onClick={()=>formRef.current.reset()}/>
                 </div>
