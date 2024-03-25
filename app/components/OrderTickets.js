@@ -2,6 +2,8 @@
 import {getAllTickets, getOrderTickets} from "@/app/lib/ticketServices";
 import TicketListItem from "@/components/TicketListItem";
 import QrGenerator from "@/components/QrGenerator";
+import Button from "@/components/Button";
+import TicketDisplay from "@/components/TicketDisplay";
 
 export default async function OrderTickets({orderId}){
     let tickets = await getOrderTickets(orderId)
@@ -16,18 +18,9 @@ export default async function OrderTickets({orderId}){
         //     </tbody>
         // </table>
         <div className={'border-2 p-2'}>
-            {tickets.map(ticket=>{
+            {tickets.map((ticket,index)=>{
                 return (
-                    <div className={'w-[500px] flex flex-wrap justify-around border-2 h-[600px]'} key={ticket.id}>
-                        <div className={'flex flex-wrap w-full text-center'}>
-                            <p className={' w-2/3'}>{ticket.name}name</p>
-                            <p className={' w-1/3'}>{ticket.tier}</p>
-                            <p className={' w-1/3'}>{ticket.name}name</p>
-                            <p className={' grow'}>{ticket.name}name</p>
-                            <p className={' grow'}>{ticket.name}name</p>
-                        </div>
-                        <QrGenerator ticketId={ticket.id}/>
-                    </div>
+                    <TicketDisplay key={ticket.id} ticket={ticket} index={index+1} count={tickets.length}/>
                 )
             })}
         </div>
