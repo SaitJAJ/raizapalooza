@@ -5,7 +5,6 @@ import {isRedirectError} from "next/dist/client/components/redirect";
 import {redirect} from "next/navigation";
 
 function cleanTicket(ticket){
-    console.log(ticket)
     let cleanTicket = {
         id:ticket._id.toHexString(),
         ticketId:ticket.ticketId,
@@ -66,11 +65,9 @@ export async function getOrderTickets (orderId) {
     try {
         await mongoose.connect(process.env.MONGODB_URI)
         let tickets = await Ticket.find({orderId:orderId})
-        console.log(tickets)
         let allTickets = tickets.map(ticket=>{
             return cleanTicket(ticket);
         })
-        console.log(allTickets)
         return allTickets
 
     } catch (error) {
@@ -99,7 +96,6 @@ export async function genSpecialTickets (formData){
 }
 export async function updateTicketInfo(formData){
     try{
-        console.log(formData)
         let ticket = await Ticket.findOneAndUpdate({ticketId:formData.get('ticketId')},
             {
                 name:formData.get('name'),

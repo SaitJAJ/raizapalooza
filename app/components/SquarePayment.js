@@ -356,7 +356,7 @@ export default function SquarePayment({form,scrollBack,clearAll}){
         // console.log('verifiedBuyer:', verifiedBuyer);
     }
     const createVerificationDetails=()=>({
-        amount: form.get('cost'),
+        amount: '5.00',
         currencyCode: 'CAD',
         intent: 'CHARGE',
         billingContact: billingDetails,
@@ -373,7 +373,7 @@ export default function SquarePayment({form,scrollBack,clearAll}){
         countryCode: "CA",
         currencyCode: "CAD",
         total: {
-            amount: form.get('cost'),
+            amount: '5.00',
             label: "Total",
         },
         // billingContact: billingDetails,
@@ -426,24 +426,7 @@ export default function SquarePayment({form,scrollBack,clearAll}){
                     })}
                 </div>
             </form>
-            <div className={'text-left text-sm '}>
-                {Object.values(paymentMessages).map((message,index)=>{
-                    if(message.code !== undefined){
-                        return(
-                            <div key={message.code + ''+index} className={'bg-background'}>
-                                <p className={'text-lg text-element-1'}>{message.category}</p>
-                                <p className={'text-sm'}> {message.code}</p>
-                                <p className={'text-sm'}>{message.detail}</p>
-                            </div>
-                        )
-                    }else{
-                        return(
-                            <p key={'one'+index}>{message}</p>
-                        )
-                    }
 
-                })}
-            </div>
                 <PaymentForm
                     applicationId={process.env.NEXT_PUBLIC_SQUARE_APPLICATION_ID}
                     cardTokenizeResponseReceived={handlePayment}
