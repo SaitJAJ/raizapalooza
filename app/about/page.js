@@ -46,6 +46,7 @@ export default function Page(){
                         <h1 className={"text-6xl text-right font-bold font-tan-headline max-lg:order-first"}>:DRINK MENU</h1>
                     </div>
                 </div>
+                <button className="w-screen max-lg:-mt-0 -mt-[10vh] p-[5vh] bg-element-1"><a className='text-element-2 font-extrabold font-josefin-sans text-4xl' href='/tickets'>GET TICKETS NOW</a></button>
             </Background>
         </>
     )
