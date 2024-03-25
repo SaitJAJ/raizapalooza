@@ -7,8 +7,8 @@ import { useState } from "react";
 export default function Page(){
     return(
         <>                
-            <Header />
             <Background>
+                <Header />
                 <div className={"flex w-full h-full flex-col justify-center align-middle"}>
                     <div className="flex max-lg:flex-col flex-row justify-center max-lg:p-[5rem] p-[10rem] w-[100%] max-lg:w-[90%] gap-40 max-lg:gap-8">
                         <h1 className={"text-6xl text-left font-tan-headline"}>THE PARTY:</h1>

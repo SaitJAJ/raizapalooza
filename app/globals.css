@@ -224,6 +224,5 @@ a {
 
 .dark-overlay {
   position: absolute;
-  z-index: -1;
-  background: radial-gradient(100% 100% at 50% 50%, #121212 30.22%, rgba(217, 217, 217, 0) 70%);  
+  background: radial-gradient(50% 50% at 50% 50%, #121212 30.22%, rgba(217, 217, 217, 0) 100%);  
 }
