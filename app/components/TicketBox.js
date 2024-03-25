@@ -10,7 +10,7 @@ export default function TicketBox({selected,setSelected}){
     }
 
     return(
-        <div className={'h-[100vh] overflow-y-scroll grid pt-[8vh] snap-start'} id={'ticketbox'}>
+        <div className={'h-[100vh] justify-around overflow-y-scroll no-scrollbar grid pt-[8vh] snap-start'} id={'ticketbox'}>
            <Header/>
             <div className={'md:flex grid md:justify-around'} >
                 <Ticket selected={selected==='earlybird'} id={'earlybird'} select={()=>setSelected('earlybird')}>
