@@ -1,11 +1,11 @@
 import "../globals.css";
 
-export default function Background() {
+export default function Background(props) {
   return (
     <>
-      <div className='background-images'>
-        <div className="w-full h-screen bg-[url('../public/LandingBackground.png')] bg-contain bg-repeat"></div>
-      </div>
+        <div className="relative w-full min-h-full bg-[url('../public/LandingBackground.png')] bg-repeat bg-opacity-50">
+          <div className="">{props.children}</div>
+        </div>
     </>
   );
 }
