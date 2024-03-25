@@ -11,10 +11,10 @@ export default function QrGenerator({ ticketId }) {
   const router = useRouter();
   const download = () => {
     htmlToImage
-      .toSvg(qrcodeRef.current)
+      .toPng(qrcodeRef.current)
       .then((dataUrl) => {
         const link = document.createElement("a");
-        link.download = "qrcode.svg";
+        link.download = "qrcode.png";
         link.href = dataUrl;
         link.click();
       })
@@ -25,16 +25,14 @@ export default function QrGenerator({ ticketId }) {
 
   return (
     <>
-      <div className={"flex justify-around my-8 w-full"}>
-        <QRCode
-          ref={qrcodeRef}
-          size={256}
-          bgColor="#4041d1"
-          fgColor="#fffdcf"
-          value={process.env.NEXT_PUBLIC_QR_CODE_ENDPOINT +ticketId}
-        />
-      </div>
-
+      <QRCode
+        ref={qrcodeRef}
+        size={256}
+        bgColor="#4041d1"
+        fgColor="#fffdcf"
+        value={process.env.QR_CODE_ENDPOINT + ticketId}
+      />
+      <button onClick={download}> download </button>
       {/*<Hyperlink href={"/tickets/info/" + ticketId}>View Ticket Info</Hyperlink>*/}
     </>
   );
