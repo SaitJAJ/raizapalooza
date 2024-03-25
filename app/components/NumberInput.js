@@ -47,7 +47,7 @@ export default function NumberInput(props){
             <p className={'my-auto text-xl mt-0'}>{label}</p>
             <div className={'grid'}>
                 <div className={'flex'}>
-                    <input className={'h-full px-4 '} type={"button"} id={"dec"} value={"-"} onClick={updateTokens}/>
+                    <input className={'h-[2lh] px-4 '} type={"button"} id={"dec"} value={"-"} onClick={updateTokens}/>
                     <input className={'text-center w-14 h-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'} ref={numRef} name={id} id={id} min={min} type={'number'} value={tokens} onFocus={()=>numRef.current.select()} onChange={updateTokens}/>
                     <input className={'h-full px-4'} type={"button"} id={"inc"} value={"+"} onClick={updateTokens}/>
                 </div>

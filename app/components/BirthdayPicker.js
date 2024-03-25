@@ -80,7 +80,7 @@ export default function BirthdayPicker({label,minDate,required = false}){
 
     const numDays = (y, m) => new Date(y, m, 0).getDate();
     return(
-        <label className={'grid md:flex select-none my-2 text-left'}>
+        <div className={'grid md:flex select-none my-2 text-left'}>
             <p className={'my-auto md:text-xl text-base sm:min-w-[250px]'}>{label}</p>
             <div className={"flex justify-around rounded-sm text-center grow py-2"}>
                 <SelectInput defaultValue={'Year'} id={'year'} required={required} options={years} onChange={(e)=>setYear(parseInt(e.target.value))}/>
@@ -111,6 +111,6 @@ export default function BirthdayPicker({label,minDate,required = false}){
                 {/*    })}*/}
                 {/*</select>*/}
             </div>
-        </label>
+        </div>
     )
 }

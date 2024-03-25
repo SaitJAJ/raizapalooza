@@ -68,9 +68,9 @@ export default function FormSequence({code = 'door'}){
 
     }
     return(
-        <main className={' h-[100vh] px-8 md:px-20 overflow-y-hidden snap-y snap-mandatory'} >
+        <main className={'h-[100vh] px-8 md:px-20 overflow-y-hidden snap-y snap-mandatory'} >
                 <TicketBox selected={selected} setSelected={setSelected} form={formRef.current}/>
-                <InfoForm ref={formRef} loading={loading} clearAll={clearAll}/>
+                <InfoForm ref={formRef} loading={loading} tier={selected} clearAll={clearAll}/>
                 <ErrorBoundary fallback={<div className={'w-1/2 my-80 mx-auto text-center border-2 rounded-sm px-20 py-5'}>You are missing the required ENV Variables for square payments.</div>}>
                     <Suspense fallback={<Loading loading={true}/>}>
                         {formData?<SquarePayment form={formData} scrollBack={scrollBack} clearAll={clearAll}/>:null}

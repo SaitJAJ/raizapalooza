@@ -48,12 +48,15 @@ body {
   color: var(--light);
   background: var(--base);
 }
-input {
+input,select {
   background-color: var(--base);
   font-size: 18px;
   border: solid 1px var(--light);
   outline-color: var(--light);
   border-radius: 4px;
+}
+input:hover, select:hover{
+  outline: #fffdcf solid 4px;
 }
 select {
   background-color: var(--base);
