@@ -4,11 +4,8 @@ import CookieConsent from "@/components/CookieConsent";
 import { Suspense } from "react";
 import Loading from "@/components/Loading";
 import { getCookiePolicy } from "@/library/cookieServices";
-import ParallaxBackground from "@/components/layout/ParallaxBackground";
 
-//These are how i am importing the local font
 import localFont from "next/font/local";
-import BgWrapper from "@/components/BgWrapper";
 
 const tanHeadline = localFont({
   src: "../public/fonts/TAN - HEADLINE.ttf",
@@ -25,8 +22,8 @@ export default async function RootLayout({ children }) {
       <body>
       {/*<BgWrapper/>*/}
       {/*<div className={"fixed h-[200vh] w-full -z-[10] opacity-20 bg-[url('/backgrounds/Background1.png')] -translate-y-2/3 bg-cover bg-repeat animate-pulse "}/>*/}
-      <div className={"fixed h-[100vh] w-full -z-[10] opacity-20 bg-[url('/backgrounds/Background2.png')] -translate-y-1/3  bg-cover bg-repeat animate-pulse delay-700"}/>
-      <div className={"fixed h-[200vh] w-full -z-[10] bg-[url('/backgrounds/Background3.png')] opacity-20 bg-cover bg-repeat animate-pulse delay-700"}/>
+      {/*<div className={"fixed h-[100vh] w-full -z-[10] opacity-20 bg-[url('/backgrounds/Background2.png')] -translate-y-1/3  bg-cover bg-repeat animate-pulse delay-700"}/>*/}
+      {/*<div className={"fixed h-[200vh] w-full -z-[10] bg-[url('/backgrounds/Background3.png')] opacity-20 bg-cover bg-repeat animate-pulse delay-700"}/>*/}
         {/*<div className={'pb-2.5 overflow-x-hidden w-full'} >*/}
         <div className={"w-full min-h-[100vh]"}>
             {children}

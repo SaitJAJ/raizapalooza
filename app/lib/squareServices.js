@@ -26,12 +26,15 @@ export async function submitPayment(sourceId,verificationToken,amount=100,curren
             return(result)
         }).catch(error=>{
             if(error instanceof ApiError){
+                let errors = []
                 error.errors.map(error=>{
-                    console.log(error)
-                    console.error("Error! : ",error.code)
+                    console.error("Error! : ",error)
+                    errors.push(error)
                 })
+                return({statusCode:error.code,errors:errors})
             }else{
-                console.log("error")
+                console.error(error)
+                return({statusCode:501,data:error})
             }
         })
         switch(data.statusCode){
@@ -48,7 +51,8 @@ export async function submitPayment(sourceId,verificationToken,amount=100,curren
             case(500):
                 return({error:true,status:500,message:"Something went wrong with Square Payments!"})
             default:
-                return data
+                console.log(data)
+                return({error:true,status:501,message:"Improper data!",data:JSON.stringify(data)})
         }
 
     }catch (error){

@@ -3,7 +3,7 @@ import {ApplePay, CreditCard, GooglePay, PaymentForm} from 'react-square-web-pay
 import {submitPayment} from "@/app/lib/squareServices";
 import Button from "@/components/Button";
 import TextInput from "@/components/TextInput";
-import {useEffect, useReducer} from "react";
+import {useEffect, useReducer, useState} from "react";
 import SelectInput from "@/components/SelectInput";
 const countries=[
     {value:"Canada",id:"CA"},
@@ -345,9 +345,13 @@ const billingInitializer =(form)=>{
 }
 export default function SquarePayment({form,scrollBack,clearAll}){
     const [billingDetails, billingDispatch] = useReducer(billingReducer,form,billingInitializer)
+    const [paymentMessages,setPaymentMessages] = useState([])
     const handlePayment = async(token,verifiedBuyer)=>{
-        // console.log(verifiedBuyer)
+        setPaymentMessages(['Attempting Payment...'])
         let payment = await submitPayment(token.token,verifiedBuyer.token,form.get('cost')*100,"CAD",form)
+        console.log(JSON.parse(payment.data))
+        setPaymentMessages(JSON.parse(payment.data).errors)
+
         // console.log('token:', token);
         // console.log('verifiedBuyer:', verifiedBuyer);
     }
@@ -393,6 +397,7 @@ export default function SquarePayment({form,scrollBack,clearAll}){
                 <TextInput label={"Address line 1"} id={'address-1'} value={billingDetails.addressLines[0]} onChange={e=>{billingDispatch({type:"address",tag:e.target.id,value:e.target.value})}}/>
                 <TextInput label={"Address line 2"} id={'address-2'} value={billingDetails.addressLines[1]} onChange={e=>{billingDispatch({type:"address",tag:e.target.id,value:e.target.value})}}/>
                 <TextInput label={"City"} id={"city"} value={billingDetails.city} onChange={e=>{billingDispatch({type:"change",tag:e.target.id,value:e.target.value})}}/>
+
                 <div className={'flex flex-nowrap'}>
                     <SelectInput label={"Country"} id={"country"} defaultValue={'Country'} value={billingDetails.country} options={countries} onChange={e=>{billingDispatch({type:"select",tag:e.target.id,value:e.target.value})}}/>
                     {
@@ -402,7 +407,43 @@ export default function SquarePayment({form,scrollBack,clearAll}){
                             <SelectInput label={"State"} id={"region"} options={states} defaultValue={'State'} value={billingDetails.region} onChange={e=>{billingDispatch({type:"select",tag:e.target.id,value:e.target.value})}}/>
                     }
                 </div>
+                <div className={'text-left text-sm '}>
+                    {Object.values(paymentMessages).map((message,index)=>{
+                        if(message.code !== undefined){
+                            return(
+                                <div key={message.code + ''+index} className={'bg-background'}>
+                                    <p className={'text-lg text-element-1'}>{message.category}</p>
+                                    <p className={'text-sm'}> {message.code}</p>
+                                    <p className={'text-sm'}>{message.detail}</p>
+                                </div>
+                            )
+                        }else{
+                            return(
+                                <p key={'one'+index}>{message}</p>
+                            )
+                        }
+
+                    })}
+                </div>
             </form>
+            <div className={'text-left text-sm '}>
+                {Object.values(paymentMessages).map((message,index)=>{
+                    if(message.code !== undefined){
+                        return(
+                            <div key={message.code + ''+index} className={'bg-background'}>
+                                <p className={'text-lg text-element-1'}>{message.category}</p>
+                                <p className={'text-sm'}> {message.code}</p>
+                                <p className={'text-sm'}>{message.detail}</p>
+                            </div>
+                        )
+                    }else{
+                        return(
+                            <p key={'one'+index}>{message}</p>
+                        )
+                    }
+
+                })}
+            </div>
                 <PaymentForm
                     applicationId={process.env.NEXT_PUBLIC_SQUARE_APPLICATION_ID}
                     cardTokenizeResponseReceived={handlePayment}
