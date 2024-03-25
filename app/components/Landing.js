@@ -6,7 +6,7 @@ export default function Landing() {
   return (
     <>
         <div className="landing-inner">
-          <div className="dark-overlay w-1/2 h-1/2 top-[37vh] left-[25vw] z-0"></div>
+          <div className="dark-overlay w-1/2 h-1/2 max-lg:top-[25vh] top-[40vh] max-lg:left-[15vw] left-[25vw] z-0"></div>
           <FancyTitle title={"Raizapalooza"}/>
           <div className="info">
             <div className='info-section'>

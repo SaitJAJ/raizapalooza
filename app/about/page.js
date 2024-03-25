@@ -38,13 +38,10 @@ export default function Page(){
                             <li className="text-right font-bold font-josefin-sans max-lg:text-3xl max-md:text-2xl text-4xl">$15 FOR 5 SHAFTS</li>
                             <li className="text-right font-bold font-josefin-sans max-lg:text-3xl max-md:text-2xl text-4xl">$25 FOR 5 ROTATING BEERS</li>
                             <li></li>
-                            <li className="text-right font-bold font-josefin-sans max-lg:text-3xl max-md:text-2xl text-4xl text-[#00fd83]">NON-ALCOHOLIC BEVERAGES:</li>
+                            <li className="text-right font-bold font-josefin-sans max-lg:text-3xl max-md:text-2xl text-4xl text-[#00fd83]">NON-ALCOHOLIC:</li>
                             <li className="text-right font-bold font-josefin-sans max-lg:text-3xl max-md:text-2xl text-4xl">$6 MOLSON NON-ALCOHOLIC BEER</li>
                             <li className="text-right font-bold font-josefin-sans max-lg:text-3xl max-md:text-2xl text-4xl">$6 - 2 MOCKTAILS: ORANGE SPRITZERS AND CLEAN OLD FASHIONS</li>
                             <li className="text-right font-bold font-josefin-sans max-lg:text-3xl max-md:text-2xl text-4xl">$3 POP - FREE REFILLS</li>
-
-                            <li className="text-right font-bold font-josefin-sans max-lg:text-3xl max-md:text-2xl text-4xl"><a href='/whozapalooza' className="underline hover:no-underline text-right font-bold">MARKET 4-11PM</a></li>
-                            <li className="text-right font-bold font-josefin-sans max-lg:text-3xl max-md:text-2xl text-4xl">GLITTER STATION</li>
                         </ul>
                         <h1 className={"text-6xl text-right font-bold font-tan-headline max-lg:order-first"}>:DRINK MENU</h1>
                     </div>
