@@ -7,13 +7,13 @@ import Background from "../components/Background";
 export default function Page() {
   return (
     <>
+    <Background>
       <Header />
       <div id='gallery'>
         <GalleryHeader />
         <GalleryPhotos />
       </div>
-      <Background />
-      <Background />
+    </Background>
     </>
   );
 }

@@ -1,5 +1,6 @@
 import '../../styles/gallery.css';
 import Image from 'next/image';
+import Background from './Background';
 /*
 LEGEND:
 
@@ -138,7 +139,7 @@ export default function GalleryPhotos() {
             <Image src='https://via.placeholder.com/600x800' width={600} height={800} alt='placeholder' />
           </div>
         </div>
-      </div>
+      </div>      
     </>
   );
 }

@@ -6,15 +6,15 @@ export default function Landing() {
   return (
     <>
         <div className="landing-inner">
+          <div className="dark-overlay w-1/2 h-1/2 top-[37vh] left-[25vw] z-0"></div>
           <FancyTitle title={"Raizapalooza"}/>
-          <div className="info relative">
-            <div className="dark-overlay w-full h-full top-0 left-0 z-10"></div>
+          <div className="info">
             <div className='info-section'>
               <p className='z-20' id="date-text">APRIL 13, 2024</p>
             </div>
             <div className='info-section'>
-              <p className='z-20' id='location-text' ><a href='https://www.scubajaysbar.com/' target='_blank'>@ Scuba Jay&apos;s Bar</a></p>
-              <p className='z-20' id='eighteen-only'>18+ only</p>
+              <p className='z-20 ' ><a className='text-element-2 text-4xl underline hover:no-underline font-bold' href='https://www.scubajaysbar.com/' target='_blank'>@ Scuba Jay&apos;s Bar</a></p>
+              <p className='z-20 text-2xl font-bold'>18+ only</p>
             </div>
           </div>
         </div>
