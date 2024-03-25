@@ -20,7 +20,7 @@ export default function Header() {
       <label htmlFor="hamburger-checkbox" id="hamburger-checkbox-label">
         <span></span>
       </label>
-      <nav>
+      <nav className={'float-right fixed'}>
         <span className="menu">
           <span className="hamburger"></span>
         </span>
