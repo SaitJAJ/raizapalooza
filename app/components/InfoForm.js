@@ -37,7 +37,7 @@ const InfoForm = forwardRef(function InfoForm({loading},formRef){
                     </NumberInput>
                     <TextInput label={'Name'} type={"text"} id={'name'} placeholder={'Name'} />
                     <TextInput label={'Email'} type={"text"} id={"email"} placeholder={'Email'} />
-                    <BirthdayPicker label={'Birthday'} id={'birthday'} minDate={new Date('April 13, 2006')}/>
+                    <BirthdayPicker label={'Birthday'} id={'birthday'} minDate={new Date('April 13, 2006')} required/>
                     <HiddenInput type={'text'} id={'tier'} value={'earlyBird'} hidden={true}/>
                     <h3 className={'md:text-2xl text-base'}>Additional Fields (not required)</h3>
                     <TextInput label={'Phone Number'} type={"text"} id={'phone'}  placeholder={'Phone Number'}/>
