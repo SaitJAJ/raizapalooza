@@ -1,12 +1,13 @@
 'use client'
-import {forwardRef, useReducer} from "react";
-import Loading from "@/components/Loading";
 import Button from "@/components/Button";
-import TextInput from "@/components/TextInput";
-import HiddenInput from "@/components/HiddenInput";
-import BirthdayPicker from "@/components/BirthdayPicker";
-import NumberInput from "@/components/NumberInput";
 import TicketHeader from "@/components/layout/TicketHeader";
+import NumberInput from "@/components/NumberInput";
+import HiddenInput from "@/components/HiddenInput";
+import TextInput from "@/components/TextInput";
+import BirthdayPicker from "@/components/BirthdayPicker";
+import Loading from "@/components/Loading";
+import {forwardRef, useReducer, useRef, useState} from "react";
+import {genSpecialTickets} from "@/app/lib/ticketServices";
 
 const costReducer = (state,action)=>{
     switch (action.type){
@@ -18,24 +19,36 @@ const costReducer = (state,action)=>{
             }
     }
 }
-const InfoForm = forwardRef(function InfoForm({loading,tier},formRef){
+
+export default function SpecialForm({tier}){
+    const formRef = useRef()
     const [cost,costDispatch] = useReducer(costReducer,15,undefined)
+    const [loading, setLoading] = useState(false)
     const scrollBack=()=>{
         const ticketBox = document.getElementById('ticketbox')
         ticketBox.scrollIntoView({behavior:"smooth"})
     }
+    const constructFormData=async ()=>{
+        setLoading(true)
+        let formData = new FormData(formRef.current)
+        let date = new Date(formRef.current.year.value,formRef.current.month.value-1, formRef.current.day.value);
+        formData.append("birthday",date)
+        await genSpecialTickets(formData)
+        setLoading(false)
+    }
+
     return(
         <>
             <div className={'w-full grid min-h-[100vh] snap-start'} id={"infoForm"}>
-                <div className={'h-fit w-full flex justify-around py-2 '}>
+                <div className={'h-fit w-full flex justify-around py-8 '}>
                     <Button value={'Tickets'} onClick={scrollBack}/>
                     <Button value={'Reset'} onClick={()=>formRef.current.reset()}/>
                 </div>
                 <TicketHeader title={tier}/>
-                <form ref={formRef} className={'md:px-[10vw]'} name={"form"} id={'form'}>
+                <form ref={formRef} action={constructFormData} className={'md:px-[10vw]'} name={"form"} id={'form'}>
                     <h3 className={' md:text-2xl text-base '}>Mandatory Ticket Info</h3>
                     <NumberInput label={'Ticket Quantity'} id={"quant"} onChange={quant=>costDispatch({type:'calc',tier:tier,quant:quant})} min={1} max={8}>
-                        <HiddenInput id={'cost'} value={cost} hidden={false} label={`$${cost} CAD`}/>
+                        {/*<HiddenInput id={'cost'} value={cost} hidden={false} label={`$${cost} CAD`}/>*/}
                     </NumberInput>
                     <TextInput label={'Name'} type={"text"} id={'name'} placeholder={'Name'} />
                     <TextInput label={'Email'} type={"text"} id={"email"} placeholder={'Email'} />
@@ -44,13 +57,11 @@ const InfoForm = forwardRef(function InfoForm({loading,tier},formRef){
                     <h3 className={'md:text-2xl text-base'}>Additional Fields (not required)</h3>
                     <TextInput label={'Phone Number'} type={"text"} id={'phone'}  placeholder={'Phone Number'}/>
                     <Loading loading={loading}>
-                        <Button type={'submit'} value={"Go to Payment"}/>
+                        <Button type={'submit'} value={"Generate my Tickets"}/>
                     </Loading>
                 </form>
             </div>
-
         </>
 
     )
-})
-export default InfoForm;
+}

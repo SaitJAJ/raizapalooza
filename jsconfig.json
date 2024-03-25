@@ -4,7 +4,8 @@
       "@/*": ["./*"],
       "@/components/*": ["app/components/*"],
       "@/library/*": ["app/lib/*"],
-      "@/public/*": ["public/*"]
+      "@/public/*": ["public/*"],
+      "@/tickets/*": ["public/tickets/*"]
     }
   }
 }

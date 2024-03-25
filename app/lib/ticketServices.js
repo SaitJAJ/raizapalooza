@@ -2,6 +2,7 @@
 import mongoose from "mongoose";
 import Ticket from "@/models/Ticket";
 import {isRedirectError} from "next/dist/client/components/redirect";
+import {redirect} from "next/navigation";
 
 function cleanTicket(ticket){
     console.log(ticket)
@@ -76,6 +77,41 @@ export async function getOrderTickets (orderId) {
         if (isRedirectError(error)) {
             throw error
         }
-        console.log(error)
+    }
+}
+export async function genSpecialTickets (formData){
+    try{
+        const orderId=crypto.randomUUID()
+        formData.append('orderId',orderId)
+        formData.append('paymentDate',Date.now())
+        let addTickets = []
+        for(let i = 0; i < parseInt(formData.get('quant')); i++){
+            addTickets.push(addTicket(formData));
+        }
+        await Promise.all(addTickets)
+        redirect(`/tickets/manage/${orderId}`,'push')
+    }catch(error){
+        if(isRedirectError(error)){
+            throw error
+        }
+        console.error(error)
+    }
+}
+export async function updateTicketInfo(formData){
+    try{
+        console.log(formData)
+        let ticket = await Ticket.findOneAndUpdate({ticketId:formData.get('ticketId')},
+            {
+                name:formData.get('name'),
+                email:formData.get('email'),
+            },
+            {returnDocument:'after'}
+        )
+        return cleanTicket(ticket);
+    }catch(error){
+        if(isRedirectError(error)){
+            throw error
+        }
+        console.error(error)
     }
 }

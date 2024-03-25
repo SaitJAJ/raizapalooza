@@ -1,4 +1,6 @@
 import FormSequence from "@/components/layout/FormSequence";
+import QuickForm from "@/components/SpecialForm";
+import SpecialForm from "@/components/SpecialForm";
 
 function parseCode(code){
     switch (code){
@@ -20,10 +22,18 @@ function parseCode(code){
 }
 export default function Page({params}){
     let code  = parseCode(params.code)
-
-    return(
-        // <div className={'h-[100vh]'}>
+    if(['door','earlybird'].includes(code)){
+        return(
+            // <div className={'h-[100vh]'}>
             <FormSequence code={code}/>
-        // </div>
-     )
+            // </div>
+        )
+    }else{
+        return(
+            // <div className={'h-[100vh]'}>
+            <SpecialForm tier={code}/>
+            // </div>
+        )
+    }
+
 }

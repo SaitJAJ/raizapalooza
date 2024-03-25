@@ -3,18 +3,18 @@ import {useEffect, useRef, useState} from "react";
 import SelectInput from "@/components/SelectInput";
 
 const allMonths= [
-    {value:"January",id:'Jan'},
-    {value:"February",id:'Feb'},
-    {value:"March",id:'Mar'},
-    {value:"April",id:'Apr'},
-    {value:"May",id:'May'},
-    {value:"June",id:'Jun'},
-    {value: "July",id:'Jul'},
-    {value:"August",id:'Aug'},
-    {value:"September",id:'Sep'},
-    {value:"October",id:'Oct'},
-    {value:"November",id:'Nov'},
-    {value:"December",id:'Dec'}
+    {value:"January",id:1},
+    {value:"February",id:2},
+    {value:"March",id:3},
+    {value:"April",id:4},
+    {value:"May",id:5},
+    {value:"June",id:6},
+    {value: "July",id:7},
+    {value:"August",id:8},
+    {value:"September",id:9},
+    {value:"October",id:10},
+    {value:"November",id:11},
+    {value:"December",id:12}
 ];
 export default function BirthdayPicker({label,minDate,required = false}){
     const suggRef = useRef()
@@ -44,6 +44,9 @@ export default function BirthdayPicker({label,minDate,required = false}){
     const years = genYears()
     const [months,setMonths] =useState([])
     const [days,setDays] =useState([])
+    useEffect(()=>{
+        console.log(month)
+    },[month])
 
     useEffect(() => {
         if(year === minDate.getFullYear()){
@@ -53,8 +56,8 @@ export default function BirthdayPicker({label,minDate,required = false}){
         }
     }, [minDate, year]);
     useEffect(() => {
-        const days = new Date(year, allMonths.findIndex(({value})=>value === month)+1, 0).getDate()
-        if(year === minDate.getFullYear() && allMonths.findIndex(({value})=>value === month)===minDate.getMonth()){
+        const days = new Date(year, month, 0).getDate()
+        if(year === minDate.getFullYear() && month-1 === minDate.getMonth()){
             setDays(genDays(minDate.getDate()))
         }else{
             setDays(genDays(days))
@@ -77,7 +80,7 @@ export default function BirthdayPicker({label,minDate,required = false}){
 
     const numDays = (y, m) => new Date(y, m, 0).getDate();
     return(
-        <label className={'grid md:flex select-none my-2 text-left'}>
+        <div className={'grid md:flex select-none my-2 text-left'}>
             <p className={'my-auto md:text-xl text-base sm:min-w-[250px]'}>{label}</p>
             <div className={"flex justify-around rounded-sm text-center grow py-2"}>
                 <SelectInput defaultValue={'Year'} id={'year'} required={required} options={years} onChange={(e)=>setYear(parseInt(e.target.value))}/>
@@ -108,6 +111,6 @@ export default function BirthdayPicker({label,minDate,required = false}){
                 {/*    })}*/}
                 {/*</select>*/}
             </div>
-        </label>
+        </div>
     )
 }

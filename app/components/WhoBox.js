@@ -19,11 +19,11 @@ export default function WhoBox({ src, name, alt, text, website, instagram }) {
           id="photo"
           className="flex col-start-1 col-span-1 row-start-1 row-span-2 "
         >
-          <img
-            className="object-fill"
-            src="https://via.placeholder.com/160x120"
-            alt={alt}
-          ></img>
+          {/*<img*/}
+          {/*  className="object-fill"*/}
+          {/*  src="https://via.placeholder.com/160x120"*/}
+          {/*  alt={alt}*/}
+          {/*></img>*/}
         </div>
         <div
           id="vendor"

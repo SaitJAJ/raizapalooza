@@ -5,14 +5,18 @@ import Header from "./components/Header";
 import Landing from "./components/Landing";
 import GalleryPhotos from "./components/GalleryPhotos";
 import { StrictMode } from "react";
+import Background from "./components/Background";
 
 export default function Home() {
   return (
     <>
-      <Header />
-      <main className="flex">
-        <Landing />
-      </main>
+      <Background>
+        <Header />
+        <main className="flex">
+          <Landing />
+        </main>
+      </Background>
+
     </>
   );
 }

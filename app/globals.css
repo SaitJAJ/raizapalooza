@@ -48,12 +48,15 @@ body {
   color: var(--light);
   background: var(--base);
 }
-input {
+input,select {
   background-color: var(--base);
   font-size: 18px;
   border: solid 1px var(--light);
   outline-color: var(--light);
   border-radius: 4px;
+}
+input:hover, select:hover{
+  outline: #fffdcf solid 4px;
 }
 select {
   background-color: var(--base);
@@ -222,12 +225,7 @@ a {
   z-index: -4;
 }
 
-.background-images {
-  opacity: 0.5;
-  z-index: -5;
-  width: 100%;
-  height: 100%;
+.dark-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
+  background: radial-gradient(60% 60% at 50% 50%, #121212 30.22%, rgba(217, 217, 217, 0) 100%);  
 }

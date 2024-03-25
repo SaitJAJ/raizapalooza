@@ -7,18 +7,18 @@ import Loading from "@/components/Loading";
 import TicketBox from "@/components/TicketBox";
 
 const allMonths= [
-    {value:"January",id:'Jan'},
-    {value:"February",id:'Feb'},
-    {value:"March",id:'Mar'},
-    {value:"April",id:'Apr'},
-    {value:"May",id:'May'},
-    {value:"June",id:'Jun'},
-    {value: "July",id:'Jul'},
-    {value:"August",id:'Aug'},
-    {value:"September",id:'Sep'},
-    {value:"October",id:'Oct'},
-    {value:"November",id:'Nov'},
-    {value:"December",id:'Dec'}
+    {value:"January",id:1},
+    {value:"February",id:2},
+    {value:"March",id:3},
+    {value:"April",id:4},
+    {value:"May",id:5},
+    {value:"June",id:6},
+    {value: "July",id:7},
+    {value:"August",id:8},
+    {value:"September",id:9},
+    {value:"October",id:10},
+    {value:"November",id:11},
+    {value:"December",id:12}
 ];
 export default function FormSequence({code = 'door'}){
     const [formData, setFormData] = useState()
@@ -37,11 +37,7 @@ export default function FormSequence({code = 'door'}){
         setLoading(true)
         e.preventDefault()
         let formData = new FormData(formRef.current)
-
-        let date = new Date(formRef.current.year.value, allMonths.findIndex(({value})=>value === formRef.current.month.value), formRef.current.day.value);
-        console.log( allMonths.findIndex(({value})=>value === formRef.current.month.value))
-        console.log(formRef.current.month.value)
-        console.log(date)
+        let date = new Date(formRef.current.year.value,formRef.current.month.value-1, formRef.current.day.value);
         formData.append("birthday",date)
         setFormData(formData)
         setTimeout(()=>{
@@ -72,9 +68,9 @@ export default function FormSequence({code = 'door'}){
 
     }
     return(
-        <main className={' h-[100vh] px-8 md:px-20 overflow-y-hidden snap-y snap-mandatory'} >
+        <main className={'h-[100vh] px-8 md:px-20 overflow-y-hidden snap-y snap-mandatory'} >
                 <TicketBox selected={selected} setSelected={setSelected} form={formRef.current}/>
-                <InfoForm ref={formRef} loading={loading} clearAll={clearAll}/>
+                <InfoForm ref={formRef} loading={loading} tier={selected} clearAll={clearAll}/>
                 <ErrorBoundary fallback={<div className={'w-1/2 my-80 mx-auto text-center border-2 rounded-sm px-20 py-5'}>You are missing the required ENV Variables for square payments.</div>}>
                     <Suspense fallback={<Loading loading={true}/>}>
                         {formData?<SquarePayment form={formData} scrollBack={scrollBack} clearAll={clearAll}/>:null}
