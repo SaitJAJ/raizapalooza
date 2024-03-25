@@ -1,6 +1,4 @@
 "use client";
-import QrGenerator from "@/components/QrGenerator";
-import Button from "@/components/Button";
 import TicketGen from "@/components/TicketGen";
 
 export default function TicketDisplay({ ticket, index, count }) {
@@ -15,13 +13,19 @@ export default function TicketDisplay({ ticket, index, count }) {
           Ticket ({index}/{count})
         </p>
       </div>
-      <Button value={"Download Ticket"} />
-      <div
-        className={
-          'h-[900px] bg-[url("/tickets/qu")] w-[600px] border-2 flex  '
-        }
-      >
-        <TicketGen ticketId={ticket.ticketId} ticketTier={ticket.tier} />
+      <div className="flex flex-col">
+        <div
+          className={
+            'h-[900px] bg-[url("/tickets/qu")] w-[605px] border-2 flex  '
+          }
+        >
+          <TicketGen
+            ticketId={ticket.ticketId}
+            ticketTier={ticket.tier}
+            initName={ticket.name}
+            initEmail={ticket.email}
+          />
+        </div>
       </div>
     </div>
   );
