@@ -5,9 +5,37 @@ import Image from "next/image";
 import QrEarly from "@/public/generatedPNGs/QRTicket.png";
 import QrDoor from "@/public/generatedPNGs/QRRegular.png";
 import Background from '@/public/background.png'
-import Header from "@/components/Header";
 import CustomHeader from "@/components/layout/CustomHeader";
+import QRCode from "qrcode";
+import * as htmlToImage from "html-to-image";
+import {createCanvas, loadImage} from "canvas";
+import {Suspense} from "react";
+import Loading from "@/components/Loading";
 
+
+const getQrCode=async (ticketId)=>{
+    return(qr)
+}
+
+async function genTicket(ticket) {
+    const canvas = createCanvas(600, 900);
+    const context = await canvas.getContext("2d");
+    let image = await loadImage('public/generatedPNGs/QRRegular.png')
+    await context.drawImage(image, 0, 0, 600, 900)
+    const qrCanvas = createCanvas(445,410)
+    QRCode.toCanvas(qrCanvas,process.env.NEXT_PUBLIC_QR_CODE_ENDPOINT+ticket.ticketId,{margin:1,width:445,color:{light:'#fffdcf',dark:'#121212'}})
+    await context.drawImage(qrCanvas, 80, 435, 445, 410);
+    return ({...ticket, ticketBlob: canvas.toDataURL()})
+}
+export async function TicketImage(ticket){
+    let printTickets =  await genTicket(ticket);
+
+    return(
+        <div >{/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt={'text'} src={printTickets.ticketBlob} />
+        </div>
+    )
+}
 export default async function OrderTickets({orderId}){
     let tickets = await getOrderTickets(orderId)
     let ticketBackground = undefined
@@ -16,23 +44,15 @@ export default async function OrderTickets({orderId}){
             ticketBackground = QrEarly;
             break;
         case('door'):
-            ticketBackground = QrDoor;
+            ticketBackground = QrDoor.toDataURL();
             break;
         default:
             ticketBackground = Background;
     }
 
-
-
+    // console.log(printTickets)
 
     return(
-        // <table className={'w-full '}>
-        //     <tbody>
-        //     {tickets.map(ticket=>{
-        //         return (<TicketListItem key={ticket.ticketId} ticket={ticket}/>)
-        //     })}
-        //     </tbody>
-        // </table>
         <>
             <div >
                 {/*<Header/>*/}
@@ -52,13 +72,29 @@ export default async function OrderTickets({orderId}){
                         ↓
                     </p>
                 </div>
+                <Suspense fallback={<Loading loading={true}/>}>
+                    {tickets.map((ticket,index)=>{
+                        return (
+                            <TicketDisplay key={ticket.id} ticket={ticket} index={index+1} count={tickets.length}>
+                                {/*<Suspense fallback={<Loading loading={true}/>}>*/}
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <div id={ticket.ticketId}>
+                                    <TicketImage ticket={ticket} />
+                                </div>
+                                {/*</Suspense>*/}
+                            </TicketDisplay>
+                        )
+                    })}
+                </Suspense>
 
-                {tickets.map((ticket,index)=>{
-                    return (
-                        <TicketDisplay key={ticket.id} ticket={ticket} index={index+1} count={tickets.length}/>
-                    )
-                })}
             </div>
+            {/*<QRCode*/}
+            {/*    size={256}*/}
+            {/*    style={{ position: "absolute", top: "0", left: "0" }}*/}
+            {/*    bgColor="#4041d1"*/}
+            {/*    fgColor="#fffdcf"*/}
+            {/*    value={process.env.NEXT_PUBLIC_QR_CODE_ENDPOINT + ticketId}*/}
+            {/*/>*/}
            <div className={'float fixed'}>
                <Image
                    id={'ticketImage'}

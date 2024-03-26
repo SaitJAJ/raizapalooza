@@ -8,6 +8,7 @@ import HiddenInput from "@/components/HiddenInput";
 import {updateTicketInfo} from "@/app/lib/ticketServices";
 import {useRouter} from "next/navigation";
 import Loading from "@/components/Loading";
+import * as htmlToImage from "html-to-image";
 
 const ticketReducer = (state,action)=>{
     switch (action.type) {
@@ -29,7 +30,7 @@ const fieldsMatch=(a,b,fields)=>{
     }
     return true
 }
-export default function TicketDisplay({ ticket, index, count , updateTickets}) {
+export default function TicketDisplay({ ticket, index, count ,children, updateTickets}) {
     const [ticketInit, setTicketInit] = useState(ticket)
     const [ticketInf, ticketDispatch] = useReducer(ticketReducer,ticket,undefined)
     const router = useRouter()
@@ -43,7 +44,21 @@ export default function TicketDisplay({ ticket, index, count , updateTickets}) {
         setTicketInit(ticket)
         setLoading(false)
     }
-
+    const download = () => {
+        const ticketDiv = document.getElementById(ticket.ticketId)
+        // console.log(document.getElementById(ticket.ticketId))
+        htmlToImage
+            .toPng(ticketDiv)
+            .then((dataUrl) => {
+                const link = document.createElement("a");
+                link.download = `Raizapalooza Ticket ${index} of ${count}`;
+                link.href = dataUrl;
+                link.click();
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    };
   return (
     <div className={"flex flex-wrap justify-around border-2 m-2 p-2"} key={ticketInf.id}>
       <form ref={formRef} onSubmit={updateInfo} className={"grid w-full justify-around p-2 text-center"}>
@@ -58,12 +73,14 @@ export default function TicketDisplay({ ticket, index, count , updateTickets}) {
         <p className={"w-full text-center"}>
             {ticketInf.tier} Ticket ({index}/{count})
         </p>
-        <TicketGen
-            ticketId={ticket.ticketId}
-            ticketIndex={index}
-            ticketCount={count}
-            ticketTier={ticket.tier}
-        />
+        <Button value={"Download Ticket"} onClick={download}/>
+        {children}
+        {/*<TicketGen*/}
+        {/*    ticketId={ticket.ticketId}*/}
+        {/*    ticketIndex={index}*/}
+        {/*    ticketCount={count}*/}
+        {/*    ticketTier={ticket.tier}*/}
+        {/*/>*/}
     </div>
   );
 }
