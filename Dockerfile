@@ -5,7 +5,7 @@ COPY package*.json ./
 
 FROM base as builder
 WORKDIR /app
-RUN sudo apk add build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
+RUN apk add build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
 COPY . .
 RUN npm ci
 RUN npm run build
