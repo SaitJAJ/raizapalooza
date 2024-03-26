@@ -48,7 +48,7 @@ export default function TicketGen({
   const qrcodeRef = useRef(null);
   const canvasRef = useRef(null);
   const [drawn, setDrawn] = useState(false);
-  const [screenSize,setScreenSize] = useState(ticketSizes.medium)
+  const [screenSize,setScreenSize] = useState(ticketSizes.small)
 
   const download = () => {
     htmlToImage
@@ -86,6 +86,7 @@ export default function TicketGen({
   },[])
 
   useEffect(() => {
+    console.log('running')
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
     htmlToImage.toCanvas(document.getElementById('ticketImage')).then(function (early) {
@@ -95,7 +96,7 @@ export default function TicketGen({
         setDrawn(true);
       });
     });
-  }, [screenSize]);
+  }, [screenSize,drawn]);
 
   return (
     <div className={'flex flex-wrap justify-around w-full '}>
