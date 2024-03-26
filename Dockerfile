@@ -14,6 +14,7 @@ COPY package*.json ./
 
 FROM base as builder
 WORKDIR /app
+COPY . .
 RUN npm ci
 RUN npm run build
 
