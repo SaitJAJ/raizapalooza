@@ -63,8 +63,8 @@ export default async function OrderTickets({orderId}){
                <Image
                    id={'ticketImage'}
                    src={ticketBackground}
-                   width={1000}
-                   height={1000}
+                   width={600}
+                   height={900}
                    alt="Picture of the author"
                />
            </div>
