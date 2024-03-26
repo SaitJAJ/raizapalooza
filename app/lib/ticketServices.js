@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import Ticket from "@/models/Ticket";
 import {isRedirectError} from "next/dist/client/components/redirect";
 import {redirect} from "next/navigation";
+import {createCanvas, loadImage} from "canvas";
+import QRCode from "qrcode";
 
 function cleanTicket(ticket){
     let cleanTicket = {
@@ -109,5 +111,23 @@ export async function updateTicketInfo(formData){
             throw error
         }
         console.error(error)
+    }
+}
+export async function genTicket({ticket,background}) {
+    try{
+        if(!background){
+            return (ticket)
+        }
+        const canvas = createCanvas(600, 900);
+        const context = await canvas.getContext("2d");
+        let image = await loadImage(background)
+        context.drawImage(image, 0, 0, 600, 900)
+        const qrCanvas = createCanvas(445,410)
+        await QRCode.toCanvas(qrCanvas,process.env.NEXT_PUBLIC_QR_CODE_ENDPOINT+ticket.ticketId,{margin:1,width:445,color:{light:'#fffdcf',dark:'#121212'}})
+        context.drawImage(qrCanvas, 80, 435, 445, 410);
+        return ({...ticket, ticketBlob: canvas.toDataURL()})
+    }catch(error){
+        console.error(error)
+        return(ticket)
     }
 }

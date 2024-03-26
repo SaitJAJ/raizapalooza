@@ -2,12 +2,7 @@
 import * as htmlToImage from "html-to-image";
 import QRCode from "react-qr-code";
 import Button from "@/components/Button";
-import QrReg from "@/public/generatedPNGs/QRRegular.png";
-import QrEarly from "@/public/generatedPNGs/QRTicket.png";
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import TextInput from "@/components/TextInput";
-
 const ticketSizes ={
   large:{
     winSize:1024,

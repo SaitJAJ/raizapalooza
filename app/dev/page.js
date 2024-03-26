@@ -1,9 +1,5 @@
 "use client";
-import SquarePayment from "@/components/SquarePayment";
-import FormSequence from "@/components/layout/FormSequence";
-import CurrentTickets from "@/components/CurrentTickets";
-import ParallaxBackground from "@/components/layout/ParallaxBackground";
-import { useReducer, useState } from "react";
+import { useReducer } from "react";
 
 const provinces = [
   {
@@ -79,10 +75,14 @@ export default function Page() {
     provinces,
     undefined
   );
+  // const test=async()=>{
+  //   console.log(await testNodemailer())
+  // }
   const openOptions = () => {
     console.log(options[Math.floor(options.length / 2)].value);
   };
   return (
+
     <div className={" flex justify-around pointer-events-auto-20 p-20 w-full"}>
       <button
         className={"p-20 border-2"}
@@ -96,7 +96,7 @@ export default function Page() {
             <button
               type={"button"}
               key={option.id}
-              className={" w-[200px] border "}
+              className={" w-[200px] border overflow-hidden "}
               onClick={openOptions}
             >
               {option.value}
@@ -105,20 +105,21 @@ export default function Page() {
         })}
         <button
           type={"button"}
-          className={" w-[200px] border bg-teal-800"}
+          className={" w-[200px] border bg-teal-800 "}
           onClick={openOptions}
-        >
+        ><p className={'overflow-hidden'}>
           {
             // console.log()
             options[Math.floor(options.length / 2)].value
           }
+        </p>
         </button>
         {options.slice(options.length / 2 + 1).map((option) => {
           return (
             <button
               type={"button"}
               key={option.id}
-              className={" w-[200px] border "}
+              className={" w-[200px] border overflow-hidden  "}
               onClick={openOptions}
             >
               {option.value}
@@ -135,10 +136,10 @@ export default function Page() {
       {/*<ParallaxBackground></ParallaxBackground>*/}
       {/*<div className={"bg-element-2 m-10 h-40"}>text</div>*/}
 
-      {/*<CookieDev/>*/}
-      {/*<InfoForm/>*/}
-      {/*<CurrentTickets/>*/}
-      {/*<SquarePayment/>*/}
+       {/*<CookieDev/>*/}
+       {/*<InfoForm/>*/}
+       {/*<CurrentTickets/>*/}
+       {/*<SquarePayment/>*/}
       {/*<FormSequence/>*/}
     </div>
   );

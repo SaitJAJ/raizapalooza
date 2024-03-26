@@ -3,7 +3,7 @@ import {ApplePay, CreditCard, GooglePay, PaymentForm} from 'react-square-web-pay
 import {submitPayment} from "@/app/lib/squareServices";
 import Button from "@/components/Button";
 import TextInput from "@/components/TextInput";
-import {useEffect, useReducer, useState} from "react";
+import { useReducer, useState} from "react";
 import SelectInput from "@/components/SelectInput";
 const countries=[
     {value:"Canada",id:"CA"},
@@ -349,14 +349,10 @@ export default function SquarePayment({form,scrollBack,clearAll}){
     const handlePayment = async(token,verifiedBuyer)=>{
         setPaymentMessages(['Attempting Payment...'])
         let payment = await submitPayment(token.token,verifiedBuyer.token,form.get('cost')*100,"CAD",form)
-        console.log(JSON.parse(payment.data))
         setPaymentMessages(JSON.parse(payment.data).errors)
-
-        // console.log('token:', token);
-        // console.log('verifiedBuyer:', verifiedBuyer);
     }
     const createVerificationDetails=()=>({
-        amount: '5.00',
+        amount: form.get('cost'),
         currencyCode: 'CAD',
         intent: 'CHARGE',
         billingContact: billingDetails,
@@ -373,15 +369,12 @@ export default function SquarePayment({form,scrollBack,clearAll}){
         countryCode: "CA",
         currencyCode: "CAD",
         total: {
-            amount: '5.00',
+            amount: form.get('cost'),
             label: "Total",
         },
         // billingContact: billingDetails,
         // billing:billingDetails,
     })
-    useEffect(()=>{
-        console.log(billingDetails)
-    },[billingDetails])
         return(
         <div className={'h-[100vh] overflow-y-scroll no-scrollbar grid snap-center'} id={'payment'}>
             <div className={'h-fit w-full flex justify-around py-8'}>
@@ -426,7 +419,7 @@ export default function SquarePayment({form,scrollBack,clearAll}){
                     })}
                 </div>
             </form>
-
+            <div className={'mt-20 mb-10'}>
                 <PaymentForm
                     applicationId={process.env.NEXT_PUBLIC_SQUARE_APPLICATION_ID}
                     cardTokenizeResponseReceived={handlePayment}
@@ -435,11 +428,17 @@ export default function SquarePayment({form,scrollBack,clearAll}){
                     locationId={process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID}
                 >
                     {/*<ApplePay />*/}
-                    <GooglePay />
+
                     <CreditCard>
-                        Pay ${form.get('cost')} for {form.get('quant')} {form.get('tier')==='earlyBird'?"Early Bird":"General Admission"} {form.get('quant')>1?"Tickets":"Ticket"}
+                        Pay ${form.get('cost')} for {form.get('quant')} {form.get('tier')==='earlybird'?"Early Bird":"General Admission"} {form.get('quant')>1?"Tickets":"Ticket"}
                     </CreditCard>
+                    <hr className={'my-2'}/>
+                    <GooglePay />
+                    {/*<CreditCard>*/}
+                    {/*    Pay ${form.get('cost')} for {form.get('quant')} {form.get('tier')==='earlybird'?"Early Bird":"General Admission"} {form.get('quant')>1?"Tickets":"Ticket"}*/}
+                    {/*</CreditCard>*/}
                 </PaymentForm>
+            </div>
         </div>
     )
 }

@@ -1,5 +1,4 @@
 "use client";
-import TicketGen from "@/components/TicketGen";
 import {useRef, useState} from "react";
 import TextInput from "@/components/TextInput";
 import Button from "@/components/Button";
@@ -9,6 +8,7 @@ import {updateTicketInfo} from "@/app/lib/ticketServices";
 import {useRouter} from "next/navigation";
 import Loading from "@/components/Loading";
 import * as htmlToImage from "html-to-image";
+import {sendTicketEmail} from "@/app/lib/emailServices";
 
 const ticketReducer = (state,action)=>{
     switch (action.type) {
@@ -30,10 +30,9 @@ const fieldsMatch=(a,b,fields)=>{
     }
     return true
 }
-export default function TicketDisplay({ ticket, index, count ,children, updateTickets}) {
-    const [ticketInit, setTicketInit] = useState(ticket)
+export default function TicketDisplay({ ticket, index, count ,children}) {
+    const [ticketInit, setTicketInit] = useState(ticket) // Track initial ticket values
     const [ticketInf, ticketDispatch] = useReducer(ticketReducer,ticket,undefined)
-    const router = useRouter()
     const formRef = useRef()
     const [loading, setLoading] = useState(false)
     const updateInfo=async (e) => {
@@ -44,6 +43,8 @@ export default function TicketDisplay({ ticket, index, count ,children, updateTi
         setTicketInit(ticket)
         setLoading(false)
     }
+
+    // Not working until we find fix for safari enabled devices
     const download = () => {
         const ticketDiv = document.getElementById(ticket.ticketId)
         // console.log(document.getElementById(ticket.ticketId))
@@ -69,18 +70,12 @@ export default function TicketDisplay({ ticket, index, count ,children, updateTi
               <Button type={'submit'} value={"Update contact Info"}/>
           </Loading>
           <p className={'text-sm text-element-2 h-[1lh]'}>{fieldsMatch(ticketInit,ticketInf,['name','email'])?'':"You have unsaved changes!"}</p>
+          {/*<Button onClick={download} value={"Download Ticket"}/>*/}
       </form>
         <p className={"w-full text-center"}>
             {ticketInf.tier} Ticket ({index}/{count})
         </p>
-        <Button value={"Download Ticket"} onClick={download}/>
         {children}
-        {/*<TicketGen*/}
-        {/*    ticketId={ticket.ticketId}*/}
-        {/*    ticketIndex={index}*/}
-        {/*    ticketCount={count}*/}
-        {/*    ticketTier={ticket.tier}*/}
-        {/*/>*/}
     </div>
   );
 }
