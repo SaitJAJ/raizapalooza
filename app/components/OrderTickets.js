@@ -7,7 +7,6 @@ import QrDoor from "@/public/generatedPNGs/QRRegular.png";
 import Background from '@/public/background.png'
 import CustomHeader from "@/components/layout/CustomHeader";
 import QRCode from "qrcode";
-import * as htmlToImage from "html-to-image";
 import {createCanvas, loadImage} from "canvas";
 import {Suspense} from "react";
 import Loading from "@/components/Loading";
@@ -76,12 +75,9 @@ export default async function OrderTickets({orderId}){
                     {tickets.map((ticket,index)=>{
                         return (
                             <TicketDisplay key={ticket.id} ticket={ticket} index={index+1} count={tickets.length}>
-                                {/*<Suspense fallback={<Loading loading={true}/>}>*/}
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <div id={ticket.ticketId}>
                                     <TicketImage ticket={ticket} />
                                 </div>
-                                {/*</Suspense>*/}
                             </TicketDisplay>
                         )
                     })}
@@ -95,15 +91,15 @@ export default async function OrderTickets({orderId}){
             {/*    fgColor="#fffdcf"*/}
             {/*    value={process.env.NEXT_PUBLIC_QR_CODE_ENDPOINT + ticketId}*/}
             {/*/>*/}
-           <div className={'float fixed'}>
-               <Image
-                   id={'ticketImage'}
-                   src={ticketBackground}
-                   width={600}
-                   height={900}
-                   alt="Picture of the author"
-               />
-           </div>
+           {/*<div className={'float fixed'}>*/}
+           {/*    <Image*/}
+           {/*        id={'ticketImage'}*/}
+           {/*        src={ticketBackground}*/}
+           {/*        width={600}*/}
+           {/*        height={900}*/}
+           {/*        alt="Picture of the author"*/}
+           {/*    />*/}
+           {/*</div>*/}
         </>
     )
 }
