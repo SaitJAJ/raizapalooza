@@ -48,7 +48,7 @@ export default function TicketGen({
   const qrcodeRef = useRef(null);
   const canvasRef = useRef(null);
   const [drawn, setDrawn] = useState(false);
-  const [screenSize,setScreenSize] = useState(ticketSizes.large)
+  const [screenSize,setScreenSize] = useState(ticketSizes.medium)
 
   const download = () => {
     htmlToImage
@@ -67,12 +67,12 @@ export default function TicketGen({
   useEffect(()=>{
     const changeTicket=()=>{
       switch(true){
-        case(window.innerWidth > ticketSizes.medium.winSize):
-          setScreenSize(ticketSizes.medium)
-          break
         // case(window.innerWidth > ticketSizes.medium.winSize):
         //   setScreenSize(ticketSizes.medium)
         //   break
+        case(window.innerWidth > ticketSizes.medium.winSize):
+          setScreenSize(ticketSizes.medium)
+          break
         default:
           setScreenSize(ticketSizes.small)
           break
@@ -99,7 +99,7 @@ export default function TicketGen({
 
   return (
     <div className={'flex flex-wrap justify-around w-full '}>
-      <canvas ref={canvasRef} width={screenSize.width} height={screenSize.height} className={` mx-auto max-h-[60vh] max-w-[80vw]`}/>
+      <canvas ref={canvasRef} width={screenSize.width} height={screenSize.height} />
       <div className={'w-full'}>
         <Button value={'Download Ticket'} onClick={download}/>
       </div>

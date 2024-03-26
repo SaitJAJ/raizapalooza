@@ -7,7 +7,7 @@ import {redirect} from "next/navigation";
 const {paymentsApi} = new Client(
     {
         accessToken:process.env.SQUARE_ACCESS_TOKEN,
-        environment:"production"
+        environment:process.env.SQUARE_ENVIRONMENT
     }
 )
 
