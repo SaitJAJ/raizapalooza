@@ -3,6 +3,7 @@ import {ApiError, Client} from 'square'
 import {addTicket} from "@/app/lib/ticketServices";
 import {isRedirectError} from "next/dist/client/components/redirect";
 import {redirect} from "next/navigation";
+import {sendTicketEmail} from "@/app/lib/emailServices";
 
 const {paymentsApi} = new Client(
     {
@@ -13,14 +14,13 @@ const {paymentsApi} = new Client(
 
 export async function submitPayment(sourceId,verificationToken,amount=100,currency="CAD",formData=new FormData()){
     try{
-        console.log(amount)
         const data = await paymentsApi.createPayment({
             idempotencyKey: crypto.randomUUID(),
             sourceId,
             verificationToken,
             amountMoney:{
                 currency:currency,
-                amount:500,
+                amount:amount,
             }
         }).then(result=>{
             return(result)
@@ -47,9 +47,12 @@ export async function submitPayment(sourceId,verificationToken,amount=100,curren
                     addTickets.push(addTicket(formData));
                 }
                 await Promise.all(addTickets)
+                // await sendTicketEmail(formData.get('email'),data.result.payment.orderId) // Disabled until email is formatted correctly
                 redirect(`/tickets/manage/${data.result.payment.orderId}`,'push')
+                break;
             case(500):
                 return({error:true,status:500,message:"Something went wrong with Square Payments!"})
+
             default:
                 return({error:true,status:501,message:"Improper data!",data:JSON.stringify(data)})
         }

@@ -6,13 +6,13 @@ import HiddenInput from "@/components/HiddenInput";
 import TextInput from "@/components/TextInput";
 import BirthdayPicker from "@/components/BirthdayPicker";
 import Loading from "@/components/Loading";
-import {forwardRef, useReducer, useRef, useState} from "react";
+import {useReducer, useRef, useState} from "react";
 import {genSpecialTickets} from "@/app/lib/ticketServices";
 
 const costReducer = (state,action)=>{
     switch (action.type){
         case('calc'):
-            if(action.tier==='earlyBird'){
+            if(action.tier==='earlybird'){
                 return(15*action.quant)
             }else{
                 return(20*action.quant)
