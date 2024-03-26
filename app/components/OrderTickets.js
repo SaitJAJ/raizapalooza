@@ -11,11 +11,6 @@ import {createCanvas, loadImage} from "canvas";
 import {Suspense} from "react";
 import Loading from "@/components/Loading";
 
-
-const getQrCode=async (ticketId)=>{
-    return(qr)
-}
-
 async function genTicket(ticket) {
     const canvas = createCanvas(600, 900);
     const context = await canvas.getContext("2d");
