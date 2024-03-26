@@ -1,12 +1,10 @@
 FROM node:20-alpine as base
-RUN apk add --no-cache g++ make py3-pip libc6-compat
+RUN apk add --no-cache g++ make py3-pip libc6-compat cairo-dev
 WORKDIR /app
 COPY package*.json ./
 
 FROM base as builder
 WORKDIR /app
-RUN apk add build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
-COPY . .
 RUN npm ci
 RUN npm run build
 
