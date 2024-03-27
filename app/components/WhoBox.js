@@ -1,4 +1,5 @@
 import { Antonio, Josefin_Sans } from "next/font/google";
+import Image from "next/image";
 
 const antonio = Antonio({
   weight: "600",
@@ -17,10 +18,11 @@ export default function WhoBox({ src, name, alt, text, website, instagram }) {
       <div className="grid grid-cols-2 grid-rows-3 w-full h-60 justify-center">
         <div
           id="photo"
-          className="flex col-start-1 col-span-1 row-start-1 row-span-2 "
+          className="relative flex col-start-1 col-span-1 row-start-1 row-span-2 "
         >
-          <img
-            className="object-fill"
+          <Image
+            className="object-cover"
+            fill={true}
             src="https://via.placeholder.com/160x120"
             alt={alt}
           />
