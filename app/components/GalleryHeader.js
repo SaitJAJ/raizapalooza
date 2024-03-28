@@ -1,4 +1,4 @@
-import FancyTitle from "./layout/FancyTitle"
+import RaizapaloozaTitle from "./layout/RaizapaloozaTitle"
 
 export default function GalleryHeader() {
   return (

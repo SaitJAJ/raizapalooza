@@ -3,7 +3,7 @@ import Image from "next/image";
 import YellowShine from "@/public/YellowShine.png";
 import BlueSwirl from "@/public/BlueSwirl.png";
 
-export default function FancyTitle(props){
+export default function FancyHeader(props){
     return(
         <div className={'absolute top-[20%] md:pt-20 pt-10 bg-[url("/BlueSwirl.png")]'}>
             <h1 className="font-tan-headline text-4xl md:text-8xl">{props.title}</h1>
