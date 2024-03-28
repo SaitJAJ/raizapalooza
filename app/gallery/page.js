@@ -3,6 +3,8 @@ import GalleryHeader from "../components/GalleryHeader";
 import Header from "../components/Header";
 import '../../styles/gallery.css';
 import Background from "../components/Background";
+import RaizapaloozaTitle from "@/components/layout/RaizapaloozaTitle";
+import FancyTitle from "@/components/FancyTitle";
 
 export default function Page() {
   return (
@@ -10,7 +12,7 @@ export default function Page() {
     <Background>
       <Header />
       <div id='gallery'>
-        <GalleryHeader />
+        <FancyTitle title={'Gallery'}/>
         <GalleryPhotos />
       </div>
     </Background>
