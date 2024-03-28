@@ -1,4 +1,5 @@
 import { Antonio, Josefin_Sans } from "next/font/google";
+import Image from "next/image";
 
 const antonio = Antonio({
   weight: "600",
@@ -17,19 +18,20 @@ export default function WhoBox({ src, name, alt, text, website, instagram }) {
       <div className="grid grid-cols-2 grid-rows-3 w-full h-60 justify-center">
         <div
           id="photo"
-          className="flex col-start-1 col-span-1 row-start-1 row-span-2 "
+          className="relative flex col-start-1 col-span-1 row-start-1 row-span-2 "
         >
-          {/*<img*/}
-          {/*  className="object-fill"*/}
-          {/*  src="https://via.placeholder.com/160x120"*/}
-          {/*  alt={alt}*/}
-          {/*></img>*/}
+          <Image
+            className="object-cover"
+            fill={true}
+            src="https://via.placeholder.com/160x120"
+            alt={alt}
+          />
         </div>
         <div
           id="vendor"
           className="flex col-start-1 col-span-1 row-start-3 row-span-1 "
         >
-          <h2 className={`flex text-4xl items-center ${antonio.className}`}>
+          <h2 className={`flex text-4xl items-end  ${antonio.className}`}>
             {name}
           </h2>
         </div>
@@ -37,13 +39,17 @@ export default function WhoBox({ src, name, alt, text, website, instagram }) {
           id="text"
           className="flex col-start-2 col-span-1 row-start-1 row-span-2 "
         >
-          <p className={`${josefin_sans.className} text-base`}>{text}</p>
+          <p
+            className={`${josefin_sans.className} text-base max-[350px]:text-sm lg:text-sm`}
+          >
+            {text}
+          </p>
         </div>
         <div
           id="links"
           className="flex col-start-2 col-span-2 row-start-3 row-span-1"
         >
-          <p className="flex flex-col justify-center gap-0 items-start">
+          <p className="flex flex-col justify-end gap-0 items-start ">
             <a
               className={`${josefin_sans.className}`}
               href={`https://www.instagram.com/${instagram}/`}
