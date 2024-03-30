@@ -31,9 +31,7 @@ export default function Page() {
           </h1>
           <p
             className={`flex text-sm lg:text-base text-left ${josefin_sans.className} pt-2 w-56 lg:w-96`}
-          >
-            This page gives a run down of every one there. Filler Text
-          </p>
+          ></p>
         </div>
         <div className="flex flex-col pt-12 lg:pt-0 w-[80%]">
           <div
