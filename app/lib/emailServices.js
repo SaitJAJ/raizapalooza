@@ -112,6 +112,96 @@ export async function sendTicketEmail(email,orderId){
         console.error(error)
     }
 }
+export async function generateReceiptTable(paymentData){
+    return(
+        `
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            Payment Date
+                        </td>
+                        <td>
+                            ${paymentData.paymentDate}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Payment Amount
+                        </td>
+                        <td>
+                            $ ${(paymentData.amount/100).toLocaleString()}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Total Amount
+                        </td>
+                        <td>
+                           $ ${(paymentData.total/100).toLocaleString()}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Payment Status:
+                        </td>
+                        <td>
+                            ${paymentData.status}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Card Type:
+                        </td>
+                        <td>
+                            ${paymentData.cardDetails.cardBrand} ${paymentData.cardDetails.cardType}  
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Card Last 4:
+                        </td>
+                        <td>
+                           ${paymentData.cardDetails.last4}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Square Receipt:
+                        </td>
+                        <td>
+                            <a href="${paymentData.receiptUrl}">${paymentData.receiptUrl}</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Order ID:
+                        </td>
+                        <td>
+                            ${paymentData.orderId}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Payment ID:
+                        </td>
+                        <td>
+                            ${paymentData.paymentId}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Square Receipt Number:
+                        </td>
+                        <td>
+                            ${paymentData.receiptNumber}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        `
+    )
+}
 export async function sendReceiptEmail(paymentData,ticketIds,tier){
     try{
         let background = await getTicketBackground(tier)
@@ -126,6 +216,7 @@ export async function sendReceiptEmail(paymentData,ticketIds,tier){
         generatedTickets.map(i=>{
             embedImages += `<img alt="${'Ticket ID: '+i.ticketId}" src="${'cid:'+i.ticketId}" width="120" height="180" />`
         })
+        let receiptTable = await generateReceiptTable(paymentData)
         // console.log(attachments,embedImages)
         let test = await transport.sendMail({
             from: 'tickets@raizapalooza.com',
@@ -133,7 +224,10 @@ export async function sendReceiptEmail(paymentData,ticketIds,tier){
             subject: 'Ticket Test',
             html: '<div>' +
                 '<p>embedded:</p>' +
+
                 embedImages
+                +
+                receiptTable
                 +
                 '</div>',
             attachments:attachments,
