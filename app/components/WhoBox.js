@@ -26,7 +26,7 @@ export default function WhoBox({
       <div className="grid grid-cols-2 grid-rows-3 w-full h-60 justify-center">
         <div
           id="photo"
-          className="relative flex col-start-1 col-span-1 row-start-1 row-span-2 "
+          className="border-2 relative flex col-start-1 col-span-2 row-start-1 row-span-3 "
         >
           <Image
             className={type == "cover" ? "object-cover" : "object-fill"}
@@ -35,14 +35,14 @@ export default function WhoBox({
             alt={alt}
           />
         </div>
-        <div
+        {/* <div
           id="vendor"
           className="flex col-start-1 col-span-2 row-start-3 row-span-1 "
         >
           <h2 className={`flex text-4xl items-start  ${antonio.className}`}>
             {name}
           </h2>
-        </div>
+        </div> */}
         {/* <div
           id="text"
           className="flex col-start-2 col-span-1 row-start-1 row-span-2 "
