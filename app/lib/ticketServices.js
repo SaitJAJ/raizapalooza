@@ -11,7 +11,7 @@ function cleanTicket(ticket){
         id:ticket._id.toHexString(),
         ticketId:ticket.ticketId,
         orderId:ticket.orderId,
-        paymentDate:ticket.birthday,
+        paymentDate:ticket.paymentDate,
         name:ticket.name,
         email:ticket.email,
         phoneNumber:ticket.phoneNumber,
@@ -57,8 +57,11 @@ export async function addTicket(formData){
             birthday:formData.get('birthday'),
             tier:formData.get('tier'),
             raffle:formData.get('tier')==='earlybird'?1:0,
+            receiptUrl:formData.get('receiptUrl'),
+            paymentType:formData.get('paymentType'),
         }
         const newTicket = await Ticket.create(ticket)
+        return newTicket.ticketId
     }catch(error){
         console.error(error)
     }
@@ -98,6 +101,7 @@ export async function genSpecialTickets (formData){
 }
 export async function updateTicketInfo(formData){
     try{
+        await mongoose.connect(process.env.MONGODB_URI)
         let ticket = await Ticket.findOneAndUpdate({ticketId:formData.get('ticketId')},
             {
                 name:formData.get('name'),
@@ -118,16 +122,35 @@ export async function genTicket({ticket,background}) {
         if(!background){
             return (ticket)
         }
-        const canvas = createCanvas(600, 900);
+        const canvas = createCanvas(801, 1139);
         const context = await canvas.getContext("2d");
         let image = await loadImage(background)
-        context.drawImage(image, 0, 0, 600, 900)
+        context.drawImage(image, 0, 0, 801, 1139)
         const qrCanvas = createCanvas(445,410)
         await QRCode.toCanvas(qrCanvas,process.env.NEXT_PUBLIC_QR_CODE_ENDPOINT+ticket.ticketId,{margin:1,width:445,color:{light:'#fffdcf',dark:'#121212'}})
-        context.drawImage(qrCanvas, 80, 435, 445, 410);
+        context.drawImage(qrCanvas, 148, 586, 505, 505);
         return ({...ticket, ticketBlob: canvas.toDataURL()})
     }catch(error){
         console.error(error)
         return(ticket)
+    }
+}
+export default async function getTicketBackground(tier){
+    console.log(tier)
+    switch(tier){
+        case('earlybird'):
+            return 'public/qrTickets/earlybird.png';
+        case('door'):
+            return 'public/qrTickets/door.png';
+        case('staff'):
+            return 'public/qrTickets/staff.png';
+        case('vip'):
+            return 'public/qrTickets/vip.png';
+        case('crew'):
+            return 'public/qrTickets/crew.png';
+        case('fam'):
+            return 'public/qrTickets/fam.png';
+        default:
+            return 'public/qrTickets/door.png';
     }
 }

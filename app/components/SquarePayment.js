@@ -1,5 +1,5 @@
 'use client'
-import {ApplePay, CreditCard, GooglePay, PaymentForm} from 'react-square-web-payments-sdk'
+import {CreditCard, GooglePay, PaymentForm} from 'react-square-web-payments-sdk'
 import {submitPayment} from "@/app/lib/squareServices";
 import Button from "@/components/Button";
 import TextInput from "@/components/TextInput";
@@ -349,7 +349,9 @@ export default function SquarePayment({form,scrollBack,clearAll}){
     const handlePayment = async(token,verifiedBuyer)=>{
         setPaymentMessages(['Attempting Payment...'])
         let payment = await submitPayment(token.token,verifiedBuyer.token,form.get('cost')*100,"CAD",form)
-        setPaymentMessages(JSON.parse(payment.data).errors)
+        if(payment.error){
+            setPaymentMessages(JSON.parse(payment.data).errors)
+        }
     }
     const createVerificationDetails=()=>({
         amount: form.get('cost'),
