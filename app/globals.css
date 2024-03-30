@@ -55,7 +55,7 @@ input,select {
   outline-color: var(--light);
   border-radius: 4px;
 }
-input:hover, select:hover{
+input:hover, select:hover, input:focus, select:focus{
   outline: #fffdcf solid 4px;
 }
 select {

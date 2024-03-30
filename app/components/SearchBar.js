@@ -3,15 +3,13 @@ import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import {useDebouncedCallback} from "use-debounce";
 
 export default function SearchBar(props){
-    let {placeholder = "Search by Facility Name",disabled=false} = props
+    let {placeholder = "Search by Email",disabled=false} = props
     const searchParams= useSearchParams();
     const pathname = usePathname();
     const { replace } = useRouter();
     // let{onChange = ()=>{}}=props
     const handleSearch=useDebouncedCallback((e)=>{
         let params = new URLSearchParams(searchParams)
-        params.delete('audit_id')
-        params.delete('rec_fac_id')
         if(e.target.value !== ""){
             params.set('query',e.target.value)
         }else{

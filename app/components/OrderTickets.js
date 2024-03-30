@@ -1,18 +1,19 @@
 'use server'
-import {genTicket, getAllTickets, getOrderTickets} from "@/app/lib/ticketServices";
+import getTicketBackground, {genTicket, getOrderTickets} from "@/app/lib/ticketServices";
 import TicketDisplay from "@/components/TicketDisplay";
 import CustomHeader from "@/components/layout/CustomHeader";
 import {Suspense} from "react";
 import Loading from "@/components/Loading";
 
-export async function TicketImage(ticket){
-    let printTickets =  await genTicket(ticket);
+export async function TicketImage({ticket}){
+    let background = await getTicketBackground(ticket.tier)
+    let printTickets =  await genTicket({ticket, background});
     // console.log(printTickets)
     return(
-        <div >{
+        <div>{
                 printTickets.ticketBlob?
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img alt={'text'} src={printTickets.ticketBlob} className={'max-h-[600px]'} />
+                    <img alt={'text'} src={printTickets.ticketBlob} className={'max-h-[600px] border-[6px] rounded-[8px]'} />
                 :
                     <div className={'text-center grid w-full h-[400px]'}>
                         <p className={''}>Something went wrong with the ticket display, but your ticket still exists!</p>
@@ -25,17 +26,6 @@ export async function TicketImage(ticket){
 }
 export default async function OrderTickets({orderId}){
     let tickets = await getOrderTickets(orderId)
-    let background = undefined
-    switch(tickets[0].tier){
-        case('earlybird'):
-            background = 'public/generatedPNGs/earlybirdTicket.png';
-            break;
-        case('door'):
-            background = 'public/generatedPNGs/doorTicket.png';
-            break;
-        default:
-            background = 'public/generatedPNGs/doorTicket.png';
-    }
     return(
         <>
             <div >
@@ -63,7 +53,7 @@ export default async function OrderTickets({orderId}){
                         return (
                             <TicketDisplay key={ticket.id} ticket={ticket} index={index+1} count={tickets.length}>
                                 <div id={ticket.ticketId}>
-                                    <TicketImage ticket={ticket} background={background} />
+                                    <TicketImage ticket={ticket} />
                                 </div>
                             </TicketDisplay>
                         )

@@ -13,6 +13,8 @@ const ticketSchema = new Schema({
   tier: String,
   raffle: Number,
   admission: { type: Boolean, default: true },
+  receiptUrl:String,
+  paymentType:String,
 });
 const Ticket = mongoose.models.Ticket || model("Ticket", ticketSchema);
 export default Ticket;

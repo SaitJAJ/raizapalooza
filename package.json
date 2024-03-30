@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@react-email/components": "^0.0.15",
+    "bcrypt": "^5.1.1",
     "canvas": "^2.11.2",
     "html-to-image": "^1.11.11",
     "images": "^3.2.4",
+    "jsonwebtoken": "^9.0.2",
     "jspdf": "^2.5.1",
     "mongodb": "^6.5.0",
     "mongoose": "^8.2.1",
@@ -26,7 +28,8 @@
     "react-qr-code": "^2.0.12",
     "react-square-web-payments-sdk": "^3.2.1",
     "sharp": "^0.33.3",
-    "square": "^35.0.0"
+    "square": "^35.0.0",
+    "use-debounce": "^10.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",

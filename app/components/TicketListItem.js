@@ -1,19 +1,19 @@
 'use client'
-import {useRouter} from 'next/navigation'
 import Hyperlink from "@/components/Hyperlink";
 export default function TicketListItem({ticket}){
-    console.log(ticket)
-    const router = useRouter()
 
     return(
-        <tr className={'w-full'} onClick={()=>router.replace('/tickets/generate/'+ticket.ticketId,'forward')}>
-            <td>{ticket.name}</td>
-            <td>{ticket.email}</td>
-            <td>
-                <Hyperlink href={'/tickets/generate/'+ticket.ticketId}>View QR Code</Hyperlink>
+        <tr className={'w-full h-[2lh]'}>
+            <td className={"text-wrap"}>{ticket.name}</td>
+            <td className={"text-wrap"}>{ticket.email}</td>
+            <td className={'text-center'}>
+                {ticket.tier}
             </td>
-            <td>
-                <Hyperlink href={'/tickets/info/'+ticket.ticketId}>View Ticket Info</Hyperlink>
+            <td className={"text-wrap"}>
+                <Hyperlink href={'/admin/tickets/generate/'+ticket.ticketId}>Ticket</Hyperlink>
+            </td>
+            <td className={"text-wrap"}>
+                <Hyperlink href={'/admin/tickets/info/'+ticket.ticketId}>View Ticket Info</Hyperlink>
             </td>
         </tr>
     )

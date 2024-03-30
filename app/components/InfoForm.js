@@ -26,7 +26,7 @@ const InfoForm = forwardRef(function InfoForm({loading,tier},formRef){
     }
     useEffect(()=>{
         costDispatch({type: 'calc',tier:tier,quant:parseInt(formRef.current.quant.value)})
-    },[tier])
+    },[tier,formRef])
     return(
         <>
             <div className={'w-full grid min-h-[100vh] snap-start'} id={"infoForm"}>

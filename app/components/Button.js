@@ -6,7 +6,7 @@ import Loading from "@/components/Loading";
 
 export default function Button(props){
     const router = useRouter()
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(props.loading)
     const {
         type = "button",
         value="",
@@ -24,7 +24,7 @@ export default function Button(props){
     } = props;
 
     return(
-        <label className={''}>
+        <label >
             <Loading loading={loading}>
                 {label}
                 <input  className={className} type={type} value={value} disabled={disabled} id={id} onClick={onClick}/>

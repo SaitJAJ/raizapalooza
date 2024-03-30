@@ -2,7 +2,7 @@
 import nodemailer from 'nodemailer'
 import nodemailerSendgrid from 'nodemailer-sendgrid'
 // import {Resend} from 'resend'
-import {genTicket, getOrderTickets} from "@/app/lib/ticketServices";
+import getTicketBackground, {genTicket, getOrderTickets} from "@/app/lib/ticketServices";
 import TicketEmail from "@/emailTemplates/TicketEmail";
 // const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -76,24 +76,13 @@ export async function createAttachments(tickets){
 // }
 async function generateTickets(tickets){
     try{
-        let background = ''
-        switch(tickets[0].tier){
-            case('earlybird'):
-                background = 'public/generatedPNGs/earlybirdTicket.png';
-                break;
-            case('door'):
-                background = 'public/generatedPNGs/doorTicket.png';
-                break;
-            default:
-                background = 'public/generatedPNGs/doorTicket.png';
-        }
+        let background = await getTicketBackground(tickets[0].tier)
         let generatedTickets = []
         for await(let ticket of tickets){
             let curTick = await genTicket({ticket,background})
             generatedTickets.push(curTick)
 
         }
-        // return []
         return generatedTickets
     }catch(error){
         console.error(error)
@@ -122,4 +111,37 @@ export async function sendTicketEmail(email,orderId){
     }catch(error){
         console.error(error)
     }
+}
+export async function sendReceiptEmail(paymentData,ticketIds,tier){
+    try{
+        let background = await getTicketBackground(tier)
+        let generatedTickets = []
+        for await(let ticketId of ticketIds){
+            let ticket = {ticketId:ticketId}
+            let curTick = await genTicket({ticket,background})
+            generatedTickets.push(curTick)
+        }
+        let attachments = await createAttachments(generatedTickets)
+        let embedImages = '';
+        generatedTickets.map(i=>{
+            embedImages += `<img alt="${'Ticket ID: '+i.ticketId}" src="${'cid:'+i.ticketId}" width="120" height="180" />`
+        })
+        // console.log(attachments,embedImages)
+        let test = await transport.sendMail({
+            from: 'tickets@raizapalooza.com',
+            to: paymentData.buyerEmail,
+            subject: 'Ticket Test',
+            html: '<div>' +
+                '<p>embedded:</p>' +
+                embedImages
+                +
+                '</div>',
+            attachments:attachments,
+        });
+
+    }catch (err){
+        console.error(err)
+    }
+
+
 }
