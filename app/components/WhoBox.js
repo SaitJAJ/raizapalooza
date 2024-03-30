@@ -12,7 +12,15 @@ const josefin_sans = Josefin_Sans({
   variable: "--font-josefin-sans",
 });
 
-export default function WhoBox({ src, name, alt, text, website, instagram }) {
+export default function WhoBox({
+  src,
+  name,
+  alt,
+  type,
+  text,
+  website,
+  instagram,
+}) {
   return (
     <>
       <div className="grid grid-cols-2 grid-rows-3 w-full h-60 justify-center">
@@ -21,9 +29,9 @@ export default function WhoBox({ src, name, alt, text, website, instagram }) {
           className="relative flex col-start-1 col-span-1 row-start-1 row-span-2 "
         >
           <Image
-            className="object-cover"
+            className={type == "cover" ? "object-cover" : "object-fill"}
             fill={true}
-            src="https://via.placeholder.com/160x120"
+            src={src}
             alt={alt}
           />
         </div>
@@ -35,7 +43,7 @@ export default function WhoBox({ src, name, alt, text, website, instagram }) {
             {name}
           </h2>
         </div>
-        <div
+        {/* <div
           id="text"
           className="flex col-start-2 col-span-1 row-start-1 row-span-2 "
         >
@@ -44,8 +52,8 @@ export default function WhoBox({ src, name, alt, text, website, instagram }) {
           >
             {text}
           </p>
-        </div>
-        <div
+        </div> */}
+        {/* <div
           id="links"
           className="flex col-start-2 col-span-2 row-start-3 row-span-1"
         >
@@ -62,7 +70,7 @@ export default function WhoBox({ src, name, alt, text, website, instagram }) {
               Website➜
             </a>
           </p>
-        </div>
+        </div> */}
       </div>
     </>
   );
