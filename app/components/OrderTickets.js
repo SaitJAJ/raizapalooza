@@ -32,14 +32,14 @@ export default async function OrderTickets({orderId}){
                 <CustomHeader title={"Raizapalooza"}/>
                 <div className={'h-[100vh] grid'}>
                     <h2 className={'w-full text-center text-6xl pt-5 '}>Tickets Acquired!</h2>
-                    {/*<p className={'px-10 md:px-40'}>*/}
-                    {/*    We have sent you an email with your receipt, copies of your tickets and other details important for <span className={'font-tan-headline'}>Raizapalooza</span>! */}
-                    {/*</p>*/}
-                    <p className={'px-10 md:px-40'}>
-                        You will receive an email with copies of your tickets, and other event details around a week before <span className={'font-tan-headline'}>Raizapalooza</span>.
+                    <p className={'px-4 md:px-40'}>
+                        We have sent you an email with your receipt, copies of your tickets and other details important for <span className={'font-tan-headline'}>Raizapalooza</span>! Dont forget to check your email!
+                    </p>
+                    <p className={'px-10 md:px-40 text-center'}>
+                        You will receive another email with copies of your tickets, and final event details around a week before <span className={'font-tan-headline'}>Raizapalooza</span>.
                     </p>
                     <p className={'text-right px-10 md:px-40'}>
-                        You may also download your tickets below, and/or change the contact info to have them sent to someone else!
+                        You may also change the contact info of individual tickets below, to have them sent to someone else!
                     </p>
                     <p className={'text-center p-2 text-2xl animate-bounce'}>
                         ↓
@@ -59,6 +59,9 @@ export default async function OrderTickets({orderId}){
                         )
                     })}
                 </Suspense>
+                <div className={'text-center '}>
+                    If you have any questions, comments or concerns: Please reach out to use immediately at Raizapalooza@gmail.com
+                </div>
             </div>
         </>
     )

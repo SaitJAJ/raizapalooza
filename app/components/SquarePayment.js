@@ -346,6 +346,8 @@ const billingInitializer =(form)=>{
 export default function SquarePayment({form,scrollBack,clearAll}){
     const [billingDetails, billingDispatch] = useReducer(billingReducer,form,billingInitializer)
     const [paymentMessages,setPaymentMessages] = useState([])
+    const [acknowledged, setAcknowledged ] = useState(false)
+
     const handlePayment = async(token,verifiedBuyer)=>{
         setPaymentMessages(['Attempting Payment...'])
         let payment = await submitPayment(token.token,verifiedBuyer.token,form.get('cost')*100,"CAD",form)
@@ -384,7 +386,7 @@ export default function SquarePayment({form,scrollBack,clearAll}){
                 <Button value={'Cancel'} onClick={clearAll}/>
             </div>
             <form id={'billing'} className={'md:px-[10vw]'} name={'billing'} >
-                <h3>Billing Details</h3>
+                <h3 className={'text-4xl'}>Billing Details</h3>
                 <TextInput label={"First name"} id={'givenName'} value={billingDetails.givenName} onChange={e=>{billingDispatch({type:"change",tag:e.target.id,value:e.target.value})}}/>
                 <TextInput label={"Last name"} id={"familyName"} value={billingDetails.familyName} onChange={e=>{billingDispatch({type:"change",tag:e.target.id,value:e.target.value})}}/>
                 <TextInput label={"Email"} id={'email'} value={billingDetails.email} onChange={e=>{billingDispatch({type:"change",tag:e.target.id,value:e.target.value})}}/>
@@ -421,25 +423,44 @@ export default function SquarePayment({form,scrollBack,clearAll}){
                     })}
                 </div>
             </form>
-            <div className={'mt-20 mb-10'}>
-                <PaymentForm
-                    applicationId={process.env.NEXT_PUBLIC_SQUARE_APPLICATION_ID}
-                    cardTokenizeResponseReceived={handlePayment}
-                    createPaymentRequest={paymentRequest}
-                    createVerificationDetails={createVerificationDetails}
-                    locationId={process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID}
-                >
-                    {/*<ApplePay />*/}
+            <h3 className={'text-4xl text-center my-4'}>Payment</h3>
+            <div className={' mb-10 min-h-[40vh]'}>
 
-                    <CreditCard>
-                        Pay ${form.get('cost')} for {form.get('quant')} {form.get('tier')==='earlybird'?"Early Bird":"General Admission"} {form.get('quant')>1?"Tickets":"Ticket"}
-                    </CreditCard>
-                    <hr className={'my-2'}/>
-                    <GooglePay />
-                    {/*<CreditCard>*/}
-                    {/*    Pay ${form.get('cost')} for {form.get('quant')} {form.get('tier')==='earlybird'?"Early Bird":"General Admission"} {form.get('quant')>1?"Tickets":"Ticket"}*/}
-                    {/*</CreditCard>*/}
-                </PaymentForm>
+                {acknowledged?
+                    <div>
+                        <p className={'text-center'}>!!! All purchases final !!! </p>
+                        <p className={'text-center'}>
+                            <span className={'text-xl'}>Your Order:</span>     ${form.get('cost')} for {form.get('quant')} {form.get('tier')==='earlybird'?"Early Bird":"General Admission"} {form.get('quant')>1?"Tickets":"Ticket"}
+                        </p>
+                        <PaymentForm
+                            applicationId={process.env.NEXT_PUBLIC_SQUARE_APPLICATION_ID}
+                            cardTokenizeResponseReceived={handlePayment}
+                            createPaymentRequest={paymentRequest}
+                            createVerificationDetails={createVerificationDetails}
+                            locationId={process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID}
+                        >
+                            {/*<ApplePay />*/}
+
+                            <CreditCard>
+                                Pay ${form.get('cost')} for {form.get('quant')} {form.get('tier')==='earlybird'?"Early Bird":"General Admission"} {form.get('quant')>1?"Tickets":"Ticket"}
+                            </CreditCard>
+                            <hr className={'my-2'}/>
+                            <GooglePay />
+                            {/*<CreditCard>*/}
+                            {/*    Pay ${form.get('cost')} for {form.get('quant')} {form.get('tier')==='earlybird'?"Early Bird":"General Admission"} {form.get('quant')>1?"Tickets":"Ticket"}*/}
+                            {/*</CreditCard>*/}
+                        </PaymentForm>
+                    </div>
+
+                    :
+
+                    <div>
+                        <p className={'text-center'}>
+                            As this website accepts payment & uses cookies, we advise you to review our <a href={'/terms'}>Terms & Conditions</a>.
+                            If you do not wish to accept our terms and conditions, you will have to purchase a general admission ticket at door on the day of the event.
+                        </p>
+                        <Button value={"Accept Terms & Conditions"} onClick={()=>setAcknowledged(true)}/>
+                    </div>}
             </div>
         </div>
     )

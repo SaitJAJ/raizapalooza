@@ -5,10 +5,8 @@ import Button from "@/components/Button";
 import {useReducer} from "react";
 import HiddenInput from "@/components/HiddenInput";
 import {updateTicketInfo} from "@/app/lib/ticketServices";
-import {useRouter} from "next/navigation";
 import Loading from "@/components/Loading";
 import * as htmlToImage from "html-to-image";
-import {sendTicketEmail} from "@/app/lib/emailServices";
 
 const ticketReducer = (state,action)=>{
     switch (action.type) {
@@ -61,7 +59,7 @@ export default function TicketDisplay({ ticket, index, count ,children}) {
             });
     };
   return (
-    <div className={"flex flex-wrap justify-around border-2 m-2 p-2"} key={ticketInf.id}>
+    <div className={"flex flex-wrap justify-around border-2 mx-2 my-4 p-2"} key={ticketInf.id}>
       <form ref={formRef} onSubmit={updateInfo} className={"grid w-full justify-around p-2 text-center"}>
           <HiddenInput id={'ticketId'} value={ticketInf.ticketId} hidden/>
           <TextInput label={'Name'} id={'name'} value={ticketInf.name} onChange={e=>ticketDispatch({type:'change',tag:e.target.id,value:e.target.value})}/>
