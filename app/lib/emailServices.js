@@ -95,17 +95,23 @@ export async function sendTicketEmail(email,orderId){
         let attachments = await createAttachments(gennedTickets)
         let embedImages = ''
         gennedTickets.map(i=>{
-            embedImages += `<img alt="${'Ticket ID: '+i.ticketId}" src="${'cid:'+i.ticketId}" width="120" height="180" />`
+            embedImages += `<img style="margin:auto" alt="${'Ticket ID: '+i.ticketId}" src="${'cid:'+i.ticketId}" width="360" height="540" />`
         })
         let test = await transport.sendMail({
             from: 'tickets@raizapalooza.com',
             to: email,
-            subject: 'Ticket Test',
-            html: '<div>' +
-                '<p>embedded:</p>' +
-                embedImages
-                +
-                '</div>',
+            subject: 'Raizapalooza Specialty Tickets',
+            html: `
+                <div style="text-align:center;" >
+                    <h1> Hello ${tickets[0].name}</h1>
+                    <p>Attached are your tickets. You can find all information about raizapalooza at <a href="https://raizapalooza.com/about/"> Raizapalooza.com </a></p>               
+                    ${embedImages} 
+                    <footer style="font-size: small; margin-top: 50px;">
+                        <p style="margin:0 initial;">The Raizapalooza Terms & Conditons can be found at <a href="https://raizapalooza.com/terms">Raizapalooza.com/terms</a></p>   
+                        <p>All information provided in this email is factual as far as we know. If you notice anything incorrect, or have other questions/concerns please contact us at  Raizapalooza@gmail.com</p>
+                    </footer>
+                </div>  
+            `,
             attachments:attachments,
         });
     }catch(error){
@@ -119,6 +125,30 @@ export async function generateReceiptTable(paymentData){
                 <tbody>
                     <tr>
                         <td>
+                            Payed to:
+                        </td>
+                        <td>
+                            Raiza Anne Mativo
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Business Address:
+                        </td>
+                        <td>
+                            3036 Morely Trail NW, Calgary T2M 4H2
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Contact Email:
+                        </td>
+                        <td>
+                            raiz.a.hand@gmail.com
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             Payment Date
                         </td>
                         <td>
@@ -130,7 +160,7 @@ export async function generateReceiptTable(paymentData){
                             Payment Amount
                         </td>
                         <td>
-                            $ ${(paymentData.amount/100).toLocaleString()}
+                           CAD $ ${(paymentData.amount/100).toLocaleString()}
                         </td>
                     </tr>
                     <tr>
@@ -138,7 +168,7 @@ export async function generateReceiptTable(paymentData){
                             Total Amount
                         </td>
                         <td>
-                           $ ${(paymentData.total/100).toLocaleString()}
+                          CAD $ ${(paymentData.total/100).toLocaleString()}
                         </td>
                     </tr>
                     <tr>
@@ -214,22 +244,28 @@ export async function sendReceiptEmail(paymentData,ticketIds,tier){
         let attachments = await createAttachments(generatedTickets)
         let embedImages = '';
         generatedTickets.map(i=>{
-            embedImages += `<img alt="${'Ticket ID: '+i.ticketId}" src="${'cid:'+i.ticketId}" width="120" height="180" />`
+            embedImages += `<img style="margin:auto" alt="${'Ticket ID: '+i.ticketId}" src="${'cid:'+i.ticketId}" width="360" height="540" />`
         })
         let receiptTable = await generateReceiptTable(paymentData)
         // console.log(attachments,embedImages)
         let test = await transport.sendMail({
             from: 'tickets@raizapalooza.com',
             to: paymentData.buyerEmail,
-            subject: 'Ticket Test',
-            html: '<div>' +
-                '<p>embedded:</p>' +
-
-                embedImages
-                +
-                receiptTable
-                +
-                '</div>',
+            subject: 'Raizapalooza Tickets',
+            html: `
+                <div style="text-align:center;" >
+                    <h1> Hello ${paymentData.payeeName}</h1>
+                    <p>Attached are your tickets & your receipt. You can find all information about raizapalooza at <a href="https://raizapalooza.com/about/"> Raizapalooza.com </a></p>               
+                    ${embedImages} 
+                    <h2>Receipt</h2>
+                    <p>Thank you so much for your purchase! We could not do Raizapalooza without you!</p>
+                    ${receiptTable}
+                    <footer style="font-size: small; margin-top: 50px;">
+                        <p style="margin:0 initial;">The Raizapalooza Terms & Conditons can be found at <a href="https://raizapalooza.com/terms">Raizapalooza.com/terms</a></p>   
+                        <p>All information provided in this email is factual as far as we know. If you notice anything incorrect, or have other questions/concerns please contact us at  Raizapalooza@gmail.com</p>
+                    </footer>
+                </div>  
+            `,
             attachments:attachments,
         });
 

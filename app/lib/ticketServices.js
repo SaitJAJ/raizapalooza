@@ -5,6 +5,7 @@ import {isRedirectError} from "next/dist/client/components/redirect";
 import {redirect} from "next/navigation";
 import {createCanvas, loadImage} from "canvas";
 import QRCode from "qrcode";
+import {sendTicketEmail} from "@/app/lib/emailServices";
 
 function cleanTicket(ticket){
     let cleanTicket = {
@@ -91,6 +92,7 @@ export async function genSpecialTickets (formData){
             addTickets.push(addTicket(formData));
         }
         await Promise.all(addTickets)
+        await sendTicketEmail(formData.get('email'), orderId)
         redirect(`/tickets/manage/${orderId}`,'push')
     }catch(error){
         if(isRedirectError(error)){
@@ -106,6 +108,8 @@ export async function updateTicketInfo(formData){
             {
                 name:formData.get('name'),
                 email:formData.get('email'),
+                birthday:null,
+                phone:null,
             },
             {returnDocument:'after'}
         )

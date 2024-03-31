@@ -3,6 +3,7 @@ import {ApiError, Client} from 'square'
 import {addTicket} from "@/app/lib/ticketServices";
 import {isRedirectError} from "next/dist/client/components/redirect";
 import {sendReceiptEmail} from "@/app/lib/emailServices";
+import {redirect} from "next/navigation";
 
 const {paymentsApi} = new Client(
     {
@@ -51,6 +52,7 @@ export async function submitPayment(sourceId,verificationToken,amount=100,curren
                 let ticketIds = await Promise.all(addTickets)
                 await sendReceiptEmail(
                     {
+                        payeeName:formData.get('name'),
                         paymentDate:paymentData.createdAt,
                         authorizedDate:paymentData.cardDetails.cardPaymentTimeline.authorizedAt,
                         amount:Number(paymentData.amountMoney.amount),
@@ -72,7 +74,7 @@ export async function submitPayment(sourceId,verificationToken,amount=100,curren
                     formData.get('tier')
                     )
 
-                // redirect(`/tickets/manage/${data.result.payment.orderId}`,'push')
+                redirect(`/tickets/manage/${data.result.payment.orderId}`,'push')
                 return({error:false,status:200,message:"all is good"})
                 break;
             case(500):
