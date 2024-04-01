@@ -36,10 +36,11 @@ export default function WhoBox({ src, name, alt, type, text, instagram }) {
           </h2>
         </div>
         <div
-          id="text"
+          id="whozapalooza"
           className="flex flex-col justify-between col-start-2 col-span-1 row-start-1 row-span-3 "
         >
           <p
+            id="whozapalooza"
             className={`p-2 ${josefin_sans.className} overflow-y-auto  text-base max-[350px]:text-sm lg:text-sm`}
           >
             {text}
