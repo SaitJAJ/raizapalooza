@@ -5,7 +5,7 @@ import FancyTitle from "@/components/FancyTitle";
 
 export default function Page(){
     return(
-        <div className={' w-full bg-background-one bg-cover -z-10'}>
+        <div className={'bg-background-one bg-cover w-full -z-10'}>
             <Header />
             <FancyTitle title={'Itinerary'}/>
             <Scrolling>
