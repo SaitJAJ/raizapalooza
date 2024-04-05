@@ -1,8 +1,9 @@
 import { Josefin_Sans } from "next/font/google";
 import WhoBox from "../components/WhoBox";
 import Header from "../components/Header";
-import whitePlaceholder from "@/public/whitePlaceholder.png";
 import Background from "@/components/Background";
+import RonRonStudio from "@/public/Vendor/RonRonStudio.JPG";
+import SnapEvents from "@/public/Vendor/SnapEvents.JPG";
 import Jewels from "@/public/Vendor/Jewels.JPG";
 import LivePainting from "@/public/Vendor/LivePainting.JPG";
 import Mycindiumglass from "@/public/Vendor/Mycindiumglass.JPG";
@@ -10,6 +11,7 @@ import MysticalMags from "@/public/Vendor/MysticalMags.JPG";
 import Raizahand from "@/public/Vendor/Raizahand.JPG";
 import Scuffedhouse from "@/public/Vendor/Scuffedhouse.JPG";
 import Taylor from "@/public/Vendor/Taylor.JPG";
+import FancyTitle from "../components/FancyTitle";
 
 const josefin_sans = Josefin_Sans({
   weight: "700",
@@ -26,9 +28,7 @@ export default function Page() {
           id="title"
           className="flex flex-col justify-center items-center top-6 lg:top-52"
         >
-          <h1 className="font-tan-headline text-4xl lg:text-6xl pt-12 lg:pt-2">
-            Whozapalooza?
-          </h1>
+          <FancyTitle title={"Whozapalooza?"} />
           <p
             className={`flex text-sm lg:text-base text-left ${josefin_sans.className} pt-2 w-56 lg:w-96`}
           ></p>
@@ -85,7 +85,7 @@ export default function Page() {
             id="vendergrid 2"
             className="flex flex-col items-center min-h-screen justify-around w-full"
           >
-            <div className="flex flex-col pt-4 gap-4 w-[90%] lg:grid lg:grid-cols-6 lg:grid-rows-8 lg:h-screen">
+            <div className="flex flex-col pt-4 gap-4 w-[90%] lg:grid lg:grid-cols-7 lg:grid-rows-8 lg:h-screen">
               <div className="sm:odd:w-2/3 sm:even:pl-[33%] lg:odd:w-full lg:even:pl-0 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:row-span-3 lg:self-start">
                 <WhoBox
                   name="Live Painting"
@@ -114,6 +114,33 @@ export default function Page() {
                   type={"fit"}
                   text="Hand crafted art and knick-knacks, up-cycled and curated thrifted fashion by Raiza Mativo. Ray has always had a passion for art and finding love and light in our every day. She loves a sense of community and actively strives to merge the two together - hence Raiz A Hand was born. Raiz A Hand is Ray’s little way to share a little piece of her peace with all of you. A little reminder that a friend is always near to help, to support, to encourage, to care, and to always share a snack, giggle and smile."
                   instagram="raiz.a.hand"
+                />
+              </div>
+              <div className="sm:odd:w-2/3 sm:even:pl-[33%] lg:odd:w-full lg:even:pl-0 lg:col-start-5 lg:col-span-3 lg:row-start-6 lg:row-span-3 lg:self-end ">
+                <WhoBox
+                  name="Snap Events"
+                  src={SnapEvents}
+                  alt="Snap Events"
+                  type={"fit"}
+                  text="Capturing priceless moments and turning events into memories, Snap Events is the life of the party!"
+                  instagram="snap360_events"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            id="vendergrid 3"
+            className="flex flex-col items-center justify-around w-full"
+          >
+            <div className="flex flex-col pt-4 gap-4 w-[90%] lg:grid lg:grid-cols-7 lg:grid-rows-3 ">
+              <div className="sm:odd:w-2/3 sm:even:pl-[33%] lg:odd:w-full lg:even:pl-0 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:row-span-3 lg:self-start">
+                <WhoBox
+                  name="Ron Ron Studios"
+                  src={RonRonStudio}
+                  alt="Ron Ron Studios"
+                  type={"fit"}
+                  text="Digital media creator - Photographer and videographer Physical media creator - Custom decals, stickers, shirts, flags, and more"
+                  instagram="ronronsstudio"
                 />
               </div>
             </div>
