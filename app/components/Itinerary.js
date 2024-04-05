@@ -4,16 +4,16 @@ import BgWrapper from "@/components/BgWrapper";
 
 const HOUR = (60*60*10000)
 const randomPositions={
-    0:'m-auto',
-    1:'ml-[5vw]',
-    2:'ml-[10vw]',
-    3:'ml-[15vw]',
-    4:'ml-[20vw]',
-    5:'ml-[25vw]',
-    6:'ml-[30vw]',
-    7:'ml-[35vw]',
-    8:'ml-[40vw]',
-    9:'ml-[45vw]',
+    0:'md:m-auto',
+    1:'md:ml-[5vw]',
+    2:'md:ml-[10vw]',
+    3:'md:ml-[15vw]',
+    4:'md:ml-[20vw]',
+    5:'md:ml-[25vw]',
+    6:'md:ml-[30vw]',
+    7:'md:ml-[35vw]',
+    8:'md:ml-[40vw]',
+    9:'md:ml-[45vw]',
 }
 const OPENTIME = Date.parse('13 Apr 2024 16:00:00')
 
@@ -95,24 +95,25 @@ export default async function Itinerary(){
 
 
     return(
-        <>
+        <div className={'mx-[15vw]'}>
             {Object.values('12345678'.split('').sort(function(){return 0.5-Math.random()})).map((value,index) => { // Doing the function inline to prevent render mismatch
                 return(
                     <ItineraryItem key={value} position={value} index={index}/>
                 )
             })}
-        </>
+        </div>
 
     )
 }
 
 const ItineraryItem =({position,index})=>{
     return(
-        <div className={`flex justify-between m-8 h-fit ${randomPositions[position]} w-[35vw] grow`}>
+
+        <div className={`flex justify-between md:my-[20vh] h-fit ${randomPositions[position]} md:w-[35vw] grow`}>
             <h3 className={'text-4xl h-fit font-bold text-element-2 mr-3  bg-radial-shadow'}>
                 {itinerary[index].title}
             </h3>
-            <ul className={'grow text-4xl bg-radial-shadow'}>
+            <ul className={'grow md:text-4xl bg-radial-shadow p-4'}>
                 {Object.values(itinerary[index].events).map((event,index)=>{
                     return(
                         <li key={index} className={''}>{event}</li>
