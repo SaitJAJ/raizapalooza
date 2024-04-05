@@ -95,7 +95,7 @@ export default async function Itinerary(){
 
 
     return(
-        <div className={'mx-[15vw]'}>
+        <div className={'mx-[15vw] pb-[40vh]'}>
             {Object.values('12345678'.split('').sort(function(){return 0.5-Math.random()})).map((value,index) => { // Doing the function inline to prevent render mismatch
                 return(
                     <ItineraryItem key={value} position={value} index={index}/>
@@ -109,7 +109,7 @@ export default async function Itinerary(){
 const ItineraryItem =({position,index})=>{
     return(
 
-        <div className={`flex justify-between md:my-[20vh] h-fit ${randomPositions[position]} md:w-[35vw] grow`}>
+        <div className={`flex justify-between my-[5vh] md:my-[20vh] h-fit ${randomPositions[position]} md:w-[35vw] grow`}>
             <h3 className={'text-4xl h-fit font-bold text-element-2 mr-3  bg-radial-shadow'}>
                 {itinerary[index].title}
             </h3>
