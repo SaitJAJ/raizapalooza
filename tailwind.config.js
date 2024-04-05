@@ -8,9 +8,13 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
+        'radial-shadow':'radial-gradient(ellipse, rgba(18,18,18,0.8) 0%, rgba(255,255,255,0) 100%)',
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        'background-one':"url('/backgrounds/Background1.png')",
+        'background-two':"url('/backgrounds/Background2.png')",
+        'background-three':"url('/backgrounds/Background3.png')",
       },
       animation: {
         "spin-slow": "spin 3s linear infinite",
