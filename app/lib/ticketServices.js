@@ -12,6 +12,7 @@ function cleanTicket(ticket){
         id:ticket._id.toHexString(),
         ticketId:ticket.ticketId,
         orderId:ticket.orderId,
+        paymentId:ticket.paymentId,
         paymentDate:ticket.paymentDate,
         name:ticket.name,
         email:ticket.email,
@@ -19,6 +20,7 @@ function cleanTicket(ticket){
         birthday:ticket.birthday,
         tier:ticket.tier,
         raffle:ticket.raffle,
+        receiptUrl: ticket.receiptUrl,
     }
     // console.log(cleanTicket)
     return(cleanTicket)
@@ -140,7 +142,7 @@ export async function genTicket({ticket,background}) {
     }
 }
 export default async function getTicketBackground(tier){
-    console.log(tier)
+    // console.log(tier)
     switch(tier){
         case('earlybird'):
             return 'public/qrTickets/earlybird.png';

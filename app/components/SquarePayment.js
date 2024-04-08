@@ -350,10 +350,16 @@ export default function SquarePayment({form,scrollBack,clearAll}){
 
     const handlePayment = async(token,verifiedBuyer)=>{
         setPaymentMessages(['Attempting Payment...'])
-        let payment = await submitPayment(token.token,verifiedBuyer.token,form.get('cost')*100,"CAD",form)
-        if(payment.error){
-            setPaymentMessages(JSON.parse(payment.data).errors)
+        try{
+            let payment = await submitPayment(token.token,verifiedBuyer.token,form.get('cost')*100,"CAD",form)
+            if(payment.error){
+                setPaymentMessages(JSON.parse(payment.data).errors)
+            }
         }
+        catch(err){
+
+        }
+
     }
     const createVerificationDetails=()=>({
         amount: form.get('cost'),

@@ -26,7 +26,7 @@ export default function TicketInfo({ ticket }) {
               View Ticket
             </Hyperlink>
       </div>
-        {ticket.paymentId?
+        {ticket.paymentId!=null?
             <div>
                 <h3 className={'text-2xl'}>Receipt Info</h3>
                 <InfoBlock label={'Payment ID'} value={ticket.paymentId}/>
