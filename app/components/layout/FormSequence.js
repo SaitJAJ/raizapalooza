@@ -5,6 +5,7 @@ import {ErrorBoundary} from "react-error-boundary";
 import {Suspense, useEffect, useRef, useState} from "react";
 import Loading from "@/components/Loading";
 import TicketBox from "@/components/TicketBox";
+import {logPaymentForm} from "@/app/lib/squareServices";
 
 const allMonths= [
     {value:"January",id:1},
@@ -40,10 +41,19 @@ export default function FormSequence({code = 'door'}){
         let date = new Date(formRef.current['bday-year'].value,formRef.current['bday-month'].value-1, formRef.current['bday-day'].value);
         formData.append("birthday",date)
         setFormData(formData)
+        logPaymentForm(formData)
         setTimeout(()=>{
            setLoading(false)
-            const payment = document.getElementById('payment')
-            payment.scrollIntoView({behavior:"smooth"})
+            try{
+                const payment = document.getElementById('payment')
+                payment.scrollIntoView({behavior:"smooth"})
+            }catch(err){
+                console.log(err)
+                console.log("here")
+                const errmsg = document.getElementById('paymentError')
+                errmsg.scrollIntoView({behavior:"smooth"})
+            }
+
         },200)
     }
     useEffect(() => {
@@ -71,7 +81,7 @@ export default function FormSequence({code = 'door'}){
         <main className={'h-[100vh] px-8 md:px-20 overflow-y-hidden snap-y snap-mandatory'} >
                 <TicketBox selected={selected} setSelected={setSelected} form={formRef.current}/>
                 <InfoForm ref={formRef} loading={loading} tier={selected} clearAll={clearAll}/>
-                <ErrorBoundary fallback={<div className={'w-1/2 my-80 mx-auto text-center border-2 rounded-sm px-20 py-5'}>You are missing the required ENV Variables for square payments.</div>}>
+                <ErrorBoundary onError={(e)=>console.log(e)} fallback={<div id={'paymentError'} className={'w-1/2 my-80 mx-auto text-center border-2 rounded-sm px-20 py-5'}>You are missing the required ENV Variables for square payments.</div>}>
                     <Suspense fallback={<Loading loading={true}/>}>
                         {formData?<SquarePayment form={formData} scrollBack={scrollBack} clearAll={clearAll}/>:null}
                     </Suspense>

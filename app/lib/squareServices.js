@@ -12,8 +12,21 @@ const {paymentsApi} = new Client(
     }
 )
 
+export async function logPaymentForm(formData){
+    try{
+        console.log(`Payment form opened with email ${formData.get('email')}`)
+    }catch(err){
+        console.log(`Payment form opened with no email`)
+    }
+}
+
 export async function submitPayment(sourceId,verificationToken,amount=100,currency="CAD",formData=new FormData()){
     try{
+        try{
+            console.log(`Submitting Payment for ${formData.get('email')}`)
+        }catch(err){
+            console.log('Submitting payment with broken email')
+        }
         const data = await paymentsApi.createPayment({
             idempotencyKey: crypto.randomUUID(),
             sourceId,
@@ -37,6 +50,11 @@ export async function submitPayment(sourceId,verificationToken,amount=100,curren
                 return({statusCode:501,data:error})
             }
         })
+        try{
+            console.log(`Payment request for ${formData.get('email')} had status ${data.statusCode} `)
+        }catch(err){
+            console.log(`Payment request for broken email had status ${data.statusCode} `)
+        }
         switch(data.statusCode){
             case(200):
                 let paymentData = data.result.payment

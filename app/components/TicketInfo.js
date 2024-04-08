@@ -11,7 +11,6 @@ const InfoBlock=({label, value})=>{
     )
 }
 export default function TicketInfo({ ticket }) {
-    console.log(ticket)
   return (
     <div className={"grid mx-16"}>
         <InfoBlock label={'Name'} value={ticket.name}/>

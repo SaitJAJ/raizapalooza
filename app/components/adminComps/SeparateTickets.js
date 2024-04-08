@@ -7,8 +7,6 @@ export default function SeparateTickets({tickets}){
     const fam = tickets.filter(({tier})=> tier === 'fam');
     const crew = tickets.filter(({tier})=> tier === 'crew');
     const staff = tickets.filter(({tier})=> tier === 'staff');
-    console.log(tickets[0])
-
 
     return(
         <div>

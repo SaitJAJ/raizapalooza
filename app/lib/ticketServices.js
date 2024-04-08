@@ -142,7 +142,7 @@ export async function genTicket({ticket,background}) {
     }
 }
 export default async function getTicketBackground(tier){
-    console.log(tier)
+    // console.log(tier)
     switch(tier){
         case('earlybird'):
             return 'public/qrTickets/earlybird.png';
