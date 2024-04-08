@@ -12,16 +12,22 @@ export default function TicketBox({selected,setSelected}){
         form.scrollIntoView({behavior:"smooth"})
     }
     const selectOne=(id)=>{
-        setSelected(id)
+        if( Date.now() >= new Date('April 11, 2024'))
+        {
+            setSelected('door')
+        }else{
+            setSelected(id)
+        }
         buttonRef.current.focus()
-        buttonRef.current.scrollIntoView({behavior:"smooth"})
+        // buttonRef.current.scrollIntoView({behavior:"smooth"})
     }
 
     return(
         <div className={'h-[100vh] justify-around overflow-y-scroll no-scrollbar grid pt-[8vh] snap-start'} id={'ticketbox'}>
            <Header/>
             <div className={'flex flex-wrap justify-around'} >
-                <Ticket selected={selected==='earlybird'} id={'earlybird'} select={()=>selectOne('earlybird')}>
+
+                <Ticket selected={selected==='earlybird'} id={'earlybird'} notice={"Early Bird Tickets are only available before April 11th"} select={()=>selectOne('earlybird')}>
                     <Image alt={'earlybird'} src={earlybird}
                            placeholder={'blur'}
                            priority={true}
@@ -29,7 +35,7 @@ export default function TicketBox({selected,setSelected}){
                             fill
                     />
                 </Ticket>
-                <Ticket selected={selected==='door'} id={'door'} select={()=>selectOne('door')}>
+                <Ticket selected={selected==='door'} id={'door'} notice={'General Tickets will also be available for purchase with cash at door.'} select={()=>selectOne('door')}>
                     <Image alt={'general'} src={door}
                            priority={true}
                             placeholder={'blur'}

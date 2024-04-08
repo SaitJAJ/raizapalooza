@@ -4,22 +4,22 @@ import BgWrapper from "@/components/BgWrapper";
 
 const HOUR = (60*60*10000)
 const randomPositions={
-    0:'md:m-auto',
-    1:'md:ml-[5vw]',
-    2:'md:ml-[10vw]',
-    3:'md:ml-[15vw]',
-    4:'md:ml-[20vw]',
-    5:'md:ml-[25vw]',
-    6:'md:ml-[30vw]',
-    7:'md:ml-[35vw]',
-    8:'md:ml-[40vw]',
-    9:'md:ml-[45vw]',
+    0:'md:ml-[5vw] ',
+    1:'md:ml-[10vw] lg:ml-[20vw]',
+    2:'md:ml-[25vw] lg:ml-[30vw]',
+    3:'md:ml-[18vw] lg:ml-[25vw]',
+    4:'md:ml-[30vw] lg:ml-[35vw]',
+    5:'md:ml-[5vw]  lg:ml-[15vw]',
+    6:'md:ml-[23vw] lg:ml-[32vw]',
+    7:'md:ml-[5vw]  lg:ml-[10vw]',
+    8:'md:ml-[25vw] lg:ml-[30vw]',
+    9:'md:ml-[30vw] lg:ml-[50vw]',
 }
 const OPENTIME = Date.parse('13 Apr 2024 16:00:00')
 
 const itinerary=[
     {
-        title:'All Day',
+        title:'ALL DAY',
         events:[
             "KANDI STATION",
             "GLITTER STATION",
@@ -31,7 +31,7 @@ const itinerary=[
         time:OPENTIME,
     },
     {
-        title:'4 PM',
+        title:'4PM',
         events:[
             "DOORS OPEN",
             "VENDOR MARKET OPEN",
@@ -42,7 +42,7 @@ const itinerary=[
         time:OPENTIME,
     },
     {
-        title:'6 PM',
+        title:'6PM',
         events:[
             "LIVE PAINTING STARTS",
             "LIVE MUSIC ENDS",
@@ -50,14 +50,14 @@ const itinerary=[
         time:OPENTIME+(2*HOUR),
     },
     {
-        title:'10 PM',
+        title:'10PM',
         events:[
             "LIVE PAINTING ENDS",
         ],
         time:OPENTIME+(6*HOUR),
     },
     {
-        title:'11 PM',
+        title:'11PM',
         events:[
             "BIRTHDAY HOUR",
             "HAPPY BIRTHDAY SONG",
@@ -75,14 +75,14 @@ const itinerary=[
         time:OPENTIME+(8*HOUR),
     },
     {
-        title:'1:30 AM',
+        title:'1:30AM',
         events:[
             "LAST CALL FOR ALCOHOL",
         ],
         time:OPENTIME+(9.5*HOUR),
     },
     {
-        title:'2:00 AM',
+        title:'2:00AM',
         events:[
             "DOORS CLOSED",
             "SEE YOU NEXT YEAR!",
@@ -95,8 +95,8 @@ export default async function Itinerary(){
 
 
     return(
-        <div className={'mx-[15vw] pb-[40vh]'}>
-            {Object.values('12345678'.split('').sort(function(){return 0.5-Math.random()})).map((value,index) => { // Doing the function inline to prevent render mismatch
+        <div className={' ml-[25vw] md:mx-[5vw] pb-[40vh]'}>
+            {Object.values('12345678'.split('')).map((value,index) => { // Doing the function inline to prevent render mismatch
                 return(
                     <ItineraryItem key={value} position={value} index={index}/>
                 )
@@ -108,15 +108,14 @@ export default async function Itinerary(){
 
 const ItineraryItem =({position,index})=>{
     return(
-
-        <div className={`flex justify-between my-[5vh] md:my-[20vh] h-fit ${randomPositions[position]} md:w-[35vw] grow`}>
-            <h3 className={'text-4xl h-fit font-bold text-element-2 mr-3  bg-radial-shadow'}>
+        <div className={`flex justify-between my-[5vh] md:my-[20vh] font-antonio h-fit ${randomPositions[position]} grow`}>
+            <h3 className={'text-4xl h-fit font-bold text-element-2 text-right mr-3 bg-radial-shadow py-2'}>
                 {itinerary[index].title}
             </h3>
-            <ul className={'grow md:text-4xl bg-radial-shadow p-4'}>
+            <ul className={'grow md:text-4xl bg-radial-shadow text-left'}>
                 {Object.values(itinerary[index].events).map((event,index)=>{
                     return(
-                        <li key={index} className={''}>{event}</li>
+                        <li key={index} className={'py-2'}>{event}</li>
                     )
                 })}
             </ul>

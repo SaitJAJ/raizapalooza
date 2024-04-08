@@ -11,6 +11,7 @@ const InfoBlock=({label, value})=>{
     )
 }
 export default function TicketInfo({ ticket }) {
+    console.log(ticket)
   return (
     <div className={"grid mx-16"}>
         <InfoBlock label={'Name'} value={ticket.name}/>
@@ -26,7 +27,7 @@ export default function TicketInfo({ ticket }) {
               View Ticket
             </Hyperlink>
       </div>
-        {ticket.paymentId?
+        {ticket.paymentId!=null?
             <div>
                 <h3 className={'text-2xl'}>Receipt Info</h3>
                 <InfoBlock label={'Payment ID'} value={ticket.paymentId}/>
