@@ -3,48 +3,64 @@ import { redirect } from "next/navigation";
 import mongoose from "mongoose";
 import Ticket from "@/models/Ticket";
 
-export async function GET(request) {
+export async function POST(request) {
   try {
     mongoose.connect(process.env.MONGODB_URI);
-    const requestHeaders = new Headers(request.headers);
-    const auth = requestHeaders.get("auth");
-    const ticketId = requestHeaders.get("ticketId").split("/")[3];
+    const formData = await request.formData();
+    const auth = formData.get("auth");
+    const ticketId = request.nextUrl.pathname.split("/")[3];
     console.log(auth, ticketId);
+
     if (auth === "bartender") {
       //filter collections by ticketID
-
-      //temp code for test database
-      const filter = { ticketId: "1a7d6a02-eaf4-4029-a817-9ccc5d1fac0f" };
-      //const filter = { ticketId: ticketId };
+      const filter = { ticketId: ticketId };
 
       //increment raffle by 1
       const modify = { $inc: { raffle: 1 } };
+
       //pass filter and modify with {new:true}
       let doc = await Ticket.findOneAndUpdate(filter, modify, { new: true });
+
       //doc will hold the updated row
-      console.log(doc);
+
       //right now return the doc in the future we could just send the old raffle number and the new raffle number
-      return Response.json("New raffle number: " + doc.raffle);
+      return new Response(
+        JSON.stringify({ data: "New raffle number: " + doc.raffle }),
+        {
+          status: 200,
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      );
     } else if (auth === "bouncer") {
       //filter collections by ticketID
+      const filter = { ticketId: ticketId };
 
-      //temp code for test database
-      const filter = { ticketId: "1a7d6a02-eaf4-4029-a817-9ccc5d1fac0f" };
-      //const filter = { ticketId: ticketId };
-
-      //increment raffle by 1
+      //Set admission to false
       const modify = { admission: false };
-      //pass filter and modify with {new:true}
+
+      //pass filter and modify
       let doc = await Ticket.findOneAndUpdate(filter, modify);
       //doc will hold the old row
+
       //if doc.admission is false
       if (doc.admission === false) {
         //this ticket has already been scanned
-        return Response.json("Do not allow");
+        return new Response(JSON.stringify({ data: "do not allow" }), {
+          status: 200,
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+          },
+        });
       } else {
-        console.log("old\n", doc);
         //this ticket has now been scanned
-        return Response.json("allow");
+        return new Response(JSON.stringify({ data: "allow" }), {
+          status: 200,
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+          },
+        });
       }
     } else {
       //wrong auth in header
@@ -54,6 +70,14 @@ export async function GET(request) {
     if (isRedirectError(error)) {
       throw error;
     }
-    console.error(error);
+    return new Response(
+      JSON.stringify({ data: "L bozo meesed up: " + error }),
+      {
+        status: 404,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      }
+    );
   }
 }
