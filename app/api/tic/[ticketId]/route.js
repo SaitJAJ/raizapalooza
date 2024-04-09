@@ -64,7 +64,7 @@ export async function POST(request) {
       }
     } else {
       //wrong auth in header
-      redirect("/tickets", "push");
+      redirect("/about/");
     }
   } catch (error) {
     if (isRedirectError(error)) {
