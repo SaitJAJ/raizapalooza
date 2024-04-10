@@ -41,7 +41,7 @@ const InfoForm = forwardRef(function InfoForm({loading,tier},formRef){
                         <HiddenInput id={'cost'} value={cost} hidden={false} label={`$${cost} CAD`}/>
                     </NumberInput>
                     <TextInput label={'Name'} type={"text"} id={'name'} placeholder={'Name'} required />
-                    <TextInput label={'Email'} type={"text"} id={"email"} placeholder={'Email'} required />
+                    <TextInput label={'Email'} type={"email"} id={"email"} placeholder={'Email'} required />
                     <BirthdayPicker label={'Birthday'} id={'birthday'} minDate={new Date('April 13, 2006')} required/>
                     <HiddenInput type={'text'} id={'tier'} value={tier} hidden={true}/>
                     <h3 className={'md:text-2xl text-base'}>Additional Fields (not required)</h3>

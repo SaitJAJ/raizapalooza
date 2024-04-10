@@ -16,7 +16,7 @@ function cleanTicket(ticket){
         paymentDate:ticket.paymentDate,
         name:ticket.name,
         email:ticket.email,
-        phoneNumber:ticket.phoneNumber,
+        phone:ticket.phone,
         birthday:ticket.birthday,
         tier:ticket.tier,
         raffle:ticket.raffle,
