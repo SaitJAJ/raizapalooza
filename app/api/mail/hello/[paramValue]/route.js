@@ -9,7 +9,7 @@ export async function GET(request, { params }) {
       ticketId: request.headers.get('ticketId'),
       name: request.headers.get('name'),
       email: "test@josh.com",
-      phoneNumber: "780-190-2985",
+      phone: "780-190-2985",
       tier: "VIP",
       raffle: 2,
       admission: true,

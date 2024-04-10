@@ -8,7 +8,7 @@ const ticketSchema = new Schema({
   paymentDate:Date,
   name: String,
   email: String,
-  phoneNumber: String,
+  phone: String,
   birthday: Date,
   tier: String,
   raffle: Number,
