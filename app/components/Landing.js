@@ -5,10 +5,11 @@ import '../../styles/home.css';
 export default function Landing() {
   return (
     <>
-      <div className="border-2 flex flex-col justify-center items-center h-[100%] w-[100vw]">
+      <div className="border-2 flex flex-col justify-center items-center h-[100%] w-[100vw] overflow-clip">
         <div className="dark-overlay w-1/2 h-1/2 max-lg:top-[25vh] top-[40vh] max-lg:left-[15vw] left-[25vw] -z-10"></div>
         <RaizapaloozaTitle title={"Raizapalooza"}/>
-        <div className="info bg-background bg-opacity-50 p-5 mt-[15vh]">
+        <div className="background-radial-gradient absolute top-[30vh] info-bg w-[50%] h-[50%]"></div>
+        <div className="p-5 mt-[15vh]">
           <div className='info-section'>
             <p className='z-20 text-5xl text-center font-bold max-lg:text-4xl' id="date-text">APRIL 13, 2024</p>
           </div>
