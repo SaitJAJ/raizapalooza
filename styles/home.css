@@ -18,6 +18,7 @@
 
 #date-text {
   animation: sparkle 7s infinite;
+  z-index: 50;
 }
 #location-text a {
   text-decoration: underline;

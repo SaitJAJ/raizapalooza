@@ -5,7 +5,7 @@ import BlueSwirl from "@/public/BlueSwirl.png";
 
 export default function RaizapaloozaTitle(props){
     return(
-        <div className={'absolute top-[15%] md:pt-20 pt-10 bg-[url("/BlueSwirl.png")]'}>
+        <div className={'absolute top-[15%] md:pt-20 pt-10 bg-[url("/BlueSwirl.png")] z-50'}>
             <h1 id='raiza-title' className="font-tan-headline text-4xl md:text-6xl">{props.title}</h1>
             <Image
                 className="absolute top-0 -z-[1]"
