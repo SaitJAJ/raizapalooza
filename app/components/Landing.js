@@ -8,9 +8,9 @@ export default function Landing() {
       <div className="border-2 flex flex-col justify-center items-center h-[100%] w-[100vw]">
         <div className="dark-overlay w-1/2 h-1/2 max-lg:top-[25vh] top-[40vh] max-lg:left-[15vw] left-[25vw] -z-10"></div>
         <RaizapaloozaTitle title={"Raizapalooza"}/>
-        <div className="info bg-background bg-opacity-50 p-5">
+        <div className="info bg-background bg-opacity-50 p-5 mt-[15vh]">
           <div className='info-section'>
-            <p className='z-20 pt-[15vh] text-4xl text-center font-bold max-lg:text-2xl' id="date-text">APRIL 13, 2024</p>
+            <p className='z-20 text-4xl text-center font-bold max-lg:text-2xl' id="date-text">APRIL 13, 2024</p>
           </div>
           <div className='info-section flex flex-col justify-center items-center gap-5'>
             <p className='z-20' ><a className='text-element-2 text-2xl max-lg:text-xl text-center underline hover:no-underline font-bold' href='https://www.instagram.com/scubajaysbar/' target='_blank'>@scubajaysbar</a></p>
