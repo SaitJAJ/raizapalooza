@@ -21,6 +21,5 @@ export default function Landing() {
         <button className=" bg-element-1 mt-5 z-10 p-5"><a className='text-element-2 font-extrabold font-josefin-sans max-lg:text-2xl text-4xl hover:underline' href='/tickets'>GET TICKETS NOW</a></button>
       </div>
     </>
-
   );
 }
