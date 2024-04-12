@@ -25,7 +25,7 @@ export async function POST(request) {
 
       //right now return the doc in the future we could just send the old raffle number and the new raffle number
       return new Response(
-        JSON.stringify({ data: "New raffle number: " + doc.raffle }),
+        JSON.stringify({ data: "Ticket has " + doc.raffle + " raffle entries!" }),
         {
           status: 200,
           headers: {
@@ -47,7 +47,7 @@ export async function POST(request) {
       //if doc.admission is false
       if (doc.admission === false) {
         //this ticket has already been scanned
-        return new Response(JSON.stringify({ data: "do not allow" }), {
+        return new Response(JSON.stringify({ data: "Ticket has already entered" }), {
           status: 200,
           headers: {
             "Access-Control-Allow-Origin": "*",
@@ -55,7 +55,7 @@ export async function POST(request) {
         });
       } else {
         //this ticket has now been scanned
-        return new Response(JSON.stringify({ data: "allow" }), {
+        return new Response(JSON.stringify({ data: "Good to go" }), {
           status: 200,
           headers: {
             "Access-Control-Allow-Origin": "*",
@@ -71,7 +71,7 @@ export async function POST(request) {
       throw error;
     }
     return new Response(
-      JSON.stringify({ data: "L bozo meesed up: " + error }),
+      JSON.stringify({ data: "There was an error. Try again?" }),
       {
         status: 404,
         headers: {
