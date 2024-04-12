@@ -5,7 +5,7 @@ import '../../styles/home.css';
 export default function Landing() {
   return (
     <>
-      <div className="landing-inner">
+      <div className="flex flex-col justify-center items-center h-[100%] w-[100vw]">
         <div className="dark-overlay w-1/2 h-1/2 max-lg:top-[25vh] top-[40vh] max-lg:left-[15vw] left-[25vw] z-0"></div>
         <RaizapaloozaTitle title={"Raizapalooza"}/>
         <div className="info">
@@ -15,6 +15,7 @@ export default function Landing() {
           <div className='info-section'>
             <p className='z-20' ><a className='text-element-2 text-4xl underline hover:no-underline font-bold' href='https://www.instagram.com/scubajaysbar/' target='_blank'>@scubajaysbar</a></p>
             <p className='z-20 text-2xl font-bold'>18+ only</p>
+            <p className='z-20 text-2xl font-bold'>302 10 St NW, Calgary, AB</p>
           </div>
         </div>
         <button className=" bg-element-1 mt-5 z-10 p-5"><a className='text-element-2 font-extrabold font-josefin-sans max-lg:text-2xl text-4xl hover:underline' href='/tickets'>GET TICKETS NOW</a></button>
