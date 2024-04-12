@@ -1,55 +1,25 @@
-.date-text {
-  color: var(--accent2);
-  font-size: clamp(2rem, 1.912vw + 1.388rem, 4rem);
-  font-weight: bolder;
-}
-
-.reg-text {
-  font-size: calc(clamp(2rem, 1.912vw + 1.388rem, 4rem)/1.5);
-}
-
-p, a {
-  text-align: center;
-  width: 100%;
-}
-
-.info-section {
-  padding: 1vw;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.landing-inner {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 50px - 5vh);
-  width: 100vw;
-  margin-top: 5vh;
-}
-
 @keyframes sparkle {
-  0% { color: var(--accent2); }
-  25% { color: var(--accent); }
-  50% { color: var(--text); }
-  75% { color: var(--accent); }
-  100% { color: var(--accent2); }
+  0% {
+    color: var(--accent2);
+  }
+  25% {
+    color: var(--accent);
+  }
+  50% {
+    color: var(--text);
+  }
+  75% {
+    color: var(--accent);
+  }
+  100% {
+    color: var(--accent2);
+  }
 }
 
 #date-text {
-  color: var(--accent2);
-  font-size: clamp(2rem, 1.912vw + 1.388rem, 4rem);
-  font-weight: bolder;
   animation: sparkle 7s infinite;
 }
-
 #location-text a {
-  color: var(--accent2);
-  font-size: clamp(1rem, 0.956vw + 0.694rem, 2rem);
-  font-weight: bolder;
-  margin-bottom: 1vh;
   text-decoration: underline;
 }
 #location-text a:hover {

@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <Background>
         <Header />
-        <main className="flex h-[95vh]">
+        <main className="flex h-[100vh]">
           <Landing />
         </main>
         <Footer />
