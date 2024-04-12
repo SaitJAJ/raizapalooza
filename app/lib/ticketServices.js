@@ -7,38 +7,6 @@ import {createCanvas, loadImage} from "canvas";
 import QRCode from "qrcode";
 import {sendTicketEmail} from "@/app/lib/emailServices";
 
-
-
-export async function returnRaffleTicket(formData){
-    try{
-        const email = formData.get("email");
-        await mongoose.connect(process.env.MONGODB_URI)
-        let accountExists = await Ticket.findOneAndUpdate({email:email})
-
-        if(accountExists !== null){
-            redirect(`/ticket/${accountExists.ticketId}`)
-        }else{
-            const ticketId = crypto.randomUUID()
-            await Ticket.create({
-                ticketId:ticketId,
-                email:email,
-            })
-            redirect(`/ticket/${newTicket.ticketId}`)
-        }
-        console.log(accountExists)
-
-
-        return(true)
-
-
-    }catch(err){
-        if(isRedirectError(err)){
-            throw err
-        }else{
-            return false
-        }
-    }
-}
 function cleanTicket(ticket){
     let cleanTicket = {
         id:ticket._id.toHexString(),
