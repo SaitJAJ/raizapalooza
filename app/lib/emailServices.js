@@ -130,11 +130,12 @@ export async function sendEmailTickets(email){
         let test = await transport.sendMail({
             from: 'tickets@raizapalooza.com',
             to: email,
-            subject: 'Raizapalooza Specialty Tickets',
+            subject: 'Raizapalooza is Today at 4:00PM!',
             html: `
                 <div style="text-align:center;" >
-                    <h1> Hello ${tickets[0].name}</h1>
-                    <p>Attached are your tickets. You can find all information about raizapalooza at <a href="https://raizapalooza.com/about/"> Raizapalooza.com </a></p>               
+                    <h1>Today is the day!</h1>
+                    <p>Doors open at 4:00pm, Be sure to have your ticket & id in hand!</p>
+                    <p>There is no ATM on site. Cash, Credit & Debit will be accepted!</p>               
                     ${embedImages} 
                     <footer style="font-size: small; margin-top: 50px;">
                         <p style="margin:0 initial;">The Raizapalooza Terms & Conditons can be found at <a href="https://raizapalooza.com/terms">Raizapalooza.com/terms</a></p>   
