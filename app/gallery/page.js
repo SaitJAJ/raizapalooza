@@ -11,7 +11,7 @@ export default function Page() {
     <>
     <Background>
       <Header />
-      <div id='gallery'>
+      <div className='mt-[10vh]' id='gallery'>
         <FancyTitle title={'Gallery'}/>
         <GalleryPhotos />
       </div>

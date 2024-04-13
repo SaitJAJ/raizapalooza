@@ -1,4 +1,5 @@
 'use client'
+import Header from '../../components/Header'
 import InfoForm from "@/components/InfoForm";
 import SquarePayment from "@/components/SquarePayment";
 import {ErrorBoundary} from "react-error-boundary";
@@ -78,7 +79,8 @@ export default function FormSequence({code = 'door'}){
 
     }
     return(
-        <main className={'h-[100vh] px-8 md:px-20 overflow-y-hidden snap-y snap-mandatory'} >
+        <>
+                <main className={'h-[100vh] px-8 md:px-20 overflow-y-hidden snap-y snap-mandatory'} >
                 <TicketBox selected={selected} setSelected={setSelected} form={formRef.current}/>
                 <InfoForm ref={formRef} loading={loading} tier={selected} clearAll={clearAll}/>
                 <ErrorBoundary onError={(e)=>console.log(e)} fallback={<div id={'paymentError'} className={'w-1/2 my-80 mx-auto text-center border-2 rounded-sm px-20 py-5'}>You are missing the required ENV Variables for square payments.</div>}>
@@ -87,6 +89,7 @@ export default function FormSequence({code = 'door'}){
                     </Suspense>
                 </ErrorBoundary>
 
-        </main>
+            </main>
+        </>
     )
 }

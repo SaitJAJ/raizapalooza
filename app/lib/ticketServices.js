@@ -7,39 +7,6 @@ import {createCanvas, loadImage} from "canvas";
 import QRCode from "qrcode";
 import {sendTicketEmail} from "@/app/lib/emailServices";
 
-
-
-export async function returnRaffleTicket(formData){
-    try{
-        const email = formData.get("email");
-        await mongoose.connect(process.env.MONGODB_URI)
-        let tickets = await Ticket.find({email:email})
-        let count = 0
-        if(tickets.length > 0){
-            for(let ticket of tickets){
-                count += ticket.raffle || 0
-            }
-            redirect(`/ticket/${tickets[0].ticketId}?count=${count}&email=${email}`)
-        }else{
-            const ticketId = crypto.randomUUID()
-            await Ticket.create({
-                ticketId:ticketId,
-                email:email,
-                tier:"raffle"
-            })
-            redirect(`/ticket/${ticketId}?count=${count}&email=${email}`)
-        }
-        // console.log(accountExists)
-        return true
-
-    }catch(err){
-        if(isRedirectError(err)){
-            throw err
-        }else{
-            return false
-        }
-    }
-}
 function cleanTicket(ticket){
     let cleanTicket = {
         id:ticket._id.toHexString(),
@@ -74,6 +41,15 @@ export async function getTicketById(ticketId){
         await mongoose.connect(process.env.MONGODB_URI)
         const foundTicket = await Ticket.findOne({ticketId:ticketId})
         return cleanTicket(foundTicket)
+    }catch(error){
+        console.error(error)
+    }
+}
+export async function getTicketsByEmail(email){
+    try{
+        await mongoose.connect(process.env.MONGODB_URI)
+        const foundTickets = await Ticket.find({email:email})
+        return foundTickets.map(ticket=>{return cleanTicket(ticket)})
     }catch(error){
         console.error(error)
     }

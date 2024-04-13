@@ -3,7 +3,7 @@ import BlueSwirl from "@/public/BlueSwirl.png";
 
 export default function FancyTitle({title}){
     return(
-        <div className={'relative h-fit w-fit p-6  md:p-10 mx-auto'}>
+        <div className={'relative h-fit w-fit p-6  md:p-10 mx-auto mt-[10vh]'}>
             <h3 className={'font-tan-headline text-center text-4xl md:text-nowrap md:text-6xl'}>
                 {title}
             </h3>

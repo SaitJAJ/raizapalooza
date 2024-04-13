@@ -2,7 +2,7 @@
 import nodemailer from 'nodemailer'
 import nodemailerSendgrid from 'nodemailer-sendgrid'
 // import {Resend} from 'resend'
-import getTicketBackground, {genTicket, getOrderTickets} from "@/app/lib/ticketServices";
+import getTicketBackground, {genTicket, getOrderTickets, getTicketsByEmail} from "@/app/lib/ticketServices";
 import TicketEmail from "@/emailTemplates/TicketEmail";
 // const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -76,9 +76,9 @@ export async function createAttachments(tickets){
 // }
 async function generateTickets(tickets){
     try{
-        let background = await getTicketBackground(tickets[0].tier)
         let generatedTickets = []
         for await(let ticket of tickets){
+            let background = await getTicketBackground(ticket.tier)
             let curTick = await genTicket({ticket,background})
             generatedTickets.push(curTick)
 
@@ -114,6 +114,37 @@ export async function sendTicketEmail(email,orderId){
             `,
             attachments:attachments,
         });
+    }catch(error){
+        console.error(error)
+    }
+}
+export async function sendEmailTickets(email){
+    try{
+        let tickets = await getTicketsByEmail(email);
+        let generatedTickets = await generateTickets(tickets)
+        let attachments = await createAttachments(generatedTickets)
+        let embedImages = ''
+        generatedTickets.map(i=>{
+            embedImages += `<img style="margin:auto" alt="${'Ticket ID: '+i.ticketId}" src="${'cid:'+i.ticketId}" width="360" height="540" />`
+        })
+        let test = await transport.sendMail({
+            from: 'tickets@raizapalooza.com',
+            to: email,
+            subject: 'Raizapalooza Specialty Tickets',
+            html: `
+                <div style="text-align:center;" >
+                    <h1> Hello ${tickets[0].name}</h1>
+                    <p>Attached are your tickets. You can find all information about raizapalooza at <a href="https://raizapalooza.com/about/"> Raizapalooza.com </a></p>               
+                    ${embedImages} 
+                    <footer style="font-size: small; margin-top: 50px;">
+                        <p style="margin:0 initial;">The Raizapalooza Terms & Conditons can be found at <a href="https://raizapalooza.com/terms">Raizapalooza.com/terms</a></p>   
+                        <p>All information provided in this email is factual as far as we know. If you notice anything incorrect, or have other questions/concerns please contact us at  Raizapalooza@gmail.com</p>
+                    </footer>
+                </div>  
+            `,
+            attachments:attachments,
+        });
+        return tickets
     }catch(error){
         console.error(error)
     }
