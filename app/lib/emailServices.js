@@ -145,9 +145,11 @@ export async function sendEmailTickets(email){
             `,
             attachments:attachments,
         });
-        return tickets
+        return true
     }catch(error){
-        console.error(error)
+        console.log("Error sending email to;",email)
+        // console.error(error)
+        return false
     }
 }
 export async function generateReceiptTable(paymentData){
