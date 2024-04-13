@@ -264,3 +264,8 @@ a {
   background: #4041d1;
   border-radius: 10px;
 }
+
+.info-bg {
+  background-image: radial-gradient(circle, #121212 22%, transparent 50%);
+  z-index: 0;
+}

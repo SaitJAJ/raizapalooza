@@ -28,7 +28,6 @@ export default async function RootLayout({ children }) {
         <div className={"w-full min-h-[100vh]"}>
             {children}
         </div>
-        <Footer />
         {/*</div>*/}
         <Suspense fallback={<Loading loading={true} />}>
           <CookieConsent cookies={policy} />
