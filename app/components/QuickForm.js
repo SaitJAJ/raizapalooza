@@ -326,9 +326,23 @@ const billingReducer =(state,action)=>{
                     // [action.tag]:action.value,
                 }
             )
+        case('reset'):{
+            return{
+                ...state,
+                addressLines: [],
+                familyName:'',
+                givenName: '',
+                email: '',
+                country: 'CA',
+                phone: '',
+                region: 'AB',
+                city: 'Calgary',
+            }
+        }
     }
 }
 const billingInitializer =(form)=>{
+    console.log(form)
     return(
         {
             addressLines: [],
@@ -339,28 +353,33 @@ const billingInitializer =(form)=>{
             phone: '',
             region: 'AB',
             city: 'Calgary',
-            cost:form.get("cost")
+            cost:form.get("cost"),
+            quant:form.get("quant")
         }
     )
 }
-export default function QuickForm({form}){
+export default function QuickForm({form,scrollBack}){
     const formRef = useRef()
     const payment = useState('')
     const [billingDetails, billingDispatch] = useReducer(billingReducer,form,billingInitializer)
     const [paymentMessages,setPaymentMessages] = useState([])
     const [acknowledged, setAcknowledged ] = useState(false)
 
+
     const handlePayment = async(token,verifiedBuyer)=>{
         setPaymentMessages(['Attempting Payment...'])
         try{
-            const formData = new formData(formRef)
-            let payment = await submitPayment(token.token,verifiedBuyer.token,billingDetails.get('cost')*100,"CAD",formData)
+            const formData = new FormData(formRef.current)
+            formData.append('name', `${billingDetails.givenName} ${billingDetails.familyName}`)
+            formData.append('tier','door')
+            formData.append('quant',billingDetails.quant)
+            let payment = await submitPayment(token.token,verifiedBuyer.token,billingDetails.cost*100,"CAD",formData)
             if(payment.error){
                 setPaymentMessages(JSON.parse(payment.data).errors)
             }
         }
         catch(err){
-
+            console.log(err)
         }
 
     }
@@ -390,12 +409,16 @@ export default function QuickForm({form}){
     })
 
     return(
-        <>
-            <form id={'quickForm'} ref={formRef} className={'md:px-[10vw]'} name={'billing'} >
+        <div className={'overflow-y-scroll h-[100vh] no-scrollbar'}>
+            <div className={'h-fit w-full flex justify-around py-8'}>
+                <Button value={'Back to Tickets'} onClick={scrollBack}/>
+                <Button value={'Reset'} onClick={()=>{billingDispatch({type:"reset"})}}/>
+            </div>
+            <form id={'quickForm'} ref={formRef} className={'md:px-[10vw] '} name={'billing'} >
                 <h3 className={'text-4xl'}>Billing Details</h3>
-                <TextInput label={"First name"} id={'givenName'} value={billingDetails.givenName} onChange={e=>{billingDispatch({type:"change",tag:e.target.id,value:e.target.value})}}/>
-                <TextInput label={"Last name"} id={"familyName"} value={billingDetails.familyName} onChange={e=>{billingDispatch({type:"change",tag:e.target.id,value:e.target.value})}}/>
-                <TextInput label={"Email"} id={'email'} value={billingDetails.email} onChange={e=>{billingDispatch({type:"change",tag:e.target.id,value:e.target.value})}}/>
+                <TextInput label={"First name"} required id={'givenName'} value={billingDetails.givenName} onChange={e=>{billingDispatch({type:"change",tag:e.target.id,value:e.target.value})}}/>
+                <TextInput label={"Last name"}  required id={"familyName"} value={billingDetails.familyName} onChange={e=>{billingDispatch({type:"change",tag:e.target.id,value:e.target.value})}}/>
+                <TextInput label={"Email"} type={'email'} id={'email'}  required value={billingDetails.email} onChange={e=>{billingDispatch({type:"change",tag:e.target.id,value:e.target.value})}}/>
                 <TextInput label={"Phone"} id={'phone'} value={billingDetails.phone} onChange={e=>{billingDispatch({type:"change",tag:e.target.id,value:e.target.value})}}/>
                 <TextInput label={"Address line 1"} id={'address-1'} value={billingDetails.addressLines[0]} onChange={e=>{billingDispatch({type:"address",tag:e.target.id,value:e.target.value})}}/>
                 <TextInput label={"Address line 2"} id={'address-2'} value={billingDetails.addressLines[1]} onChange={e=>{billingDispatch({type:"address",tag:e.target.id,value:e.target.value})}}/>
@@ -462,12 +485,13 @@ export default function QuickForm({form}){
 
                     <div>
                         <p className={'text-center'}>
+                            <span className={'font-tan-headline'}>Raizapalooza</span> is an 18+ Event! Your ID will be required on entry.<br/> <br/>
                             As this website accepts payment & uses cookies, we advise you to review our <a href={'/terms'}>Terms & Conditions</a>.
                             If you do not wish to accept our terms and conditions, you will have to purchase a general admission ticket at door on the day of the event.
                         </p>
                         <Button value={"Accept Terms & Conditions"} onClick={()=>setAcknowledged(true)}/>
                     </div>}
             </div>
-        </>
+        </div>
     )
 }

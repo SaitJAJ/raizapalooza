@@ -2,23 +2,25 @@
 import QuickForm from "@/components/QuickForm";
 import QuickTickets from "@/components/QuickTickets";
 import {logPaymentForm} from "@/app/lib/squareServices";
-import {useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 
 export default function QuickSequence(){
     const formRef=useRef()
-
+    const [formData,setFormData] = useState(null)
+    useEffect(() => {
+        const form = formRef.current;
+        form.addEventListener('submit',handleSubmit)
+        return()=>{
+            form.removeEventListener('submit',handleSubmit)
+        }
+    }, []);
     const handleSubmit=(e)=>{
-        setLoading(true)
+        console.log(e)
         e.preventDefault()
-        let formData = new FormData(formRef.current)
-        let date = new Date(formRef.current['bday-year'].value,formRef.current['bday-month'].value-1, formRef.current['bday-day'].value);
-        formData.append("birthday",date)
-        setFormData(formData)
-        logPaymentForm(formData)
+        setFormData(new FormData(formRef.current))
         setTimeout(()=>{
-            setLoading(false)
             try{
-                const payment = document.getElementById('payment')
+                const payment = document.getElementById('quickForm')
                 payment.scrollIntoView({behavior:"smooth"})
             }catch(err){
                 console.log(err)
@@ -29,10 +31,23 @@ export default function QuickSequence(){
 
         },200)
     }
+    const scrollBack=()=>{
+        const form = document.getElementById('quickTickets')
+        form.scrollIntoView({behavior:"smooth"})
+        setTimeout(()=>{
+            setFormData(null)
+        },600)
+
+    }
+
     return(
-        <main className={'h-[100vh] px-8 md:px-20 overflow-y-hidden snap-y snap-mandatory'} >
+        <main className={'h-[100vh] px-8 md:px-20 overflow-y-hidden '} >
             <QuickTickets ref={formRef}/>
-            <QuickForm form={formRef.current}/>
+            {formData !== null?
+                <QuickForm form={formData} scrollBack={scrollBack}/>
+                :
+                null
+            }
         </main>
         )
 }
