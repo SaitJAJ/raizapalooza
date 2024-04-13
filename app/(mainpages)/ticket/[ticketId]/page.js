@@ -9,7 +9,8 @@ import Hyperlink from "@/components/Hyperlink";
 import RaffleInfo from "@/components/RaffleInfo";
 
 export default async function Page({params,searchParams}) {
-    let ticket = await getTicketById(params.ticketId)
+    let ticket = await getTicketById(params.ticketId);
+    console.log(ticket.ticketId);
     return (
         <div className={'flex justify-around flex-wrap'}>
             <FancyTitle title={'Raffle Ticket'}/>
