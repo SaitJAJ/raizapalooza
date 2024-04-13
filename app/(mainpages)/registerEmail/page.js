@@ -8,7 +8,6 @@ export default function Page(){
         <div className={'grid px-8 md:px-20'}>
             <FancyTitle title={"Raffle Entry"}/>
             <EmailRegister/>
-
         </div>
     )
 }

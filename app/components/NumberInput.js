@@ -3,12 +3,12 @@ import {useEffect, useRef, useState} from "react";
 
 export default function NumberInput(props){
 
-    let{label="Number",min=0,initial=min,max=min-1,onChange=()=>{},id="number"}=props
+    let{label="Number",formId='form', min=0,initial=min,max=min-1,onChange=()=>{},id="number"}=props
     const [tokens,setTokens]=useState(initial)
     const numRef = useRef()
 
     useEffect(() => {
-        const form = document.getElementById('form')
+        const form = document.getElementById(formId)
         const resetCount=() =>{
             setTokens(initial)
             onChange(initial)
@@ -48,8 +48,8 @@ export default function NumberInput(props){
             <div className={'grid'}>
                 <div className={'flex'}>
                     <input className={'h-[2lh] px-4 '} type={"button"} id={"dec"} value={"-"} onClick={updateTokens}/>
-                    <input className={'text-center w-14 h-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'} ref={numRef} name={id} id={id} min={min} type={'number'} value={tokens} onFocus={()=>numRef.current.select()} onChange={updateTokens}/>
-                    <input className={'h-full px-4'} type={"button"} id={"inc"} value={"+"} onClick={updateTokens}/>
+                    <input className={'text-center w-14 h-[2lh] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'} ref={numRef} name={id} id={id} min={min} type={'number'} value={tokens} onFocus={()=>numRef.current.select()} onChange={updateTokens}/>
+                    <input className={'h-[2lh] px-4'} type={"button"} id={"inc"} value={"+"} onClick={updateTokens}/>
                 </div>
                 <div className={'w-full text-right'}>
                     {props.children}

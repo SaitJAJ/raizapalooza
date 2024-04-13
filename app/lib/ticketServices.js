@@ -13,23 +13,24 @@ export async function returnRaffleTicket(formData){
     try{
         const email = formData.get("email");
         await mongoose.connect(process.env.MONGODB_URI)
-        let accountExists = await Ticket.findOneAndUpdate({email:email})
-
-        if(accountExists !== null){
-            redirect(`/ticket/${accountExists.ticketId}`)
+        let tickets = await Ticket.find({email:email})
+        let count = 0
+        if(tickets.length > 0){
+            for(let ticket of tickets){
+                count += ticket.raffle || 0
+            }
+            redirect(`/ticket/${tickets[0].ticketId}?count=${count}&email=${email}`)
         }else{
             const ticketId = crypto.randomUUID()
             await Ticket.create({
                 ticketId:ticketId,
                 email:email,
+                tier:"raffle"
             })
-            redirect(`/ticket/${newTicket.ticketId}`)
+            redirect(`/ticket/${ticketId}?count=${count}&email=${email}`)
         }
-        console.log(accountExists)
-
-
-        return(true)
-
+        // console.log(accountExists)
+        return true
 
     }catch(err){
         if(isRedirectError(err)){
