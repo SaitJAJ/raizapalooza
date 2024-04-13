@@ -12,6 +12,8 @@ function parseCode(code){
             return "crew"
         case("VIPPALOOZA2024PASS"):
             return "vip"
+        case("LATEBIRDPROMISEDADMISSION398123knb123PLEASEANDTHANKYOU"):
+            return "earlybird"
         default:
             if(Date.now() > new Date("April 10, 2024 23:59:59")){
                 return "door"

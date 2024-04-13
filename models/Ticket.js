@@ -11,7 +11,7 @@ const ticketSchema = new Schema({
   phone: String,
   birthday: Date,
   tier: String,
-  raffle: Number,
+  raffle: {type:Number, default: 0},
   admission: { type: Boolean, default: true },
   receiptUrl:String,
   paymentType:String,

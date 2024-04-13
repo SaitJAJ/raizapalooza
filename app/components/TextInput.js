@@ -14,7 +14,7 @@ export default function TextInput(props){
         focus=false
     } = props;
     return(
-        <label  className={'grid md:flex select-none my-2 text-left'}>
+        <label  className={'grid md:flex select-none h-fit my-2 text-left'}>
             <p className={'my-auto md:text-xl text-base sm:min-w-[250px]'}>{label}</p>
             {value===undefined?
                 <input className={"justify-end rounded-s md:text-lg text-base h-[1lh] md:h-[1.5lh] w-full text-center grow py-2 "} defaultValue={defaultValue} readOnly={readOnly} autoFocus={focus} disabled={disabled} required={required} id={id} name={id} autoComplete={"on"} type={type} placeholder={placeHolder}/>
