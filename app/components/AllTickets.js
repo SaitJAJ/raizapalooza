@@ -21,7 +21,6 @@ export default function AllTickets({title, tickets}){
         return 0
     }))
 
-
     function onlyUnique(value,index,array){
         console.log(value,index)
         return array.findIndex(({ticket})=>ticket.email === value)===index;
@@ -33,15 +32,27 @@ export default function AllTickets({title, tickets}){
             return {...ticket, loading:true}
         }))
         let doneEmails =[]
+        let errorEmails = []
         for await( let ticket of unique){
-            await sendEmailTickets(ticket.ticket.email);
-            doneEmails.push(ticket.ticket.email)
+            try{
+                let email = await sendEmailTickets(ticket.ticket.email);
+                if(email){
+                    doneEmails.push(ticket.ticket.email)
+                }else{
+                    errorEmails.push(ticket.ticket.email)
+                }
+            }catch(err){
+                errorEmails.push(ticket.ticket.email)
+                console.log(`error with ${ticket.ticket.email}`,err)
+            }
             setExpandedTickets(expandedTickets.map(ticket=>{
                 if(doneEmails.includes(ticket.ticket.email)){
                     return {...ticket, loading:false}
                 }
                 return ticket
             }))
+
+            console.log("Errored emails", errorEmails)
         }
     }
 
