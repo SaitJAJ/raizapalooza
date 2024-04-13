@@ -18,7 +18,6 @@ const QuickTickets = forwardRef(function QuickTickets(props, ref){
     const formId = 'quickTickets'
     return(
         <form ref={ref} className={'min-h-[100vh] justify-around overflow-y-scroll no-scrollbar grid pt-[8vh] snap-start'} id={'quickTickets'} name={'quickTickets'}>
-            <Header/>
             <div className={'flex flex-wrap justify-around'} >
                 <Ticket selected={true} id={'door'}>
                     <Image alt={'general'} src={door}
