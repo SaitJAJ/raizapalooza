@@ -25,7 +25,7 @@ export default async function RootLayout({ children }) {
       {/*<div className={"fixed h-[100vh] w-full -z-[10] opacity-20 bg-[url('/backgrounds/Background2.png')] -translate-y-1/3  bg-cover bg-repeat animate-pulse delay-700"}/>*/}
       {/*<div className={"fixed h-[200vh] w-full -z-[10] bg-[url('/backgrounds/Background3.png')] opacity-20 bg-cover bg-repeat animate-pulse delay-700"}/>*/}
         {/*<div className={'pb-2.5 overflow-x-hidden w-full'} >*/}
-        <div className={"w-full max-h-[100vh]"}>
+        <div className={"w-full min-h-[100vh]"}>
             {children}
         </div>
         {/*</div>*/}
