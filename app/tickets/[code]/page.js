@@ -1,6 +1,7 @@
 import FormSequence from "@/components/layout/FormSequence";
 import QuickForm from "@/components/SpecialForm";
 import SpecialForm from "@/components/SpecialForm";
+import ClosedPage from "@/components/ClosedPage";
 
 function parseCode(code){
     switch (code){
