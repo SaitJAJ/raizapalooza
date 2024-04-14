@@ -23,19 +23,24 @@ function parseCode(code){
     }
 }
 export default function Page({params}){
-    let code  = parseCode(params.code)
-    if(['door','earlybird'].includes(code)){
-        return(
-            // <div className={'h-[100vh]'}>
-            <FormSequence code={code}/>
-            // </div>
-        )
-    }else{
-        return(
-            // <div className={'h-[100vh]'}>
-            <SpecialForm tier={code}/>
-            // </div>
-        )
-    }
+
+
+    return(
+        <ClosedPage/>
+    )
+    // let code  = parseCode(params.code)
+    // if(['door','earlybird'].includes(code)){
+    //     return(
+    //         // <div className={'h-[100vh]'}>
+    //         <FormSequence code={code}/>
+    //         // </div>
+    //     )
+    // }else{
+    //     return(
+    //         // <div className={'h-[100vh]'}>
+    //         <SpecialForm tier={code}/>
+    //         // </div>
+    //     )
+    // }
 
 }
