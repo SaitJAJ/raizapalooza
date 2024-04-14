@@ -1,5 +1,7 @@
 import FormSequence from "@/components/layout/FormSequence";
 import Header from "../components/Header";
+import ClosedPage from "@/components/ClosedPage";
+import BgWrapper from "@/components/BgWrapper";
 
 export default function Page(){
     let tier = ''
@@ -10,7 +12,10 @@ export default function Page(){
     }
     return(
         <>
-            <FormSequence code={tier}/>
+            {/*<BgWrapper/>*/}
+
+            <ClosedPage/>
+            {/*<FormSequence code={tier}/>*/}
         </>
 
      )
