@@ -5,7 +5,7 @@ import '../../styles/home.css';
 export default function Landing() {
   return (
     <>
-      <div className="border-2 flex flex-col justify-center items-center h-[100%] w-[100vw] overflow-clip">
+      <div className=" flex flex-col justify-center items-center h-[100%] w-[100vw] overflow-clip">
         <div className="dark-overlay w-1/2 h-1/2 max-lg:top-[25vh] top-[40vh] max-lg:left-[15vw] left-[25vw] -z-10"></div>
         <RaizapaloozaTitle title={"Raizapalooza"}/>
         <div className="background-radial-gradient absolute top-[10vh] info-bg w-[100%] h-[100%]"></div>

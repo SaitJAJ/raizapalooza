@@ -9,6 +9,7 @@ export default async function Page() {
             <FancyTitle title={'Admin'}/>
             <Button value={'View Tickets'} navTo={'/admin/tickets'}/>
             <Button value={'Send Emails'} navTo={'/admin/emails'}/>
+            <Button value={'Run Raffle'} navTo={'/admin/raffle'}/>
         </div>
     )
 }

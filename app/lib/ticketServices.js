@@ -76,6 +76,15 @@ export async function getTicketById(ticketId){
         console.error(error)
     }
 }
+export async function getAllRaffleEntries(){
+    try{
+        await mongoose.connect(process.env.MONGODB_URI)
+        const foundTickets = await Ticket.find({raffle: {$gt:0}})
+        return foundTickets.map(ticket=>{return cleanTicket(ticket)})
+    }catch(error){
+        console.error(error)
+    }
+}
 export async function getTicketsByEmail(email){
     try{
         await mongoose.connect(process.env.MONGODB_URI)

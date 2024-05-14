@@ -8,6 +8,7 @@ import {setJwt} from "@/serverFunctions/JWTutils";
 
 export async function login(formData){
     try{
+        console.log(formData)
         await mongoose.connect(process.env.MONGODB_URI)
         let userAccount = await Account.findOne({email:formData.get('email')})
         if(await bcrypt.compare(formData.get('password'),userAccount.password)){
